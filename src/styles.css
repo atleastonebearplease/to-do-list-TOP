@@ -1,0 +1,10 @@
+@import url("josh-c-styles.css");
+
+:root {
+    /*Variables here*/
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "Ubuntu-Sans", sans-serif;
+}
