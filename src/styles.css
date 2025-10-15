@@ -1,10 +1,27 @@
 @import url("josh-c-styles.css");
 
 :root {
-    /*Variables here*/
+    --primary-color: #bed496;
+    --primary-color__darker: #B7D392;
+
 }
 
 * {
     box-sizing: border-box;
     font-family: "Ubuntu-Sans", sans-serif;
+}
+
+.sidebar {
+    background: var(--primary-color);
+    background: linear-gradient(180deg,rgba(190, 212, 150, 1) 25%, rgba(183, 211, 146, 1) 100%);
+    width: 25rem;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar__header {
+    margin: 2rem 0;
+    
 }
