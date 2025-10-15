@@ -4,6 +4,7 @@
     --primary-color: #bed496;
     --primary-color__darker: #B7D392;
 
+    --site-background: #f4f4f1
 }
 
 * {
@@ -11,7 +12,16 @@
     font-family: "Ubuntu-Sans", sans-serif;
 }
 
+.site-wrapper {
+    background: var(--site-background);
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 25rem 1fr;
+}
+
 .sidebar {
+    grid-column: 1/2;
+
     background: var(--primary-color);
     background: linear-gradient(180deg,rgba(190, 212, 150, 1) 25%, rgba(183, 211, 146, 1) 100%);
     width: 25rem;
@@ -23,5 +33,19 @@
 
 .sidebar__header {
     margin: 2rem 0;
+    height: fit-content;
+    font-size: 4rem;
+
+    align-self: flex-end;
+}
+
+.to-do-section {
+    grid-column: 2/3;
     
+    /* outline: solid 2px red; */
+    margin: 4rem;
+}
+
+.to-do-section__header {
+    margin-top: 2rem;
 }
