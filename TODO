@@ -5,11 +5,34 @@ Model:
   ✔ Add functional date and time to completion for tasks @done(25-10-16 11:24)
     ✔ Research and test using the date functions @done(25-10-16 11:24)
 
+  This is a static class that will produce IDs, hold the last ID made, and do operations
+  on IDs that exist in the code base. We are looking for a hierarchical set of IDs so that we 
+  can separate tasks and subtasks and empower us to do a cheap breadth first search
   ☐ Create the IDService
-    This is a static class that will produce IDs, hold the last ID made, and do operations
-    on IDs that exist in the code base. We are looking for a hierarchical set of IDs so that we 
-    can separate tasks and subtasks and empower us to do a cheap breadth first search
-    ☐ Start with a simple, non hierarchical ID for tasks. Follow the diagram
+    ✔ Start with a simple, non hierarchical ID for tasks. Follow the diagram @done(25-10-16 11:53)
+    ✔ Make hierarchical ID (No guardrails though) @done(25-10-16 11:53)
+    ☐ Add projectIDs as well
+    Don't need hierarchical ones there
+    ☐ Add function for getting the uniqueID (the last ID is the current object's ID)
+  
+  ☐ Create a bunch of Unique ToDo items so you can work on displaying items on screen
+  Ya need some inspiration/sparkly things to look at  
+
+  ☐ Create the TreeNode and TreeService
+    ☐ Start with just the TreeNode
+      ☐ Just make the addChild function first and make sure it works
+      ☐ Then make the setRoot function and make sure that works
+      ☐ Make the Traverse(callback) function and make sure it works (can be used for printing for example)
+    ☐ Create the TreeService
+      ☐ To test, you can write a function to traverse the tree and print it out with indents (file tree style)
+      This might just basically be what traverse is doing
+      ☐ Now add the findByID(id) function
+      ☐ Now add the findNode(predicate) function
+      This finds a node based on a call back function that tests for a condition (depth first recursively)
+      and return the node. Used for finding by title, due date, completed items, etc.
+      ☐ Now add removeNode(root, predicate) function
+      Recursively check for the first match and splice it out of the root's children array (ChatGPT)
+      ☐ Consider adding a map function to perform operations on it (such as saving the whole tree?)
 
 View:
   ✔ Get the basic page layout setup - look to one of the other ToDo apps for inspiration @done(25-10-15 12:16)
@@ -22,10 +45,12 @@ View:
           This is because we will eventually have multiple projects here
   ✔ Rewatch the video on designing websites/programs and take notes @done(25-10-14 14:17)
 
-  ☐ Create the ToDo items section wrapper that your code can latch on to
+  ☐ Create the ToDo items wrapper underneath the header that your code can latch onto
+  ☐ Display like 10 ToDo items so that you can work on how they look for a bit
   
   ☐ Think about what the most prominent features should be and design around that.
     ☐ Use the elements described in the video to make something good.
+
 
 Controller:
   ☐ 
