@@ -5,6 +5,12 @@ Model:
   ✔ Add functional date and time to completion for tasks @done(25-10-16 11:24)
     ✔ Research and test using the date functions @done(25-10-16 11:24)
 
+  ☐ Create the IDService
+    This is a static class that will produce IDs, hold the last ID made, and do operations
+    on IDs that exist in the code base. We are looking for a hierarchical set of IDs so that we 
+    can separate tasks and subtasks and empower us to do a cheap breadth first search
+    ☐ Start with a simple, non hierarchical ID for tasks. Follow the diagram
+
 View:
   ✔ Get the basic page layout setup - look to one of the other ToDo apps for inspiration @done(25-10-15 12:16)
       ✔ Sidebar @done(25-10-15 11:24)
@@ -23,3 +29,9 @@ View:
 
 Controller:
   ☐ 
+
+
+ACTIONS THIS COMMIT
+-Create new idService file
+-Created some ID Service functionality for only tasks
+-Added testing code to main JS file
