@@ -1,19 +1,25 @@
 Model:
-  ☐ Get the basic page layout setup - look to one of the other ToDo apps for inspiration
-    ✔ Sidebar @done(25-10-15 11:24)
-    ✔ Section in page for ToDo items @done(25-10-15 11:37)
-    ✔ Header for ToDo Items @done(25-10-15 11:40)
-    ✔ Add section for profile name and other buttons to go @done(25-10-15 12:12)
-    ✔ Add section in sidebar for projects @done(25-10-15 12:12)
-      ✔ Just make a single project 'card' to start @done(25-10-15 12:12)
-        This is because we will eventually have multiple projects here
-  ✔ Rewatch the video on designing websites/programs and take notes @done(25-10-14 14:17)
-  ☐ Think about what the most prominent features should be and design around that.
-    ☐ Use the elements described in the video to make something good.
-  ☐ Marinate on this today and start to tackle this project in the morning.
+  ✔ Create the Task class in separate module @done(25-10-16 11:03)
+  ✔ Import it into the index and test it @done(25-10-16 11:03)
+
+  ✔ Add functional date and time to completion for tasks @done(25-10-16 11:24)
+    ✔ Research and test using the date functions @done(25-10-16 11:24)
 
 View:
-  ☐ 
+  ✔ Get the basic page layout setup - look to one of the other ToDo apps for inspiration @done(25-10-15 12:16)
+      ✔ Sidebar @done(25-10-15 11:24)
+      ✔ Section in page for ToDo items @done(25-10-15 11:37)
+      ✔ Header for ToDo Items @done(25-10-15 11:40)
+      ✔ Add section for profile name and other buttons to go @done(25-10-15 12:12)
+      ✔ Add section in sidebar for projects @done(25-10-15 12:12)
+        ✔ Just make a single project 'card' to start @done(25-10-15 12:12)
+          This is because we will eventually have multiple projects here
+  ✔ Rewatch the video on designing websites/programs and take notes @done(25-10-14 14:17)
+
+  ☐ Create the ToDo items section wrapper that your code can latch on to
+  
+  ☐ Think about what the most prominent features should be and design around that.
+    ☐ Use the elements described in the video to make something good.
 
 Controller:
   ☐ 
