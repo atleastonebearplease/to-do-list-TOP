@@ -22,7 +22,7 @@ export class IDService {
         let idLayers = ID.split("-");
 
         if(layer >= idLayers.length){
-            return "ERROR: ID does not have this many layers";
+            throw new Error("ID does not have layer " + layer);
         } else {
             return idLayers[layer];
         }
