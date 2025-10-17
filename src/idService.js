@@ -18,6 +18,11 @@ export class IDService {
         }
     }
 
+    static getNewProjectID() {
+        this.currentProjectID += 1;
+        return this.currentProjectID;
+    }
+
     static getIDLayer(layer, ID) {
         let idLayers = ID.split("-");
 

@@ -31,3 +31,9 @@ console.log(IDService.getNewTaskID("10"));
 let layeredID = IDService.getNewTaskID("10-30-10");
 
 console.log(IDService.getIDLayer(1, layeredID) ); //Should be 30
+
+console.log(IDService.getNewProjectID());
+console.log(IDService.getNewProjectID());
+console.log(IDService.getNewProjectID());
+console.log(IDService.getNewProjectID());
+console.log(IDService.getNewProjectID()); //should be 1, 2, 3, 4, 5
