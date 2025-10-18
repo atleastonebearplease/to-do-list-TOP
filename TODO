@@ -11,7 +11,7 @@ Model:
   ☐ Create the IDService
     ✔ Start with a simple, non hierarchical ID for tasks. Follow the diagram @done(25-10-16 11:53)
     ✔ Make hierarchical ID (No guardrails though) @done(25-10-16 11:53)
-    ☐ Add projectIDs as well
+    ✔ Add projectIDs as well @done(25-10-18 16:12)
     Don't need hierarchical ones there
     ☐ Add function for getting the uniqueID (the last ID is the current object's ID)
   
@@ -57,6 +57,5 @@ Controller:
 
 
 ACTIONS THIS COMMIT
--Create new idService file
--Created some ID Service functionality for only tasks
--Added testing code to main JS file
+-Add function to get unique ID (the ID of the current object)
+-Add helper function for splitting IDs into their layers

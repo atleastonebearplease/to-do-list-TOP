@@ -24,12 +24,22 @@ export class IDService {
     }
 
     static getIDLayer(layer, ID) {
-        let idLayers = ID.split("-");
+        let idLayers = this.#splitIDLayers(ID);
 
         if(layer >= idLayers.length){
             throw new Error("ID does not have layer " + layer);
         } else {
             return idLayers[layer];
         }
+    }
+
+    static extractUniqueID(ID) {
+        let layers = this.#splitIDLayers(ID);
+
+        return layers[layers.length - 1];
+    }
+
+    static #splitIDLayers(ID) {
+        return ID.split("-");
     }
 }

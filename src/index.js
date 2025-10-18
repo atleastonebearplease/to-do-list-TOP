@@ -37,3 +37,5 @@ console.log(IDService.getNewProjectID());
 console.log(IDService.getNewProjectID());
 console.log(IDService.getNewProjectID());
 console.log(IDService.getNewProjectID()); //should be 1, 2, 3, 4, 5
+
+console.log(IDService.getUniqueID(layeredID)); //should be 3
