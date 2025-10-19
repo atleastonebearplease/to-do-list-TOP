@@ -5,19 +5,6 @@ Model:
   ✔ Add functional date and time to completion for tasks @done(25-10-16 11:24)
     ✔ Research and test using the date functions @done(25-10-16 11:24)
 
-  This is a static class that will produce IDs, hold the last ID made, and do operations
-  on IDs that exist in the code base. We are looking for a hierarchical set of IDs so that we 
-  can separate tasks and subtasks and empower us to do a cheap breadth first search
-  ☐ Create the IDService
-    ✔ Start with a simple, non hierarchical ID for tasks. Follow the diagram @done(25-10-16 11:53)
-    ✔ Make hierarchical ID (No guardrails though) @done(25-10-16 11:53)
-    ✔ Add projectIDs as well @done(25-10-18 16:12)
-    Don't need hierarchical ones there
-    ☐ Add function for getting the uniqueID (the last ID is the current object's ID)
-  
-  ☐ Create a bunch of Unique ToDo items so you can work on displaying items on screen
-  Ya need some inspiration/sparkly things to look at  
-
   ☐ Create the TreeNode and TreeService
     ☐ Start with just the TreeNode
       ☐ Just make the addChild function first and make sure it works
@@ -33,6 +20,19 @@ Model:
       ☐ Now add removeNode(root, predicate) function
       Recursively check for the first match and splice it out of the root's children array (ChatGPT)
       ☐ Consider adding a map function to perform operations on it (such as saving the whole tree?)
+
+  This is a static class that will produce IDs, hold the last ID made, and do operations
+  on IDs that exist in the code base. We are looking for a hierarchical set of IDs so that we 
+  can separate tasks and subtasks and empower us to do a cheap breadth first search
+  ✔ Create the IDService @done(25-10-18 16:24)
+    ✔ Start with a simple, non hierarchical ID for tasks. Follow the diagram @done(25-10-16 11:53)
+    ✔ Make hierarchical ID (No guardrails though) @done(25-10-16 11:53)
+    ✔ Add projectIDs as well @done(25-10-18 16:12)
+    Don't need hierarchical ones there
+    ✔ Add function for getting the uniqueID (the last ID is the current object's ID) @done(25-10-18 16:24)
+  
+  ☐ Create a bunch of Unique ToDo items so you can work on displaying items on screen
+  Ya need some inspiration/sparkly things to look at  
 
 View:
   ✔ Get the basic page layout setup - look to one of the other ToDo apps for inspiration @done(25-10-15 12:16)
@@ -57,5 +57,4 @@ Controller:
 
 
 ACTIONS THIS COMMIT
--Add function to get unique ID (the ID of the current object)
--Add helper function for splitting IDs into their layers
+-
