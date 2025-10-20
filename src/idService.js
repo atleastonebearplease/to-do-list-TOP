@@ -14,7 +14,7 @@ export class IDService {
             return parentID + "-" + this.currentTaskID;
         } else {
             this.currentTaskID += 1;
-            return this.currentTaskID;
+            return (this.currentTaskID).toString();
         }
     }
 
@@ -41,5 +41,12 @@ export class IDService {
 
     static #splitIDLayers(ID) {
         return ID.split("-");
+    }
+
+    static updateLayeredID(taskID, parentID) {
+        return parentID + "-" + IDService.extractUniqueID(taskID);
+        //This takes the full parent ID and then adds whatever the actual
+        //current task ID is to the end. The last ID in the sequence is the unique
+        //task's ID
     }
 }

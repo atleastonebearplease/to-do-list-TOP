@@ -1,4 +1,5 @@
 import { format } from "date-fns"
+import { IDService } from "./idService.js";
 
 export class Task {
     title;
@@ -8,11 +9,13 @@ export class Task {
     dueDateString = "";
     #completionDate = 0;
     #completionDateString = "";
+    ID = "";
     
-    constructor(title, description = "", ) {
+    constructor(title, description = "") {
         this.title = title;
         this.description = description;
-        this.completed = false;    
+        this.completed = false;
+        this.ID = IDService.getNewTaskID();
     }
 
     isComplete() {
@@ -33,5 +36,9 @@ export class Task {
 
     getCompletionDate() {
         return this.#completionDateString ? this.#completionDateString : "NEVER";
+    }
+
+    updateIDLayers(parentTask) {
+        this.ID = IDService.updateLayeredID(this.ID, parentTask.ID);
     }
 }

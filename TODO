@@ -9,9 +9,9 @@ Model:
     ☐ Start with just the TreeNode
       ✔ Just make the addChild function first and make sure it works @done(25-10-19 21:41)
       ✔ Then make the setRoot function and make sure that works @done(25-10-19 21:41)
-      ☐ Make the Traverse(callback) function and make sure it works (can be used for printing for example)
+      ✔ Make the Traverse(callback) function and make sure it works (can be used for printing for example) @done(25-10-19 22:06)
     ☐ Create the TreeService
-      ☐ To test, you can write a function to traverse the tree and print it out with indents (file tree style)
+      ✔ To test, you can write a function to traverse the tree and print it out with indents (file tree style) @done(25-10-20 09:46)
       This might just basically be what traverse is doing
       ☐ Now add the findByID(id) function
       ☐ Now add the findNode(predicate) function

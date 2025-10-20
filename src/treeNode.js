@@ -2,7 +2,6 @@ export class TreeNode {
     parent;
     children = [];
     data;
-    id = 0;
 
     constructor(data) {
         this.data = data;

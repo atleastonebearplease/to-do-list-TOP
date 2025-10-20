@@ -2,6 +2,7 @@ import "./styles.css";
 import { Task } from "./task.js";
 import { IDService } from "./idService.js";
 import { TreeNode } from "./treeNode.js";
+import { TreeService } from "./treeService.js";
 
 import { format } from 'date-fns';
 
@@ -45,17 +46,20 @@ console.log(IDService.extractUniqueID(layeredID)); //should be 3
     Test out TreeNode
 */
 
-let rootNode = new TreeNode("Root node");
-let child1 = new TreeNode("Child 1");
-let child2 = new TreeNode("Child 2");
-let grandchild = new TreeNode("Grandchild 1");
+let rootNode = new TreeNode(new Task("Root Node", "root"));
+let child1 = new TreeNode(new Task("Child1", "child"));
+let child2 = new TreeNode(new Task("Child 2", "child"));
+let grandchild = new TreeNode(new Task("Grandchild", "grandchild"));
 
 child1.setRoot(rootNode);
+child1.data.updateIDLayers(rootNode.data);
 child2.setRoot(rootNode);
+child2.data.updateIDLayers(rootNode.data);
 grandchild.setRoot(child1);
+grandchild.data.updateIDLayers(child1.data);
 
 //test traverse function
-rootNode.traverse((node, indent) => {
+rootNode.traverse((node) => {
     console.log(node.data);
 });
 
@@ -64,7 +68,7 @@ rootNode.traverse((node, indent) => {
 function printTree(node, depth = 0) {
     let indent = "--".repeat(depth);
 
-    console.log(indent + node.data);
+    console.log(indent + node.data.title + " - " + node.data.ID);
 
     for(const child of node.children) {
         printTree(child, depth + 1);
@@ -72,3 +76,11 @@ function printTree(node, depth = 0) {
 }
 
 printTree(rootNode);
+
+/*
+    Test out TreeService
+*/
+
+let node = TreeService.findNodeByID(rootNode, grandchild.ID);
+
+console.log(node);
