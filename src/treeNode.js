@@ -1,6 +1,6 @@
 export class TreeNode {
     parent;
-    children;
+    children = [];
     data;
     id = 0;
 

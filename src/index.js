@@ -1,6 +1,7 @@
 import "./styles.css";
 import { Task } from "./task.js";
 import { IDService } from "./idService.js";
+import { TreeNode } from "./treeNode.js";
 
 import { format } from 'date-fns';
 
@@ -38,4 +39,17 @@ console.log(IDService.getNewProjectID());
 console.log(IDService.getNewProjectID());
 console.log(IDService.getNewProjectID()); //should be 1, 2, 3, 4, 5
 
-console.log(IDService.getUniqueID(layeredID)); //should be 3
+console.log(IDService.extractUniqueID(layeredID)); //should be 3
+
+/*
+    Test out TreeNode
+*/
+
+let rootNode = new TreeNode("Root node");
+let child1 = new TreeNode("Child 1");
+let child2 = new TreeNode("Child 2");
+let grandchild = new TreeNode("Grandchild 1");
+
+child1.setRoot(rootNode);
+child2.setRoot(rootNode);
+grandchild.setRoot(child1);

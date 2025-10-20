@@ -7,8 +7,8 @@ Model:
 
   ☐ Create the TreeNode and TreeService
     ☐ Start with just the TreeNode
-      ☐ Just make the addChild function first and make sure it works
-      ☐ Then make the setRoot function and make sure that works
+      ✔ Just make the addChild function first and make sure it works @done(25-10-19 21:41)
+      ✔ Then make the setRoot function and make sure that works @done(25-10-19 21:41)
       ☐ Make the Traverse(callback) function and make sure it works (can be used for printing for example)
     ☐ Create the TreeService
       ☐ To test, you can write a function to traverse the tree and print it out with indents (file tree style)
