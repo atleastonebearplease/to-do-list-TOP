@@ -53,3 +53,22 @@ let grandchild = new TreeNode("Grandchild 1");
 child1.setRoot(rootNode);
 child2.setRoot(rootNode);
 grandchild.setRoot(child1);
+
+//test traverse function
+rootNode.traverse((node, indent) => {
+    console.log(node.data);
+});
+
+//Print out with indent
+
+function printTree(node, depth = 0) {
+    let indent = "--".repeat(depth);
+
+    console.log(indent + node.data);
+
+    for(const child of node.children) {
+        printTree(child, depth + 1);
+    }
+}
+
+printTree(rootNode);

@@ -17,4 +17,9 @@ export class TreeNode {
         this.children.push(node);
         node.parent = this;
     }
+
+    traverse(callback) {
+        callback(this);
+        this.children.forEach(child => child.traverse(callback) );
+    }
 }
