@@ -3,18 +3,16 @@ import { IDService } from "./idService.js";
 
 export class TreeService {
     static findNodeByID(rootNode, ID) {
-        if(rootNode.ID === ID) {
+        if(rootNode.data.ID === ID) {
             return rootNode;
-        } else {
-            rootNode.children.forEach((child) => {
-                const node = findByID(child, ID);
-
-                if(node.ID === ID) {
-                    return node;
-                }
-            });
         }
+        for(const child of rootNode.children) {
+            const found = this.findNodeByID(child, ID);
 
+            if(found) {
+                return found;
+            }
+        }
         return undefined;
     }
 }

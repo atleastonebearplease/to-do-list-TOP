@@ -81,6 +81,6 @@ printTree(rootNode);
     Test out TreeService
 */
 
-let node = TreeService.findNodeByID(rootNode, grandchild.ID);
+let node = TreeService.findNodeByID(rootNode, grandchild.data.ID);
 
-console.log(node);
+console.log("We found " + node.data.title);
