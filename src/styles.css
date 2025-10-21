@@ -119,6 +119,7 @@
 
 .add-task-button {
     border: none;
+    border-radius: 1rem;
     background-color: white;
     color: rgb(44, 42, 42);
     font-size: 1rem;

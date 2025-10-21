@@ -55,16 +55,27 @@ View:
   ☐ Make a to-do__item with a text input in it
   ☐ Make the text input submit to make a new task in the page
 
+  ☐ Make the background of add task colored slightly
+
+  DOM:
+    ☐ Add a DOM class
+    ☐ Add reference to main to-do section
   
   ☐ Think about what the most prominent features should be and design around that.
     ☐ Use the elements described in the video to make something good.
 
 
 Controller:
-  ☐ Create a hook for the add task button
+  ✔ Add main class @done(25-10-20 22:08)
+  ☐ Create a hook for the add task button in Main
   ☐ Make the button add a new to-do__item div to the page
+    ✔ Just make it add a newItem @done(25-10-20 22:09)
     ☐ Should contain an input at first
     ☐ Input can be submitted by "Submit" button or by the enter button
+
+  Handling Events:
+    ☐ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers.
+  
 
 
 ACTIONS THIS COMMIT

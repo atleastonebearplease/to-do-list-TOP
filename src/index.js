@@ -93,12 +93,12 @@ console.log("We found " + node.data.title);
 function handleAddTaskButton(event) {
     console.log("Add task clicked");
 
-    let taskButton = event.target;
+    let toDoItems = document.querySelector(".to-do__section");
     let newTask = document.createElement("div");
     newTask.classList.add("to-do__item");
     newTask.innerText = "New item";
 
-    taskButton.before(newTask);
+    toDoItems.appendChild(newTask);
 }
 
 let addTaskButton = document.querySelector(".add-task-button");
