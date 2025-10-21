@@ -1,19 +1,8 @@
 Model:
-  ✔ Create the Task class in separate module @done(25-10-16 11:03)
-  ✔ Import it into the index and test it @done(25-10-16 11:03)
-
-  ✔ Add functional date and time to completion for tasks @done(25-10-16 11:24)
-    ✔ Research and test using the date functions @done(25-10-16 11:24)
-
   ☐ Create the TreeNode and TreeService
-    ☐ Start with just the TreeNode
-      ✔ Just make the addChild function first and make sure it works @done(25-10-19 21:41)
-      ✔ Then make the setRoot function and make sure that works @done(25-10-19 21:41)
-      ✔ Make the Traverse(callback) function and make sure it works (can be used for printing for example) @done(25-10-19 22:06)
-    ☐ Create the TreeService
-      ✔ To test, you can write a function to traverse the tree and print it out with indents (file tree style) @done(25-10-20 09:46)
+    ✔ Start with just the TreeNode @done(25-10-21 16:30)
+    ✔ Create the TreeService @done(25-10-21 16:30)
       This might just basically be what traverse is doing
-      ✔ Now add the findByID(id) function @done(25-10-20 17:27)
       ☐ Now add the findNode(predicate) function
       This finds a node based on a call back function that tests for a condition (depth first recursively)
       and return the node. Used for finding by title, due date, completed items, etc.
@@ -21,43 +10,16 @@ Model:
       Recursively check for the first match and splice it out of the root's children array (ChatGPT)
       ☐ Consider adding a map function to perform operations on it (such as saving the whole tree?)
 
-  ✔ Create the IDService @done(25-10-18 16:24)
-    ✔ Start with a simple, non hierarchical ID for tasks. Follow the diagram @done(25-10-16 11:53)
-    ✔ Make hierarchical ID (No guardrails though) @done(25-10-16 11:53)
-    ✔ Add projectIDs as well @done(25-10-18 16:12)
     Don't need hierarchical ones there
-    ✔ Add function for getting the uniqueID (the last ID is the current object's ID) @done(25-10-18 16:24)
   
-  ☐ Create a bunch of Unique ToDo items so you can work on displaying items on screen
+  ✔ Create a bunch of Unique ToDo items so you can work on displaying items on screen @done(25-10-21 16:30)
   Ya need some inspiration/sparkly things to look at
 
   ☐ Get the Task to be serializable
     ☐ Create the Serializable object (where you'll implement the save and load functions for each Serializable);
 
 View:
-  ✔ Get the basic page layout setup - look to one of the other ToDo apps for inspiration @done(25-10-15 12:16)
-      ✔ Sidebar @done(25-10-15 11:24)
-      ✔ Section in page for ToDo items @done(25-10-15 11:37)
-      ✔ Header for ToDo Items @done(25-10-15 11:40)
-      ✔ Add section for profile name and other buttons to go @done(25-10-15 12:12)
-      ✔ Add section in sidebar for projects @done(25-10-15 12:12)
-        ✔ Just make a single project 'card' to start @done(25-10-15 12:12)
-          This is because we will eventually have multiple projects here
-  ✔ Rewatch the video on designing websites/programs and take notes @done(25-10-14 14:17)
-
-  ✔ Create the ToDo items wrapper underneath the header that your code can latch onto @done(25-10-20 20:25)
-  ✔ Display like 10 ToDo items so that you can work on how they look for a bit @done(25-10-20 21:16)
-    ✔ Title @done(25-10-20 21:16)
-    ✔ White box around it @done(25-10-20 21:16)
-  ✔ Make each section have a box around it @done(25-10-20 21:16)
-  ✔ Make a Heading class version @done(25-10-20 21:16)
-  ✔ Create an add task button @done(25-10-20 21:41)
-  ✔ Make a to-do__item with a text input in it @done(25-10-21 16:19)
-  ☐ Make the text input submit to make a new task in the page
-
   ☐
-
-  ✔ Make the background of add task colored slightly @done(25-10-21 15:58)
 
   DOM:
     ☐ Add a DOM class
@@ -66,19 +28,59 @@ View:
   ☐ Think about what the most prominent features should be and design around that.
     ☐ Use the elements described in the video to make something good.
 
+  ☐ Style the input to not be retarded
 
 Controller:
-  ✔ Add main class @done(25-10-20 22:08)
-  ☐ Create a hook for the add task button in Main
-  ☐ Make the button add a new to-do__item div to the page
-    ✔ Just make it add a newItem @done(25-10-20 22:09)
-    ☐ Should contain an input at first
+  ✔ Create a hook for the add task button in Main @done(25-10-21 16:30)
+  ✔ Make the button add a new to-do__item div to the page @done(25-10-21 16:30)
+    ✔ Should contain an input at first @done(25-10-21 17:03)
+    ✔ The input should be used to then change the task. When the input is changed (enter is pressed), then it should change the text of the parent to do element and then remove itself (the input) from the DOM. @done(25-10-21 17:03)
+      ☐ This also means that if the input is empty when the event fires, the whole To Do item should be removed.
     ☐ Input can be submitted by "Submit" button or by the enter button
+      ☐ Add a submit button to the end of the input for the todo item
+  ☐ Made the add new task button actually add the input
+
 
   Handling Events:
     ☐ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers.
   
-
-
 ACTIONS THIS COMMIT
 -
+
+
+Archive:
+  ✔ Create the Task class in separate module @done(25-10-16 11:03) @project(Model)
+  ✔ Import it into the index and test it @done(25-10-16 11:03) @project(Model)
+  ✔ Add functional date and time to completion for tasks @done(25-10-16 11:24) @project(Model)
+  ✔ Research and test using the date functions @done(25-10-16 11:24) @project(Model)
+  ✔ Just make the addChild function first and make sure it works @done(25-10-19 21:41) @project(Model)
+  ✔ Then make the setRoot function and make sure that works @done(25-10-19 21:41) @project(Model)
+  ✔ Make the Traverse(callback) function and make sure it works (can be used for printing for example) @done(25-10-19 22:06) @project(Model)
+  ✔ To test, you can write a function to traverse the tree and print it out with indents (file tree style) @done(25-10-20 09:46) @project(Model)
+  ✔ Now add the findByID(id) function @done(25-10-20 17:27) @project(Model)
+  ✔ Create the IDService @done(25-10-18 16:24) @project(Model)
+  ✔ Start with a simple, non hierarchical ID for tasks. Follow the diagram @done(25-10-16 11:53) @project(Model)
+  ✔ Make hierarchical ID (No guardrails though) @done(25-10-16 11:53) @project(Model)
+  ✔ Add projectIDs as well @done(25-10-18 16:12) @project(Model)
+  ✔ Add function for getting the uniqueID (the last ID is the current object's ID) @done(25-10-18 16:24) @project(Model)
+  ✔ Get the basic page layout setup - look to one of the other ToDo apps for inspiration @done(25-10-15 12:16) @project(View)
+  ✔ Sidebar @done(25-10-15 11:24) @project(View)
+  ✔ Section in page for ToDo items @done(25-10-15 11:37) @project(View)
+  ✔ Header for ToDo Items @done(25-10-15 11:40) @project(View)
+  ✔ Add section for profile name and other buttons to go @done(25-10-15 12:12) @project(View)
+  ✔ Add section in sidebar for projects @done(25-10-15 12:12) @project(View)
+  ✔ Just make a single project 'card' to start @done(25-10-15 12:12) @project(View)
+    This is because we will eventually have multiple projects here
+  ✔ Rewatch the video on designing websites/programs and take notes @done(25-10-14 14:17) @project(View)
+  ✔ Create the ToDo items wrapper underneath the header that your code can latch onto @done(25-10-20 20:25) @project(View)
+  ✔ Display like 10 ToDo items so that you can work on how they look for a bit @done(25-10-20 21:16) @project(View)
+  ✔ Title @done(25-10-20 21:16) @project(View)
+  ✔ White box around it @done(25-10-20 21:16) @project(View)
+  ✔ Make each section have a box around it @done(25-10-20 21:16) @project(View)
+  ✔ Make a Heading class version @done(25-10-20 21:16) @project(View)
+  ✔ Create an add task button @done(25-10-20 21:41) @project(View)
+  ✔ Make a to-do__item with a text input in it @done(25-10-21 16:19) @project(View)
+  ✔ Make the text input submit to make a new task in the page @done(25-10-21 16:27) @project(View)
+  ✔ Make the background of add task colored slightly @done(25-10-21 15:58) @project(View)
+  ✔ Add main class @done(25-10-20 22:08) @project(Controller)
+  ✔ Just make it add a newItem @done(25-10-20 22:09) @project(Controller)

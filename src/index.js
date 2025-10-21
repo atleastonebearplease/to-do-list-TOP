@@ -3,6 +3,7 @@ import { Task } from "./task.js";
 import { IDService } from "./idService.js";
 import { TreeNode } from "./treeNode.js";
 import { TreeService } from "./treeService.js";
+import { DOM } from "./dom.js";
 
 import { format } from 'date-fns';
 
@@ -90,6 +91,8 @@ console.log("We found " + node.data.title);
     Work on Add Task button
 */
 
+let dom = new DOM();
+
 function handleAddTaskButton(event) {
     let toDoItems = document.querySelector(".to-do-items__wrapper");
     let newTask = document.createElement("div");
@@ -100,17 +103,16 @@ function handleAddTaskButton(event) {
 }
 
 function handleNewToDoInput(event) {
-    let toDoItems = document.querySelector(".to-do-items__wrapper");
-    let newTask = document.createElement("div");
-    newTask.classList.add("to-do__item");
-    newTask.innerText = event.target.value;
+    let toDoItem = event.target.parentNode;
 
-    toDoItems.appendChild(newTask);
+    toDoItem.innerText = event.target.value;
 
-    event.target.parentNode.remove();
+    event.target.remove();
 }
 
-let addTaskButton = document.querySelector(".add-task-button");
+
+
+let addTaskButton = dom.addTaskButton;
 
 addTaskButton.addEventListener("click", handleAddTaskButton);
 
