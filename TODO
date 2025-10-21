@@ -55,7 +55,9 @@ View:
   ☐ Make a to-do__item with a text input in it
   ☐ Make the text input submit to make a new task in the page
 
-  ☐ Make the background of add task colored slightly
+  ☐
+
+  ✔ Make the background of add task colored slightly @done(25-10-21 15:58)
 
   DOM:
     ☐ Add a DOM class
