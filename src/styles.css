@@ -117,6 +117,22 @@
     font-size: 1.25rem;
 }
 
+.add-task-button {
+    border: none;
+    background-color: white;
+    color: rgb(44, 42, 42);
+    font-size: 1rem;
+
+    padding: .5rem 2.5rem;
+}
+
+.add-task-button:hover {
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: hsl(226, 100%, 97%);
+
+}
+
 /* Utilities */
 
 .debug {
