@@ -82,18 +82,63 @@
 
 /* To-Do Section */
 
-.to-do-section {
+.to-do-wrapper {
     grid-column: 2/3;
     
     margin: 4rem;
 }
 
-.to-do-section__header {
+.to-do__header {
     margin-top: 2rem;
+}
+
+.to-do-items {
+
+}
+
+.to-do__section {
+    background-color: white;
+    width: 90%;
+    padding: .75rem;
+    margin-bottom: 1rem;
+}
+
+.to-do__item {
+    padding: .25rem;
+    border-radius: 8px;
+}
+
+.to-do__item:hover {
+    background-color: hsl(226, 100%, 97%);
+}
+
+.to-do__heading {
+    font-weight: bold;
+    font-size: 1.25rem;
 }
 
 /* Utilities */
 
 .debug {
     outline: 1px solid red;
+}
+
+.indent_1 {
+    margin-left: .5rem;
+}
+
+.indent_2 {
+    margin-left: 1rem;
+}
+
+.indent_3 {
+    margin-left: 1.5rem;
+}
+
+.indent_4 {
+    margin-left: 2rem;
+}
+
+.indent_5 {
+    margin-left: 2.5rem;
 }

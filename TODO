@@ -13,7 +13,7 @@ Model:
     ☐ Create the TreeService
       ✔ To test, you can write a function to traverse the tree and print it out with indents (file tree style) @done(25-10-20 09:46)
       This might just basically be what traverse is doing
-      ☐ Now add the findByID(id) function
+      ✔ Now add the findByID(id) function @done(25-10-20 17:27)
       ☐ Now add the findNode(predicate) function
       This finds a node based on a call back function that tests for a condition (depth first recursively)
       and return the node. Used for finding by title, due date, completed items, etc.
@@ -21,9 +21,6 @@ Model:
       Recursively check for the first match and splice it out of the root's children array (ChatGPT)
       ☐ Consider adding a map function to perform operations on it (such as saving the whole tree?)
 
-  This is a static class that will produce IDs, hold the last ID made, and do operations
-  on IDs that exist in the code base. We are looking for a hierarchical set of IDs so that we 
-  can separate tasks and subtasks and empower us to do a cheap breadth first search
   ✔ Create the IDService @done(25-10-18 16:24)
     ✔ Start with a simple, non hierarchical ID for tasks. Follow the diagram @done(25-10-16 11:53)
     ✔ Make hierarchical ID (No guardrails though) @done(25-10-16 11:53)
@@ -32,7 +29,10 @@ Model:
     ✔ Add function for getting the uniqueID (the last ID is the current object's ID) @done(25-10-18 16:24)
   
   ☐ Create a bunch of Unique ToDo items so you can work on displaying items on screen
-  Ya need some inspiration/sparkly things to look at  
+  Ya need some inspiration/sparkly things to look at
+
+  ☐ Get the Task to be serializable
+    ☐ Create the Serializable object (where you'll implement the save and load functions for each Serializable);
 
 View:
   ✔ Get the basic page layout setup - look to one of the other ToDo apps for inspiration @done(25-10-15 12:16)
@@ -45,15 +45,27 @@ View:
           This is because we will eventually have multiple projects here
   ✔ Rewatch the video on designing websites/programs and take notes @done(25-10-14 14:17)
 
-  ☐ Create the ToDo items wrapper underneath the header that your code can latch onto
-  ☐ Display like 10 ToDo items so that you can work on how they look for a bit
+  ✔ Create the ToDo items wrapper underneath the header that your code can latch onto @done(25-10-20 20:25)
+  ✔ Display like 10 ToDo items so that you can work on how they look for a bit @done(25-10-20 21:16)
+    ✔ Title @done(25-10-20 21:16)
+    ✔ White box around it @done(25-10-20 21:16)
+  ✔ Make each section have a box around it @done(25-10-20 21:16)
+  ✔ Make a Heading class version @done(25-10-20 21:16)
+  ☐ Create an add task button
+  ☐ Make a to-do__item with a text input in it
+  ☐ Make the text input submit to make a new task in the page
+
+
   
   ☐ Think about what the most prominent features should be and design around that.
     ☐ Use the elements described in the video to make something good.
 
 
 Controller:
-  ☐ 
+  ☐ Create a hook for the add task button
+  ☐ Make the button add a new to-do__item div to the page
+    ☐ Should contain an input at first
+    ☐ Input can be submitted by "Submit" button or by the enter button
 
 
 ACTIONS THIS COMMIT
