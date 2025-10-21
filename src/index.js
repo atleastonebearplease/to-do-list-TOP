@@ -84,3 +84,23 @@ printTree(rootNode);
 let node = TreeService.findNodeByID(rootNode, grandchild.data.ID);
 
 console.log("We found " + node.data.title);
+
+
+/*
+    Work on Add Task button
+*/
+
+function handleAddTaskButton(event) {
+    console.log("Add task clicked");
+
+    let taskButton = event.target;
+    let newTask = document.createElement("div");
+    newTask.classList.add("to-do__item");
+    newTask.innerText = "New item";
+
+    taskButton.before(newTask);
+}
+
+let addTaskButton = document.querySelector(".add-task-button");
+
+addTaskButton.addEventListener("click", handleAddTaskButton);
