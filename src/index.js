@@ -99,6 +99,21 @@ function handleAddTaskButton(event) {
     toDoItems.appendChild(newTask);
 }
 
+function handleNewToDoInput(event) {
+    let toDoItems = document.querySelector(".to-do-items__wrapper");
+    let newTask = document.createElement("div");
+    newTask.classList.add("to-do__item");
+    newTask.innerText = event.target.value;
+
+    toDoItems.appendChild(newTask);
+
+    event.target.parentNode.remove();
+}
+
 let addTaskButton = document.querySelector(".add-task-button");
 
 addTaskButton.addEventListener("click", handleAddTaskButton);
+
+let input = document.querySelector(".new-to-do-input");
+
+input.addEventListener("change", handleNewToDoInput);

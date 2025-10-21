@@ -52,7 +52,7 @@ View:
   ✔ Make each section have a box around it @done(25-10-20 21:16)
   ✔ Make a Heading class version @done(25-10-20 21:16)
   ✔ Create an add task button @done(25-10-20 21:41)
-  ☐ Make a to-do__item with a text input in it
+  ✔ Make a to-do__item with a text input in it @done(25-10-21 16:19)
   ☐ Make the text input submit to make a new task in the page
 
   ☐
