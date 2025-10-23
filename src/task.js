@@ -1,5 +1,6 @@
 import { format } from "date-fns"
 import { IDService } from "./idService.js";
+import { TreeNode } from "./treeNode.js";
 
 export class Task {
     title;
@@ -10,12 +11,14 @@ export class Task {
     #completionDate = 0;
     #completionDateString = "";
     ID = "";
+    treeNode;
     
     constructor(title, description = "") {
         this.title = title;
         this.description = description;
         this.completed = false;
         this.ID = IDService.getNewTaskID();
+        this.treeNode = new TreeNode(this);
     }
 
     isComplete() {

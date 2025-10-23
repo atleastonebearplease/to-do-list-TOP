@@ -19,7 +19,20 @@ export class DOM {
         this.toDoItems.appendChild(newToDoSection);
     }
 
-    
+    makeNewTaskElement() {
+        let newTask = document.createElement("div");
+        newTask.classList.add("task");
+
+        return newTask;
+    }
+
+    makeNewTaskInput() {
+        let newInput = document.createElement("input");
+        newInput.type = "text";
+        newInput.classList.add("new-task-input");
+
+        return newInput;
+    }
 }
 
 /*

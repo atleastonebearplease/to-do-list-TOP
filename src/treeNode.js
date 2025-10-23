@@ -9,7 +9,7 @@ export class TreeNode {
 
     setRoot(node) {
         this.parent = node;
-        node.addChild(this);//TODO make sure this actually is correct
+        node.addChild(this);
     }
 
     addChild(node) {

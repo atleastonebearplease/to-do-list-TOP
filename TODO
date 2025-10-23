@@ -1,8 +1,12 @@
 Model:
   ☐ Get the TreeNodes implemented in the Tasks
-    ☐ Add TreeNode to tasks
-      ☐ Add TreeNode data to actual Task definition
+    ✔ Add TreeNode to tasks @done(25-10-23 13:15)
+      ✔ Add TreeNode data to actual Task definition @done(25-10-23 13:15)
     We are adding TreeNode so that we can begin to perform operations like removing and whatnot
+    ☐ Now, we need to start operating from a Root node
+    Later this will be done in a Project class, but for now I think we should just put it in main and 'hardcode' it
+      ☐ Add a root TreeNode to main
+      ☐ Now, when adding a task, set the task.node's parent to the 'root' node in main
   ☐ Create the TreeNode and TreeService
       ☐ Now add the findNode(predicate) function
       This finds a node based on a call back function that tests for a condition (depth first recursively)
@@ -32,14 +36,7 @@ Controller:
     ☐ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers.
   
 ACTIONS THIS COMMIT
--Updating class names of elements
--to-do-wrapper -> site-main
--to-do__header -> site-main__header
--to-do-items -> task-sections-wrapper
--to-do__section -> task_section
--to-do-items__wrapper -> task-items__wrapper
--to-do__item -> task
--to-do__heading -> task__heading
+-
 
 Archive:
   ✔ Start with just the TreeNode @done(25-10-21 16:30) @project(Model)
