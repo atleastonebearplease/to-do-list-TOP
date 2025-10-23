@@ -1,17 +1,19 @@
 Model:
-  ☐ Get the TreeNodes implemented in the Tasks
+  ✔ Get the TreeNodes implemented in the Tasks @done(25-10-23 16:03)
     ✔ Add TreeNode to tasks @done(25-10-23 13:15)
       ✔ Add TreeNode data to actual Task definition @done(25-10-23 13:15)
     We are adding TreeNode so that we can begin to perform operations like removing and whatnot
-    ☐ Now, we need to start operating from a Root node
+    ✔ Now, we need to start operating from a Root node @done(25-10-23 16:03)
     Later this will be done in a Project class, but for now I think we should just put it in main and 'hardcode' it
-      ☐ Add a root TreeNode to main
-      ☐ Now, when adding a task, set the task.node's parent to the 'root' node in main
+      ✔ Add a root TreeNode to main @done(25-10-23 16:02)
+      ✔ Now, when adding a task, set the task.node's parent to the 'root' node in main @done(25-10-23 16:02)
+
   ☐ Create the TreeNode and TreeService
       ☐ Now add the findNode(predicate) function
       This finds a node based on a call back function that tests for a condition (depth first recursively)
       and return the node. Used for finding by title, due date, completed items, etc.
       ☐ Now add removeNode(root, predicate) function
+      ☐ Add removeNodeByID(root, ID) function
       Recursively check for the first match and splice it out of the root's children array (ChatGPT)
       ☐ Consider adding a map function to perform operations on it (such as saving the whole tree?)
 
@@ -24,13 +26,15 @@ View:
 
   DOM:
     ✔ Add reference to main section @done(25-10-23 13:04)
-  
-  ☐ Think about what the most prominent features should be and design around that.
-    ☐ Use the elements described in the video to make something good.
 
   ☐ Style the input to not be retarded
 
 Controller:
+  ☐ We need to be able to delete the Tasks
+    ☐ Add a delete button to tasks (DOM);
+    ☐ Hook them up to a function in Main for now
+    ☐ The function should both remove the DOM and remove the TreeNode
+      ☐ Need to add a remove TreeNode function to TreeService
 
   Handling Events:
     ☐ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers.
