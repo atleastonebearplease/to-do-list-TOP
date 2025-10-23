@@ -19,10 +19,10 @@ Model:
     ☐ Create the Serializable object (where you'll implement the save and load functions for each Serializable);
 
 View:
-  ☐
+  ☐ Change the element class names for the Tasks section to make more sense
 
   DOM:
-    ☐ Add a DOM class
+    ✔ Add a DOM class @done(25-10-22 11:32)
     ☐ Add reference to main to-do section
   
   ☐ Think about what the most prominent features should be and design around that.
@@ -33,12 +33,12 @@ View:
 Controller:
   ✔ Create a hook for the add task button in Main @done(25-10-21 16:30)
   ✔ Make the button add a new to-do__item div to the page @done(25-10-21 16:30)
-    ✔ Should contain an input at first @done(25-10-21 17:03)
-    ✔ The input should be used to then change the task. When the input is changed (enter is pressed), then it should change the text of the parent to do element and then remove itself (the input) from the DOM. @done(25-10-21 17:03)
-      ☐ This also means that if the input is empty when the event fires, the whole To Do item should be removed.
-    ☐ Input can be submitted by "Submit" button or by the enter button
-      ☐ Add a submit button to the end of the input for the todo item
-  ☐ Made the add new task button actually add the input
+    ✔ Should contain an input at first @done(25-10-22 11:19)
+    ✔ The input should be used to then change the task. When the input is changed (enter is pressed), then it should change the text of the parent to do element and then remove itself (the input) from the DOM. @done(25-10-22 11:19)
+      ✔ This also means that if the input is empty when the event fires, the whole To Do item should be removed. @done(25-10-22 11:31)
+  ✔ Made the add new task button actually add the input @done(25-10-22 11:32)
+
+
 
 
   Handling Events:

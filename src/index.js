@@ -4,6 +4,7 @@ import { IDService } from "./idService.js";
 import { TreeNode } from "./treeNode.js";
 import { TreeService } from "./treeService.js";
 import { DOM } from "./dom.js";
+import { Main } from "./main.js";
 
 import { format } from 'date-fns';
 
@@ -88,34 +89,9 @@ console.log("We found " + node.data.title);
 
 
 /*
-    Work on Add Task button
+    Implement Main
 */
 
-let dom = new DOM();
+let main = new Main();
 
-function handleAddTaskButton(event) {
-    let toDoItems = document.querySelector(".to-do-items__wrapper");
-    let newTask = document.createElement("div");
-    newTask.classList.add("to-do__item");
-    newTask.innerText = "New item";
-
-    toDoItems.appendChild(newTask);
-}
-
-function handleNewToDoInput(event) {
-    let toDoItem = event.target.parentNode;
-
-    toDoItem.innerText = event.target.value;
-
-    event.target.remove();
-}
-
-
-
-let addTaskButton = dom.addTaskButton;
-
-addTaskButton.addEventListener("click", handleAddTaskButton);
-
-let input = document.querySelector(".new-to-do-input");
-
-input.addEventListener("change", handleNewToDoInput);
+main.initialize();

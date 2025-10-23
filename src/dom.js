@@ -1,13 +1,25 @@
 export class DOM {
     addTaskButton;
+    toDoItems;
 
     constructor() {
         this.addTaskButton = document.querySelector(".add-task-button");
+        this.toDoItems = document.querySelector(".to-do-items");
     }
 
     get addTaskButton() {
         return this.addTaskButton;
     }
+
+    addNewProjectSection() {
+        let newToDoSection = document.createElement("div");
+
+        newToDoSection.classList.add("to-do__section");
+
+        this.toDoItems.appendChild(newToDoSection);
+    }
+
+    
 }
 
 /*
