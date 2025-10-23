@@ -1,8 +1,9 @@
 Model:
+  ☐ Get the TreeNodes implemented in the Tasks
+    ☐ Add TreeNode to tasks
+      ☐ Add TreeNode data to actual Task definition
+    We are adding TreeNode so that we can begin to perform operations like removing and whatnot
   ☐ Create the TreeNode and TreeService
-    ✔ Start with just the TreeNode @done(25-10-21 16:30)
-    ✔ Create the TreeService @done(25-10-21 16:30)
-      This might just basically be what traverse is doing
       ☐ Now add the findNode(predicate) function
       This finds a node based on a call back function that tests for a condition (depth first recursively)
       and return the node. Used for finding by title, due date, completed items, etc.
@@ -11,19 +12,14 @@ Model:
       ☐ Consider adding a map function to perform operations on it (such as saving the whole tree?)
 
     Don't need hierarchical ones there
-  
-  ✔ Create a bunch of Unique ToDo items so you can work on displaying items on screen @done(25-10-21 16:30)
-  Ya need some inspiration/sparkly things to look at
 
   ☐ Get the Task to be serializable
     ☐ Create the Serializable object (where you'll implement the save and load functions for each Serializable);
 
 View:
-  ☐ Change the element class names for the Tasks section to make more sense
 
   DOM:
-    ✔ Add a DOM class @done(25-10-22 11:32)
-    ☐ Add reference to main to-do section
+    ✔ Add reference to main section @done(25-10-23 13:04)
   
   ☐ Think about what the most prominent features should be and design around that.
     ☐ Use the elements described in the video to make something good.
@@ -31,24 +27,33 @@ View:
   ☐ Style the input to not be retarded
 
 Controller:
-  ✔ Create a hook for the add task button in Main @done(25-10-21 16:30)
-  ✔ Make the button add a new to-do__item div to the page @done(25-10-21 16:30)
-    ✔ Should contain an input at first @done(25-10-22 11:19)
-    ✔ The input should be used to then change the task. When the input is changed (enter is pressed), then it should change the text of the parent to do element and then remove itself (the input) from the DOM. @done(25-10-22 11:19)
-      ✔ This also means that if the input is empty when the event fires, the whole To Do item should be removed. @done(25-10-22 11:31)
-  ✔ Made the add new task button actually add the input @done(25-10-22 11:32)
-
-
-
 
   Handling Events:
     ☐ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers.
   
 ACTIONS THIS COMMIT
--
-
+-Updating class names of elements
+-to-do-wrapper -> site-main
+-to-do__header -> site-main__header
+-to-do-items -> task-sections-wrapper
+-to-do__section -> task_section
+-to-do-items__wrapper -> task-items__wrapper
+-to-do__item -> task
+-to-do__heading -> task__heading
 
 Archive:
+  ✔ Start with just the TreeNode @done(25-10-21 16:30) @project(Model)
+  ✔ Create the TreeService @done(25-10-21 16:30) @project(Model)
+    This might just basically be what traverse is doing
+  ✔ Create a bunch of Unique ToDo items so you can work on displaying items on screen @done(25-10-21 16:30) @project(Model)
+  ✔ Change the element class names for the Tasks section to make more sense @done(25-10-23 13:03) @project(View)
+  ✔ Add a DOM class @done(25-10-22 11:32) @project(View.DOM)
+  ✔ Create a hook for the add task button in Main @done(25-10-21 16:30) @project(Controller)
+  ✔ Make the button add a new to-do__item div to the page @done(25-10-21 16:30) @project(Controller)
+  ✔ Should contain an input at first @done(25-10-22 11:19) @project(Controller)
+  ✔ The input should be used to then change the task. When the input is changed (enter is pressed), then it should change the text of the parent to do element and then remove itself (the input) from the DOM. @done(25-10-22 11:19) @project(Controller)
+  ✔ This also means that if the input is empty when the event fires, the whole To Do item should be removed. @done(25-10-22 11:31) @project(Controller)
+  ✔ Made the add new task button actually add the input @done(25-10-22 11:32) @project(Controller)
   ✔ Create the Task class in separate module @done(25-10-16 11:03) @project(Model)
   ✔ Import it into the index and test it @done(25-10-16 11:03) @project(Model)
   ✔ Add functional date and time to completion for tasks @done(25-10-16 11:24) @project(Model)

@@ -4,7 +4,7 @@ export class DOM {
 
     constructor() {
         this.addTaskButton = document.querySelector(".add-task-button");
-        this.toDoItems = document.querySelector(".to-do-items");
+        this.toDoItems = document.querySelector(".task-sections-wrapper");
     }
 
     get addTaskButton() {
@@ -14,7 +14,7 @@ export class DOM {
     addNewProjectSection() {
         let newToDoSection = document.createElement("div");
 
-        newToDoSection.classList.add("to-do__section");
+        newToDoSection.classList.add("task_section");
 
         this.toDoItems.appendChild(newToDoSection);
     }

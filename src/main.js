@@ -19,14 +19,14 @@ export class Main {
     }
 
     handleAddTaskButton(event) {
-        let toDoItems = document.querySelector(".to-do-items__wrapper");
+        let toDoItems = document.querySelector(".task-items__wrapper");
 
         let newTask = document.createElement("div");
-        newTask.classList.add("to-do__item");
+        newTask.classList.add("task");
 
         let taskTitleInput = document.createElement("input");
         taskTitleInput.type = "text";
-        taskTitleInput.classList.add("new-to-do-input");
+        taskTitleInput.classList.add("new-task-input");
 
         taskTitleInput.addEventListener("change", this.handleNewToDoInput);
         taskTitleInput.addEventListener("blur", this.handleNewToDoInput);
