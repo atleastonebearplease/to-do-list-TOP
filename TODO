@@ -21,13 +21,20 @@ Model:
 
   ☐ Get the Task to be serializable
     ☐ Create the Serializable object (where you'll implement the save and load functions for each Serializable);
+    ☐ Implement a function to write a task to local storage
+    ☐ Implement a functin to read a task from local storage 
+    ☐ Extract these into TaskLoader
+    ☐ Do the same, but for a whole project. ProjectLoader
 
 View:
+☐ Implement project sidebar with live projects
 
   DOM:
     ✔ Add reference to main section @done(25-10-23 13:04)
 
-  ☐ Style the input to not be retarded
+☐ Style the input to not be retarded
+☐ Implement the ability to add a description
+  ☐ This means that the task should expand below and allow editing of text
 
 Controller:
   ☐ We need to be able to delete the Tasks
@@ -35,6 +42,9 @@ Controller:
     ☐ Hook them up to a function in Main for now
     ☐ The function should both remove the DOM and remove the TreeNode
       ☐ Need to add a remove TreeNode function to TreeService
+    ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
+  ☐ We need to be able to move tasks up and down
+  ☐ We need to be able to drag and drop tasks to move them around
 
   Handling Events:
     ☐ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers.
