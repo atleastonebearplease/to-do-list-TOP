@@ -21,6 +21,7 @@ export class TreeService {
             let index = rootNode.parent.children.indexOf(this);
 
             rootNode.parent.children.splice(index, 1);
+            return true;
         }
 
         for(const child of rootNode.children) {
@@ -30,7 +31,7 @@ export class TreeService {
                 return deleted;
             }
         }
-        throw new Error("Requested to delete task that does not exist.");
+        return false;   
     }
 }
 

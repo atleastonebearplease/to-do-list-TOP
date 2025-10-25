@@ -49,8 +49,9 @@ export class Main {
         
         if(event.target.parentNode !== null && event.type === "change") { //If the parentNode has not already been removed
             let taskElement = event.target.parentNode; //The to do item that is the parent of the input
+            let inputElement = event.target;
 
-            taskElement.innerText = event.target.value;
+            taskElement.innerText = inputElement.value;
 
             let deleteButton = this.dom.makeNewTaskDeleteButton();
             deleteButton.addEventListener("click", this.handleDeleteTaskButton);
@@ -59,12 +60,11 @@ export class Main {
             let newTask = new Task(taskElement.innerText); 
             //TODO: Eventually this will find the TreeNode for the parent and make it root instead of just the root of the Main
 
-            taskElement.dataset.id = newTask.ID;
-
             newTask.treeNode.setRoot(this.root);
             newTask.updateIDLayers(this.root.data);
+            taskElement.dataset.id = newTask.ID; //Update dataset ID so that it has the full ID
 
-            event.target.remove(); //remove the input from the to do item
+            inputElement.remove();
         }
     }
 
@@ -73,10 +73,12 @@ export class Main {
 
         TreeService.removeNodeByID(this.root, taskDomNode.dataset.id);
 
+        console.log(`Delete task ${taskDomNode.innerText} - ID: ${taskDomNode.dataset.id}`);
+
         taskDomNode.remove();
         /*
             -Remove task node from node tree
-            -Remove the node from the DOM
+            -Remove the node from the;
         */
     }
 }

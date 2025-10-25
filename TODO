@@ -40,9 +40,9 @@ Controller:
   ☐ We need to be able to delete the Tasks
     ✔ Add a delete button to tasks (DOM); @done(25-10-24 05:37)
     ✔ Move hanlding the 'blur' event into a different function, or add in separate IF statement for separate logic @done(25-10-24 05:42)
-    ☐ Hook them up to a function in Main for now
-    ☐ The function should both remove the DOM and remove the TreeNode
-      ☐ Need to add a remove TreeNode function to TreeService
+    ✔ Hook them up to a function in Main for now @done(25-10-25 17:16)
+    ✔ The function should both remove the DOM and remove the TreeNode @done(25-10-25 17:16)
+      ✔ Need to add a remove TreeNode function to TreeService @done(25-10-25 17:16)
     ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
   ☐ We need to be able to move tasks up and down
   ☐ We need to be able to drag and drop tasks to move them around
@@ -55,6 +55,8 @@ ACTIONS THIS COMMIT
 -Add logic to main to distinguish between blur and change event
 -Add logic to delete nodes by ID
 -Add function to Main to handle delete button events
+-Fix function that removes nodes to return true or false in NodeService
+-Fix function that removes Tasks in Main function
 
 
 Archive:
