@@ -34,11 +34,12 @@ View:
 
 ☐ Style the input to not be retarded
 ☐ Implement the ability to add a description
-  ☐ This means that the task should expand below and allow editing of text
+This means that the task should expand below and allow editing of text
 
 Controller:
   ☐ We need to be able to delete the Tasks
-    ☐ Add a delete button to tasks (DOM);
+    ✔ Add a delete button to tasks (DOM); @done(25-10-24 05:37)
+    ✔ Move hanlding the 'blur' event into a different function, or add in separate IF statement for separate logic @done(25-10-24 05:42)
     ☐ Hook them up to a function in Main for now
     ☐ The function should both remove the DOM and remove the TreeNode
       ☐ Need to add a remove TreeNode function to TreeService
@@ -50,7 +51,11 @@ Controller:
     ☐ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers.
   
 ACTIONS THIS COMMIT
--
+-Add delete button to task
+-Add logic to main to distinguish between blur and change event
+-Add logic to delete nodes by ID
+-Add function to Main to handle delete button events
+
 
 Archive:
   ✔ Start with just the TreeNode @done(25-10-21 16:30) @project(Model)

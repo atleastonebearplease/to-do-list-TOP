@@ -13,6 +13,7 @@ export class Main {
 
         this.handleAddTaskButton = this.handleAddTaskButton.bind(this);
         this.handleNewToDoInput = this.handleNewToDoInput.bind(this);
+        this.handleDeleteTaskButton = this.handleDeleteTaskButton.bind(this);
     }
 
     initialize() {
@@ -40,22 +41,42 @@ export class Main {
     }
 
     handleNewToDoInput(event){
-        if(event.target.parentNode) { //If the parentNode has not already been removed
-            let taskElement = event.target.parentNode; //The to do item that is the parent of the input
-
-            if(event.target.value !== "") {
-                taskElement.innerText = event.target.value;
-
-                let newTask = new Task(taskElement.innerText); 
-                //TODO: Eventually this will find the TreeNode for the parent and make it root instead of just the root of the Main
-
-                newTask.treeNode.setRoot(this.root);
-                newTask.updateIDLayers(this.root.data);
-
-                event.target.remove(); //remove the input from the to do item
-            } else {
-                taskElement.remove(); //If the input was empty, don't leave the new ToDo item Div empty
+        if(event.type === "blur") {
+            if(event.target.value === "") {
+                event.target.remove(); //If input is empty, remove the new task element
             }
         }
+        
+        if(event.target.parentNode !== null && event.type === "change") { //If the parentNode has not already been removed
+            let taskElement = event.target.parentNode; //The to do item that is the parent of the input
+
+            taskElement.innerText = event.target.value;
+
+            let deleteButton = this.dom.makeNewTaskDeleteButton();
+            deleteButton.addEventListener("click", this.handleDeleteTaskButton);
+            taskElement.appendChild(deleteButton);
+
+            let newTask = new Task(taskElement.innerText); 
+            //TODO: Eventually this will find the TreeNode for the parent and make it root instead of just the root of the Main
+
+            taskElement.dataset.id = newTask.ID;
+
+            newTask.treeNode.setRoot(this.root);
+            newTask.updateIDLayers(this.root.data);
+
+            event.target.remove(); //remove the input from the to do item
+        }
+    }
+
+    handleDeleteTaskButton(event) {
+        let taskDomNode = event.target.parentNode;
+
+        TreeService.removeNodeByID(this.root, taskDomNode.dataset.id);
+
+        taskDomNode.remove();
+        /*
+            -Remove task node from node tree
+            -Remove the node from the DOM
+        */
     }
 }

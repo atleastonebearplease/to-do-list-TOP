@@ -33,6 +33,14 @@ export class DOM {
 
         return newInput;
     }
+
+    makeNewTaskDeleteButton() { 
+        let deleteButton = document.createElement("button");
+        deleteButton.classList.add("task-delete-button");
+        deleteButton.innerText = "Delete";
+        
+        return deleteButton;
+    }
 }
 
 /*

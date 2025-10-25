@@ -15,6 +15,23 @@ export class TreeService {
         }
         return undefined;
     }
+
+    static removeNodeByID(rootNode, ID) {
+        if(rootNode.data.ID === ID) {
+            let index = rootNode.parent.children.indexOf(this);
+
+            rootNode.parent.children.splice(index, 1);
+        }
+
+        for(const child of rootNode.children) {
+            const deleted = this.removeNodeByID(child, ID);
+
+            if(deleted) {
+                return deleted;
+            }
+        }
+        throw new Error("Requested to delete task that does not exist.");
+    }
 }
 
 
