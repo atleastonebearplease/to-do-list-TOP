@@ -28,15 +28,23 @@ Model:
 
 View:
 ☐ Implement project sidebar with live projects
-
-  DOM:
-    ✔ Add reference to main section @done(25-10-23 13:04)
-
-☐ Style the input to not be retarded
+  ☐ The projects sub-headings need to be based on the sections/headings in the main
 ☐ Implement the ability to add a description
 This means that the task should expand below and allow editing of text
 
+  Design and Style:
+    ☐ Make the delete button only show upon hovering over the task
+    ☐ Fix the CSS to have background expand with the page - Grid or Flex?
+    ☐ Project section on sidebar should stay in place
+    ☐ Style the input to not be retarded
+
+  DOM:
+    ✔ Add reference to main section @done(25-10-23 13:04)
+    ☐ Make DOM static
+
 Controller:
+  ☐ Make the AddTaskButton actually add an input, but not a new task yet
+  The AddTaskButton should add an input that disapears when left empty, and adds a tasks when the enter key is pressed or the input is unfocused. This way we can add a cleaner add task function and use it for testing
   ☐ We need to be able to delete the Tasks
     ✔ Add a delete button to tasks (DOM); @done(25-10-24 05:37)
     ✔ Move hanlding the 'blur' event into a different function, or add in separate IF statement for separate logic @done(25-10-24 05:42)
@@ -44,19 +52,25 @@ Controller:
     ✔ The function should both remove the DOM and remove the TreeNode @done(25-10-25 17:16)
       ✔ Need to add a remove TreeNode function to TreeService @done(25-10-25 17:16)
     ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
-  ☐ We need to be able to move tasks up and down
-  ☐ We need to be able to drag and drop tasks to move them around
+  ☐ Select a task with the arrow keys (once one has already been selected)
+    ☐ The last task in the last section should be focused upon page load
+  ☐ Move tasks up and down with keyboard controls
+  ☐ Drag and drop tasks to move them
+  ☐ The ability to make a task a sub-task with the tab key
+    ☐ This should be in a "Task Event Handler" that is given the currently selected task when needed
+    Since we're not doing mass operations on tasks, we can just create a new handler for each new task that is selected. Just creating the Handler only would require a DOM element; 
+    the Node can be found when we do an operation
+    ☐ Needs to check to make sure that there is a viable parent
+    There can't be a subtask that is two levels below a parent. Each subtask's parent must be one level above it
 
   Handling Events:
     ☐ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers.
   
 ACTIONS THIS COMMIT
--Add delete button to task
--Add logic to main to distinguish between blur and change event
--Add logic to delete nodes by ID
--Add function to Main to handle delete button events
--Fix function that removes nodes to return true or false in NodeService
--Fix function that removes Tasks in Main function
+-Created an add task function separate from the input handler so that it can be used for testing
+-Added testing code for a huge number of tasks - still quite fast
+-Removed testing code from index.js
+-Removed new project sections from Initialize
 
 
 Archive:
