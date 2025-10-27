@@ -1,36 +1,27 @@
 Model:
-  ✔ Get the TreeNodes implemented in the Tasks @done(25-10-23 16:03)
-    ✔ Add TreeNode to tasks @done(25-10-23 13:15)
-      ✔ Add TreeNode data to actual Task definition @done(25-10-23 13:15)
-    We are adding TreeNode so that we can begin to perform operations like removing and whatnot
-    ✔ Now, we need to start operating from a Root node @done(25-10-23 16:03)
-    Later this will be done in a Project class, but for now I think we should just put it in main and 'hardcode' it
-      ✔ Add a root TreeNode to main @done(25-10-23 16:02)
-      ✔ Now, when adding a task, set the task.node's parent to the 'root' node in main @done(25-10-23 16:02)
-
-  ☐ Create the TreeNode and TreeService
+  Node:
+    ☐ Create the TreeNode and TreeService
       ☐ Now add the findNode(predicate) function
-      This finds a node based on a call back function that tests for a condition (depth first recursively)
-      and return the node. Used for finding by title, due date, completed items, etc.
+        This finds a node based on a call back function that tests for a condition (depth first recursively)
+        and return the node. Used for finding by title, due date, completed items, etc.
       ☐ Now add removeNode(root, predicate) function
       ☐ Add removeNodeByID(root, ID) function
-      Recursively check for the first match and splice it out of the root's children array (ChatGPT)
+        Recursively check for the first match and splice it out of the root's children array (ChatGPT)
       ☐ Consider adding a map function to perform operations on it (such as saving the whole tree?)
 
-    Don't need hierarchical ones there
-
-  ☐ Get the Task to be serializable
-    ☐ Create the Serializable object (where you'll implement the save and load functions for each Serializable);
-    ☐ Implement a function to write a task to local storage
-    ☐ Implement a functin to read a task from local storage 
-    ☐ Extract these into TaskLoader
-    ☐ Do the same, but for a whole project. ProjectLoader
+  Task: 
+    ☐ Get the Task to be serializable
+      ☐ Create the Serializable object (where you'll implement the save and load functions for each Serializable);
+      ☐ Implement a function to write a task to local storage
+      ☐ Implement a functin to read a task from local storage 
+      ☐ Extract these into TaskLoader
+      ☐ Do the same, but for a whole project. ProjectLoader
 
 View:
 ☐ Implement project sidebar with live projects
   ☐ The projects sub-headings need to be based on the sections/headings in the main
 ☐ Implement the ability to add a description
-This means that the task should expand below and allow editing of text
+  This means that the task should expand below and allow editing of text
 
   Design and Style:
     ☐ Make the delete button only show upon hovering over the task
@@ -39,41 +30,51 @@ This means that the task should expand below and allow editing of text
     ☐ Style the input to not be retarded
 
   DOM:
-    ✔ Add reference to main section @done(25-10-23 13:04)
     ☐ Make DOM static
 
 Controller:
-  ☐ Make the AddTaskButton actually add an input, but not a new task yet
-  The AddTaskButton should add an input that disapears when left empty, and adds a tasks when the enter key is pressed or the input is unfocused. This way we can add a cleaner add task function and use it for testing
-  ☐ We need to be able to delete the Tasks
-    ✔ Add a delete button to tasks (DOM); @done(25-10-24 05:37)
-    ✔ Move hanlding the 'blur' event into a different function, or add in separate IF statement for separate logic @done(25-10-24 05:42)
-    ✔ Hook them up to a function in Main for now @done(25-10-25 17:16)
-    ✔ The function should both remove the DOM and remove the TreeNode @done(25-10-25 17:16)
-      ✔ Need to add a remove TreeNode function to TreeService @done(25-10-25 17:16)
-    ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
-  ☐ Select a task with the arrow keys (once one has already been selected)
-    ☐ The last task in the last section should be focused upon page load
-  ☐ Move tasks up and down with keyboard controls
-  ☐ Drag and drop tasks to move them
-  ☐ The ability to make a task a sub-task with the tab key
-    ☐ This should be in a "Task Event Handler" that is given the currently selected task when needed
-    Since we're not doing mass operations on tasks, we can just create a new handler for each new task that is selected. Just creating the Handler only would require a DOM element; 
-    the Node can be found when we do an operation
-    ☐ Needs to check to make sure that there is a viable parent
-    There can't be a subtask that is two levels below a parent. Each subtask's parent must be one level above it
 
-  Handling Events:
+  Task:
+    ☐ The ability to select and focus a task
+    ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
+    ☐ Select a task with the arrow keys (once one has already been selected)
+      ☐ The last task in the last section should be focused upon page load
+    ☐ Move tasks up and down with keyboard controls
+    ☐ Drag and drop tasks to move them
+    
+    ☐ The ability to make a task a sub-task with the tab key
+      ☐ This should be in a "Task Event Handler" that is given the currently selected task when needed
+        Since we're not doing mass operations on tasks, we can just create a new handler for each new task that is selected. Just creating the Handler only would require a DOM element; 
+        the Node can be found when we do an operation
+      ☐ Needs to check to make sure that there is a viable parent
+        There can't be a subtask that is two levels below a parent. Each subtask's parent must be one level above it
+
+  Events:
     ☐ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers.
   
 ACTIONS THIS COMMIT
--Created an add task function separate from the input handler so that it can be used for testing
--Added testing code for a huge number of tasks - still quite fast
--Removed testing code from index.js
--Removed new project sections from Initialize
+-Add tabIndex to task elements to make focusable
 
 
 Archive:
+  ✔ Get the TreeNodes implemented in the Tasks @done(25-10-23 16:03) @project(Model)
+  ✔ Add TreeNode to tasks @done(25-10-23 13:15) @project(Model)
+  ✔ Add TreeNode data to actual Task definition @done(25-10-23 13:15) @project(Model)
+    We are adding TreeNode so that we can begin to perform operations like removing and whatnot
+  ✔ Now, we need to start operating from a Root node @done(25-10-23 16:03) @project(Model)
+    Later this will be done in a Project class, but for now I think we should just put it in main and 'hardcode' it
+  ✔ Add a root TreeNode to main @done(25-10-23 16:02) @project(Model)
+  ✔ Now, when adding a task, set the task.node's parent to the 'root' node in main @done(25-10-23 16:02) @project(Model)
+  ✔ Add reference to main section @done(25-10-23 13:04) @project(DOM)
+  ✔ Make the AddTaskButton actually add an input, but not a new task yet @done(25-10-27 07:05) @project(Controller)
+  ✔ Separate adding task functionality from InputHandler function into it's own in main @done(25-10-27 07:08) @project(Controller)
+    The AddTaskButton should add an input that disapears when left empty, and adds a tasks when the enter key is pressed or the input is unfocused. This way we can add a cleaner add task function and use it for testing
+  ✔ We need to be able to delete the Tasks @done(25-10-27 07:08) @project(Controller)
+  ✔ Add a delete button to tasks (DOM); @done(25-10-24 05:37) @project(Controller)
+  ✔ Move hanlding the 'blur' event into a different function, or add in separate IF statement for separate logic @done(25-10-24 05:42) @project(Controller)
+  ✔ Hook them up to a function in Main for now @done(25-10-25 17:16) @project(Controller)
+  ✔ The function should both remove the DOM and remove the TreeNode @done(25-10-25 17:16) @project(Controller)
+  ✔ Need to add a remove TreeNode function to TreeService @done(25-10-25 17:16) @project(Controller)
   ✔ Start with just the TreeNode @done(25-10-21 16:30) @project(Model)
   ✔ Create the TreeService @done(25-10-21 16:30) @project(Model)
     This might just basically be what traverse is doing

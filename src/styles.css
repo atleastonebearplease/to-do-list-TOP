@@ -105,6 +105,11 @@
 .task {
     padding: .25rem;
     border-radius: 8px;
+    cursor: pointer;
+}
+
+.task:focus {
+    outline: 1px solid red;
 }
 
 .task:hover {

@@ -19,10 +19,6 @@ export class Main {
         this.#makeNewTask("Get Milk");
         this.#makeNewTask("Hold the door");
         this.#makeNewTask("Get me outta here");
-
-        for(let i = 0; i < 100000; i++) {
-            this.#makeNewTask(`Testing task: Task ${i}`);
-        }
     }
 
     initialize() {

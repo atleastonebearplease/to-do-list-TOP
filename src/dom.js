@@ -22,6 +22,8 @@ export class DOM {
     makeNewTaskElement() {
         let newTask = document.createElement("div");
         newTask.classList.add("task");
+        newTask.tabIndex = 0; //Make focusable;
+
 
         return newTask;
     }
@@ -38,6 +40,7 @@ export class DOM {
         let deleteButton = document.createElement("button");
         deleteButton.classList.add("task-delete-button");
         deleteButton.innerText = "Delete";
+        deleteButton.tabIndex = -1;
         
         return deleteButton;
     }
