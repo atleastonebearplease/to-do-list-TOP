@@ -116,6 +116,16 @@
     background-color: hsl(226, 100%, 97%);
 }
 
+.delete-task-button {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.task:hover .delete-task-button {
+    opacity: 1;
+    visibility: visible;
+}
+
 .task__heading {
     font-weight: bold;
     font-size: 1.25rem;

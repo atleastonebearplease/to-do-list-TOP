@@ -38,7 +38,7 @@ export class DOM {
 
     makeNewTaskDeleteButton() { 
         let deleteButton = document.createElement("button");
-        deleteButton.classList.add("task-delete-button");
+        deleteButton.classList.add("delete-task-button");
         deleteButton.innerText = "Delete";
         deleteButton.tabIndex = -1;
         
