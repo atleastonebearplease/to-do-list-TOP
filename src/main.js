@@ -14,6 +14,19 @@ export class Main {
         this.handleAddTaskButton = this.handleAddTaskButton.bind(this);
         this.handleNewToDoInput = this.handleNewToDoInput.bind(this);
         this.handleDeleteTaskButton = this.handleDeleteTaskButton.bind(this);
+        this.handleTabKey = this.handleTabKey.bind(this);
+
+        document.addEventListener("keydown", (event) => {
+            if(event.key === "Tab") {
+                event.preventDefault();
+            }
+
+            if(document.activeElement.classList.contains("task") ) {
+                if(event.key === "Tab") {
+                    this.handleTabKey(event);
+                }
+            }
+        });
 
         //TODO: TESTING
         this.#makeNewTask("Get Milk");
@@ -26,6 +39,7 @@ export class Main {
     }
 
     handleAddTaskButton(event) {
+        //TODO Use event to add tasks to the correct section
         let toDoItems = document.querySelector(".task-items__wrapper");
 
         let taskTitleInput = this.dom.makeNewTaskInput();
@@ -62,6 +76,13 @@ export class Main {
         console.log(`Delete task ${taskDomNode.innerText} - ID: ${taskDomNode.dataset.id}`);
 
         taskDomNode.remove();
+    }
+
+    handleTabKey(event) {
+        if(document.activeElement.classList.contains("task")) {
+            console.log("Tab key pressed on task");
+            event.preventDefault();
+        }
     }
 
     #makeNewTask(name) {

@@ -22,9 +22,16 @@ View:
   ☐ The projects sub-headings need to be based on the sections/headings in the main
 ☐ Implement the ability to add a description
   This means that the task should expand below and allow editing of text
+  Tasks:
+    ☐ Make the tasks section a fixed width in the page
+    ☐ Add the option to center it or to place it on the left side
+    ☐ Make the delete button a trash can icon
+    ☐ Add a divider between tasks
+    ☐ Add a checkbox to the tasks
+
 
   Design and Style:
-    ☐ Make the delete button only show upon hovering over the task
+    ✔ Make the delete button only show upon hovering over the task @done(25-10-27 10:22)
     ☐ Fix the CSS to have background expand with the page - Grid or Flex?
     ☐ Project section on sidebar should stay in place
     ☐ Style the input to not be retarded
@@ -35,20 +42,26 @@ View:
 Controller:
 
   Task:
-    ☐ The ability to select and focus a task
-    ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
+    ✔ The ability to select and focus a task @done(25-10-27 10:13)
+    ☐ Create EventService to handle tasks
+      For example, a TaskEvent handler. When there is a keydown event, say, we see what the currently active element is. If it's a task, we pass the task to the TaskEventHandler. If it's an AddTaskButton, we pass it to that handler. Etc.
+      ☐ Create the TaskEventService
+    ☐ The ability to make a task a sub-task with the tab key
+      ✔ Get the Tab key hooked up to a listener in the Main class @done(25-10-27 17:07)
+      ☐ Get the Tab key to make the TreeNode of the task jump down to a child of the one above it
+      ☐ This should be in a "Task Event Handler" that is given the currently selected task when needed
+      Since we're not doing mass operations on tasks, we can just create a new handler for each new task that is selected. Just creating the Handler only would require a DOM element; 
+      the Node can be found when we do an operation
+      ☐ Needs to check to make sure that there is a viable parent
+      There can't be a subtask that is two levels below a parent. Each subtask's parent must be one level above it
+    
+
     ☐ Select a task with the arrow keys (once one has already been selected)
-      ☐ The last task in the last section should be focused upon page load
+    ☐ The last task in the last section should be focused upon page load
     ☐ Move tasks up and down with keyboard controls
     ☐ Drag and drop tasks to move them
-    
-    ☐ The ability to make a task a sub-task with the tab key
-      ☐ This should be in a "Task Event Handler" that is given the currently selected task when needed
-        Since we're not doing mass operations on tasks, we can just create a new handler for each new task that is selected. Just creating the Handler only would require a DOM element; 
-        the Node can be found when we do an operation
-      ☐ Needs to check to make sure that there is a viable parent
-        There can't be a subtask that is two levels below a parent. Each subtask's parent must be one level above it
-
+    ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
+    ☐ Ability to check off tasks
   Events:
     ☐ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers.
   
