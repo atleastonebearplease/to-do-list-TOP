@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { DOM } from "./dom.js";
 import { TreeNode } from "./treeNode.js";
 import { TreeService } from "./treeService.js";

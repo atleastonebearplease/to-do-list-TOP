@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./styles.css";
 import { Task } from "./task.js";
 import { IDService } from "./idService.js";

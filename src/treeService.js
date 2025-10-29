@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { TreeNode } from "./treeNode.js";
 import { IDService } from "./idService.js";
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-private-class-members */
 import { format } from "date-fns"
 import { IDService } from "./idService.js";
 import { TreeNode } from "./treeNode.js";
