@@ -8,6 +8,8 @@ import { Main } from "./main.js";
 
 import { format } from 'date-fns';
 
+import { TaskEventService } from "./eventService.js";
+
 function printTree(node, depth = 0) {
     let indent = "--".repeat(depth);
 
@@ -21,3 +23,4 @@ function printTree(node, depth = 0) {
 let main = new Main();
 
 main.initialize();
+

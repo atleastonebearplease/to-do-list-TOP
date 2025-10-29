@@ -33,6 +33,14 @@ export class TreeService {
         }
         return false;   
     }
+
+    static removeNodeByNodeReference(node) {
+        let index = node.parent.children.indexOf(node);
+
+        node.parent.children.splice(index, 1);
+    }
+
+
 }
 
 

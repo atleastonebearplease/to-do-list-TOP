@@ -7,11 +7,6 @@ export class TreeNode {
         this.data = data;
     }
 
-    setRoot(node) {
-        this.parent = node;
-        node.addChild(this);
-    }
-
     addChild(node) {
         this.children.push(node);
         node.parent = this;
@@ -20,5 +15,25 @@ export class TreeNode {
     traverse(callback) {
         callback(this);
         this.children.forEach(child => child.traverse(callback) );
+    }
+
+    get previousSibling() {
+        let index = this.parent.children.indexOf(this);
+
+        if(index > 0) {
+            return this.parent.children[index - 1];
+        } else {
+            return undefined;
+        }
+    }
+
+    get nextSibling() {
+        let index = this.parent.children.indexOf(this);
+
+        if(index < this.parent.children.length - 1) {
+            return this.parent.children[index + 1];
+        } else {
+            return undefined;
+        }
     }
 }

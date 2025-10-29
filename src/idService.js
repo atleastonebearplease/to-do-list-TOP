@@ -33,6 +33,10 @@ export class IDService {
         }
     }
 
+    static getIDLayersCount(ID) {
+        return this.#splitIDLayers(ID).length;
+    }
+
     static extractUniqueID(ID) {
         let layers = this.#splitIDLayers(ID);
 

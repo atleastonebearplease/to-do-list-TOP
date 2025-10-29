@@ -1,3 +1,8 @@
+General:
+  ☐ Update the UML diagram in diagrams.io
+  ☐ Refactor sections of the site into their respective components
+  ☐ Refactor DOM to be static
+
 Model:
   Node:
     ☐ Create the TreeNode and TreeService
@@ -5,7 +10,7 @@ Model:
         This finds a node based on a call back function that tests for a condition (depth first recursively)
         and return the node. Used for finding by title, due date, completed items, etc.
       ☐ Now add removeNode(root, predicate) function
-      ☐ Add removeNodeByID(root, ID) function
+      ✔ Add removeNodeByID(root, ID) function @done(25-10-29 15:09)
         Recursively check for the first match and splice it out of the root's children array (ChatGPT)
       ☐ Consider adding a map function to perform operations on it (such as saving the whole tree?)
 
@@ -43,9 +48,8 @@ Controller:
 
   Task:
     ✔ The ability to select and focus a task @done(25-10-27 10:13)
-    ☐ Create EventService to handle tasks
-      For example, a TaskEvent handler. When there is a keydown event, say, we see what the currently active element is. If it's a task, we pass the task to the TaskEventHandler. If it's an AddTaskButton, we pass it to that handler. Etc.
-      ☐ Create the TaskEventService
+    ☐ Create the TaskEventService
+    This will handle events when the task is the focus. 
     ☐ The ability to make a task a sub-task with the tab key
       ✔ Get the Tab key hooked up to a listener in the Main class @done(25-10-27 17:07)
       ☐ Get the Tab key to make the TreeNode of the task jump down to a child of the one above it

@@ -2,6 +2,7 @@ import { DOM } from "./dom.js";
 import { TreeNode } from "./treeNode.js";
 import { TreeService } from "./treeService.js";
 import { Task } from "./task.js";
+import { TaskEventService } from "./eventService.js";
 
 export class Main {
     dom;
@@ -9,24 +10,11 @@ export class Main {
     
     constructor() {
         this.dom = new DOM();
-        this.root = new TreeNode(new Task("ROOT"));
+        this.root = new Task("ROOT").treeNode;
 
         this.handleAddTaskButton = this.handleAddTaskButton.bind(this);
         this.handleNewToDoInput = this.handleNewToDoInput.bind(this);
         this.handleDeleteTaskButton = this.handleDeleteTaskButton.bind(this);
-        this.handleTabKey = this.handleTabKey.bind(this);
-
-        document.addEventListener("keydown", (event) => {
-            if(event.key === "Tab") {
-                event.preventDefault();
-            }
-
-            if(document.activeElement.classList.contains("task") ) {
-                if(event.key === "Tab") {
-                    this.handleTabKey(event);
-                }
-            }
-        });
 
         //TODO: TESTING
         this.#makeNewTask("Get Milk");
@@ -36,9 +24,22 @@ export class Main {
 
     initialize() {
         this.dom.addTaskButton.addEventListener("click", this.handleAddTaskButton);
+
+        document.addEventListener("keydown", (event) => {
+            if(event.key === "Tab") {
+                event.preventDefault(); //Don't want tabbing arouind the other elements in page
+            }
+
+            if(document.activeElement.classList.contains("task") ) {
+                if(TaskEventService.handleKeys(event, this.root)) {
+                    //View.RenderTasks(root);
+                }
+            }
+        });
     }
 
     handleAddTaskButton(event) {
+        //Will eventually use event to get the parent of the AddTaskButton to add to different sections
         //TODO Use event to add tasks to the correct section
         let toDoItems = document.querySelector(".task-items__wrapper");
 
@@ -78,15 +79,9 @@ export class Main {
         taskDomNode.remove();
     }
 
-    handleTabKey(event) {
-        if(document.activeElement.classList.contains("task")) {
-            console.log("Tab key pressed on task");
-            event.preventDefault();
-        }
-    }
-
     #makeNewTask(name) {
-        let newTaskNode = new Task(name);
+        let newTask = new Task(name);
+        let newTaskNode = newTask.treeNode;
         let newTaskElement = this.dom.makeNewTaskElement();
 
         newTaskElement.innerText = name;
@@ -97,9 +92,9 @@ export class Main {
 
         //TODO: Eventually this will find the TreeNode for the parent and make it root instead of just the root of the Main
 
-        newTaskNode.treeNode.setRoot(this.root);
-        newTaskNode.updateIDLayers(this.root.data);
-        newTaskElement.dataset.id = newTaskNode.ID;
+        this.root.addChild(newTaskNode);
+        newTaskNode.data.updateIDLayers(this.root.data);
+        newTaskElement.dataset.id = newTaskNode.data.ID;
 
         let taskItems = document.querySelector(".task-items__wrapper");
         taskItems.appendChild(newTaskElement);
