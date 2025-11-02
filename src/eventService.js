@@ -1,3 +1,8 @@
+/*
+    Part of Controller
+*/
+
+/* eslint-disable no-unused-vars */
 import { TreeNode } from "./treeNode.js";
 import { TreeService } from "./treeService.js";
 import { IDService } from "./idService.js";
@@ -7,7 +12,7 @@ export class TaskEventService {
         if(event.key === "Tab") {
             event.preventDefault();
 
-            let childTaskElement = event.target;
+            let childTaskElement = event.target.parentNode;
 
             let childNode = TreeService.findNodeByID(rootNode, childTaskElement.dataset.id);
 
@@ -23,19 +28,8 @@ export class TaskEventService {
                 parentNode.addChild(childNode);
                 childNode.data.updateIDLayers(parentNode.data);
                 childTaskElement.dataset.id = childNode.data.ID;
+                return true;
             }
-
-            function printTree(node, depth = 0) {
-                let indent = " ".repeat(depth);
-
-                console.log(indent + node.data.title + " - " + node.data.ID);
-
-                for(const child of node.children) {
-                    printTree(child, depth + 1);
-                }
-            }
-            
-            printTree(rootNode);
         }
 
         //Get the task element to be inside of the one above it

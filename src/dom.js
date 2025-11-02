@@ -1,29 +1,46 @@
 export class DOM {
     addTaskButton;
     toDoItems;
+    taskSectionRoot;
 
     constructor() {
         this.addTaskButton = document.querySelector(".add-task-button");
         this.toDoItems = document.querySelector(".task-sections-wrapper");
-    }
-
-    get addTaskButton() {
-        return this.addTaskButton;
+        this.taskSectionRoot = document.querySelector(".task-sections-wrapper");
     }
 
     addNewProjectSection() {
-        let newToDoSection = document.createElement("div");
+        let newToDoSection = document.createElement("ul");
 
-        newToDoSection.classList.add("task_section");
+        newToDoSection.classList.add("task-list");
 
         this.toDoItems.appendChild(newToDoSection);
     }
 
-    makeNewTaskElement() {
-        let newTask = document.createElement("div");
+    makeNewTaskElement(title = "", id = "") {
+        let newTask = document.createElement("li");
         newTask.classList.add("task");
-        newTask.tabIndex = 0; //Make focusable;
+        newTask.dataset.id = id;
 
+        let taskContent = document.createElement("div");
+        taskContent.classList.add("task-content");
+        taskContent.tabIndex = 0;
+
+        let taskIndent = document.createElement("span");
+        taskIndent.style = "width:16px";
+        
+        let taskTitleSpan = document.createElement("span");
+        taskTitleSpan.classList.add("task-text");
+        taskTitleSpan.innerText = title;
+
+        taskContent.appendChild(taskIndent);
+        taskContent.appendChild(taskTitleSpan);
+
+        taskContent.appendChild(this.makeNewTaskDeleteButton());
+
+        newTask.appendChild(taskContent);
+
+        //newTask.tabIndex = 0; //Make focusable;
 
         return newTask;
     }
@@ -43,6 +60,12 @@ export class DOM {
         deleteButton.tabIndex = -1;
         
         return deleteButton;
+    }
+
+    createTaskList() {
+        let taskList = document.createElement("ul");
+        taskList.classList.add("task-list");
+        return taskList;
     }
 }
 

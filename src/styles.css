@@ -80,7 +80,7 @@
     align-self: center;
 }
 
-/* To-Do Section */
+/* Task Section */
 
 .site-main {
     grid-column: 2/3;
@@ -92,14 +92,22 @@
     margin-top: 2rem;
 }
 
-/* .task-sections-wrapper {
-
-} */
-
-.task-items__wrapper {
+.task-sections__wrapper {
     width: 90%;
     padding: .75rem;
     margin-bottom: 1rem;
+}
+
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-list .task-list {
+    margin-left: 28px;
+    border-left: 2px solid #ddd;
+    padding-left: 12px;
 }
 
 .task {
@@ -108,11 +116,15 @@
     cursor: pointer;
 }
 
-.task:focus {
+.task-content { 
+        
+}
+
+.task-content:focus {
     outline: 1px solid red;
 }
 
-.task:hover {
+.task-content:hover {
     background-color: hsl(226, 100%, 97%);
 }
 
@@ -121,7 +133,7 @@
     visibility: hidden;
 }
 
-.task:hover .delete-task-button {
+.task-content:hover .delete-task-button {
     opacity: 1;
     visibility: visible;
 }

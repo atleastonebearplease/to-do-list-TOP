@@ -1,17 +1,14 @@
 General:
   ☐ Update the UML diagram in diagrams.io
-  ☐ Refactor sections of the site into their respective components
-  ☐ Refactor DOM to be static
 
 Model:
+
   Node:
-    ☐ Create the TreeNode and TreeService
+    ☐ TreeNode and TreeService
       ☐ Now add the findNode(predicate) function
         This finds a node based on a call back function that tests for a condition (depth first recursively)
         and return the node. Used for finding by title, due date, completed items, etc.
       ☐ Now add removeNode(root, predicate) function
-      ✔ Add removeNodeByID(root, ID) function @done(25-10-29 15:09)
-        Recursively check for the first match and splice it out of the root's children array (ChatGPT)
       ☐ Consider adding a map function to perform operations on it (such as saving the whole tree?)
 
   Task: 
@@ -23,43 +20,49 @@ Model:
       ☐ Do the same, but for a whole project. ProjectLoader
 
 View:
-☐ Implement project sidebar with live projects
-  ☐ The projects sub-headings need to be based on the sections/headings in the main
-☐ Implement the ability to add a description
-  This means that the task should expand below and allow editing of text
+  ✔ Create a View class @done(25-11-02 16:58)
+    View should host all of the projects and should help in making new DOM elements. May not be neccessary since we are moving much functionality into View and using it to render the page. We'll see. 
+    ✔ Create render function that can render all of the task elements from the root element @done(25-11-02 16:58)
+        I think this can be accomplished by giving all tasks an indent class, starting with indent_0. Then we can pull that number out and use it for the depth calculation. Like, get the parent element depth and start there. Or even include a depth attribute. data.depth; data-depth = 0
+    ✔ Rewrite render such that it does all prep, then calls the recursive function on the node provided @done(25-11-02 16:58)
+
   Tasks:
+    ☐ Tasks and their section need to be in unordered list
+      ☐ You can make a css rule to indent every child of a child (e.g. .task-list .task-list {indent})
+      ☐ Rework the makeNewTaskElement function in DOM to fit the new format
+      ☐ 
     ☐ Make the tasks section a fixed width in the page
     ☐ Add the option to center it or to place it on the left side
     ☐ Make the delete button a trash can icon
     ☐ Add a divider between tasks
     ☐ Add a checkbox to the tasks
 
-
   Design and Style:
-    ✔ Make the delete button only show upon hovering over the task @done(25-10-27 10:22)
     ☐ Fix the CSS to have background expand with the page - Grid or Flex?
     ☐ Project section on sidebar should stay in place
-    ☐ Style the input to not be retarded
+    ☐ Style the input to not be retarded looking
 
   DOM:
-    ☐ Make DOM static
+    ☐ Refactor sections of the site into their respective components, static classes should do
+      ☐ Sidebar
+        ☐ Projects
+        ☐ Options
+      ☐ Tasks
+        ☐ Heading/Sections
 
 Controller:
 
   Task:
-    ✔ The ability to select and focus a task @done(25-10-27 10:13)
-    ☐ Create the TaskEventService
-    This will handle events when the task is the focus. 
-    ☐ The ability to make a task a sub-task with the tab key
-      ✔ Get the Tab key hooked up to a listener in the Main class @done(25-10-27 17:07)
-      ☐ Get the Tab key to make the TreeNode of the task jump down to a child of the one above it
-      ☐ This should be in a "Task Event Handler" that is given the currently selected task when needed
-      Since we're not doing mass operations on tasks, we can just create a new handler for each new task that is selected. Just creating the Handler only would require a DOM element; 
-      the Node can be found when we do an operation
-      ☐ Needs to check to make sure that there is a viable parent
-      There can't be a subtask that is two levels below a parent. Each subtask's parent must be one level above it
-    
+    ✔ The ability to make a task a sub-task with the tab key @done(25-11-02 16:58)
+      ✔ We need to implement the renderer to make this match the Tree @done(25-11-02 16:58)
+        Made the handler static 
+    ☐ When a task is made into a sub-task, the element should be refocused
 
+    ☐ Implement project sidebar with live projects
+      ☐ The projects sub-headings need to be based on the sections/headings in the project
+    ☐ Implement the ability to add a description
+    This means that the task should expand below and allow editing of text    
+    ☐ Make delete for parent also delete children
     ☐ Select a task with the arrow keys (once one has already been selected)
     ☐ The last task in the last section should be focused upon page load
     ☐ Move tasks up and down with keyboard controls
@@ -70,9 +73,24 @@ Controller:
     ☐ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers.
   
 ACTIONS THIS COMMIT
--Make delete button only appear on hover of parent
+-Create View class
+-Add function to DOM for getting task items root element
+-Add a function to recursively re-draw all task items to view
+-Changed the structure of the HTML tasks from Divs and sub-divs to lists and sub-lists
+-Added indentation for sub-tasks that gets recursively deeper
+
 
 Archive:
+  ✔ Add removeNodeByID(root, ID) function @done(25-10-29 15:09) @project(Model.Node)
+    Recursively check for the first match and splice it out of the root's children array (ChatGPT)
+  ✔ Make the delete button only show upon hovering over the task @done(25-10-27 10:22) @project(View.Design and Style)
+  ✔ The ability to select and focus a task @done(25-10-27 10:13) @project(Controller.Task)
+  ✔ Create the TaskEventService @done(25-10-29 15:10) @project(Controller.Task)
+    This will handle events when the task is the focus. 
+  ✔ Get the Tab key hooked up to a listener in the Main class @done(25-10-27 17:07) @project(Controller.Task)
+  ✔ Get the Tab key to make the TreeNode of the task jump down to a child of the one above it @done(25-10-31 11:10) @project(Controller.Task)
+  ✔ This should be in a "Task Event Handler" that is given the currently selected task when needed @done(25-10-31 11:10) @project(Controller.Task)
+  ✔ Needs to check to make sure that there is a viable parent @done(25-10-31 11:10) @project(Controller.Task)
   ✔ Get the TreeNodes implemented in the Tasks @done(25-10-23 16:03) @project(Model)
   ✔ Add TreeNode to tasks @done(25-10-23 13:15) @project(Model)
   ✔ Add TreeNode data to actual Task definition @done(25-10-23 13:15) @project(Model)

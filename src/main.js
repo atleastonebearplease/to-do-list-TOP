@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { DOM } from "./dom.js";
+import { View } from "./view.js";
 import { TreeNode } from "./treeNode.js";
 import { TreeService } from "./treeService.js";
 import { Task } from "./task.js";
@@ -8,10 +9,12 @@ import { TaskEventService } from "./eventService.js";
 export class Main {
     dom;
     root;
+    view; 
     
     constructor() {
         this.dom = new DOM();
         this.root = new Task("ROOT").treeNode;
+        this.view = new View();
 
         this.handleAddTaskButton = this.handleAddTaskButton.bind(this);
         this.handleNewToDoInput = this.handleNewToDoInput.bind(this);
@@ -21,6 +24,7 @@ export class Main {
         this.#makeNewTask("Get Milk");
         this.#makeNewTask("Hold the door");
         this.#makeNewTask("Get me outta here");
+        this.view.render(this.root);
     }
 
     initialize() {
@@ -31,9 +35,9 @@ export class Main {
                 event.preventDefault(); //Don't want tabbing arouind the other elements in page
             }
 
-            if(document.activeElement.classList.contains("task") ) {
+            if(document.activeElement.classList.contains("task-content") ) {
                 if(TaskEventService.handleKeys(event, this.root)) {
-                    //View.RenderTasks(root);
+                    this.view.render(this.root);
                 }
             }
         });
@@ -42,7 +46,7 @@ export class Main {
     handleAddTaskButton(event) {
         //Will eventually use event to get the parent of the AddTaskButton to add to different sections
         //TODO Use event to add tasks to the correct section
-        let toDoItems = document.querySelector(".task-items__wrapper");
+        let toDoItems = document.querySelector(".task-sections-wrapper > .task-list");
 
         let taskTitleInput = this.dom.makeNewTaskInput();
 
@@ -66,6 +70,8 @@ export class Main {
 
             this.#makeNewTask(inputElement.value);
 
+            this.view.render(this.root);
+
             inputElement.remove();
         }
     }
@@ -78,28 +84,14 @@ export class Main {
         console.log(`Delete task ${taskDomNode.innerText} - ID: ${taskDomNode.dataset.id}`);
 
         taskDomNode.remove();
+
+        this.view.render(this.root);
     }
 
     #makeNewTask(name) {
         let newTask = new Task(name);
-        let newTaskNode = newTask.treeNode;
-        let newTaskElement = this.dom.makeNewTaskElement();
 
-        newTaskElement.innerText = name;
-
-        let deleteButton = this.dom.makeNewTaskDeleteButton();
-        deleteButton.addEventListener("click", this.handleDeleteTaskButton);
-        newTaskElement.appendChild(deleteButton);
-
-        //TODO: Eventually this will find the TreeNode for the parent and make it root instead of just the root of the Main
-
-        this.root.addChild(newTaskNode);
-        newTaskNode.data.updateIDLayers(this.root.data);
-        newTaskElement.dataset.id = newTaskNode.data.ID;
-
-        let taskItems = document.querySelector(".task-items__wrapper");
-        taskItems.appendChild(newTaskElement);
-
-        return newTaskNode;
+        newTask.updateIDLayers(this.root.data);
+        this.root.addChild(newTask.treeNode);
     }
 }
