@@ -25,15 +25,11 @@ export class DOM {
         let taskContent = document.createElement("div");
         taskContent.classList.add("task-content");
         taskContent.tabIndex = 0;
-
-        let taskIndent = document.createElement("span");
-        taskIndent.style = "width:16px";
         
         let taskTitleSpan = document.createElement("span");
         taskTitleSpan.classList.add("task-text");
         taskTitleSpan.innerText = title;
 
-        taskContent.appendChild(taskIndent);
         taskContent.appendChild(taskTitleSpan);
 
         taskContent.appendChild(this.makeNewTaskDeleteButton());

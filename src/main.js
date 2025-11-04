@@ -19,6 +19,8 @@ export class Main {
         this.handleAddTaskButton = this.handleAddTaskButton.bind(this);
         this.handleNewToDoInput = this.handleNewToDoInput.bind(this);
         this.handleDeleteTaskButton = this.handleDeleteTaskButton.bind(this);
+        this.handleKeyPresses = this.handleKeyPresses.bind(this);
+        this.handleClicks = this.handleClicks.bind(this);
 
         //TODO: TESTING
         this.#makeNewTask("Get Milk");
@@ -30,17 +32,7 @@ export class Main {
     initialize() {
         this.dom.addTaskButton.addEventListener("click", this.handleAddTaskButton);
 
-        document.addEventListener("keydown", (event) => {
-            if(event.key === "Tab") {
-                event.preventDefault(); //Don't want tabbing arouind the other elements in page
-            }
-
-            if(document.activeElement.classList.contains("task-content") ) {
-                if(TaskEventService.handleKeys(event, this.root)) {
-                    this.view.render(this.root);
-                }
-            }
-        });
+        document.addEventListener("keydown", this.handleKeyPresses);
     }
 
     handleAddTaskButton(event) {
@@ -77,7 +69,9 @@ export class Main {
     }
 
     handleDeleteTaskButton(event) {
-        let taskDomNode = event.target.parentNode;
+        debugger;
+        
+        let taskDomNode = event.target.closest(".task");
 
         TreeService.removeNodeByID(this.root, taskDomNode.dataset.id);
 
@@ -86,6 +80,32 @@ export class Main {
         taskDomNode.remove();
 
         this.view.render(this.root);
+    }
+
+    handleKeyPresses(event) {
+        if(event.key === "Tab") {
+            event.preventDefault(); //Don't want tabbing arouind the other elements in page
+        }
+
+        let focused = document.activeElement;
+
+        if(focused)
+        {
+            if(focused.classList.contains("task-content") ) {
+                if(TaskEventService.handleKeys(event, this.root)) {
+                    let focusedID = focused.closest(".task").dataset.id;
+                    this.view.render(this.root);
+
+                    let newElementToFocus = this.dom.taskSectionRoot.querySelector(`[data-id="${focusedID}"]`);
+
+                    newElementToFocus.querySelector(".task-content").focus();
+                }
+            }
+        }
+    }
+
+    handleClicks(event) {
+        
     }
 
     #makeNewTask(name) {

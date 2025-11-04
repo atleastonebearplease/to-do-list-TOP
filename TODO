@@ -53,15 +53,33 @@ View:
 Controller:
 
   Task:
+    ☐ Make the delete button work again
+      Turns out that we have to do event delegation with clicks to be able to handle, can't add listener to element since redraws happen
+      ☐ Make a new function to handle clicks for page
+      ☐ Check to see if delete key was clicked
+      ☐ Find the nearest .task (.closest(".task"));
+      ☐ Perform the delete operation as normal on the .task
+
     ✔ The ability to make a task a sub-task with the tab key @done(25-11-02 16:58)
       ✔ We need to implement the renderer to make this match the Tree @done(25-11-02 16:58)
-        Made the handler static 
-    ☐ When a task is made into a sub-task, the element should be refocused
+    ✔ When a task is made into a sub-task, the element should be refocused @done(25-11-04 15:50)
+      ✔ Before redraw, save the ID of the currently focused task @done(25-11-04 15:50)
+      ✔ After redraw, find the task that was focused and re-focus it. @done(25-11-04 15:50)
+    ☐ Put the saving of focused state into it's own function
+      Possibly make a state variable/object in main to keep this state    
+      ☐ Call SaveFocusState before render and LoadFocusState after render
+        To make this just function calls, need to have state in main for focus object
+        ☐ Check to make sure that the ID is not null before trying to refocus an
+
+    
+      
 
     ☐ Implement project sidebar with live projects
       ☐ The projects sub-headings need to be based on the sections/headings in the project
+
+
     ☐ Implement the ability to add a description
-    This means that the task should expand below and allow editing of text    
+      This means that the task should expand below and allow editing of text    
     ☐ Make delete for parent also delete children
     ☐ Select a task with the arrow keys (once one has already been selected)
     ☐ The last task in the last section should be focused upon page load
@@ -73,11 +91,9 @@ Controller:
     ☐ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers.
   
 ACTIONS THIS COMMIT
--Create View class
--Add function to DOM for getting task items root element
--Add a function to recursively re-draw all task items to view
--Changed the structure of the HTML tasks from Divs and sub-divs to lists and sub-lists
--Added indentation for sub-tasks that gets recursively deeper
+-Saved the focusedElement ID upon new render of new sub task
+-Refocused the previously focused object
+
 
 
 Archive:
