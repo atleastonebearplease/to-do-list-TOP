@@ -19,7 +19,7 @@ export class TreeService {
 
     static removeNodeByID(rootNode, ID) {
         if(rootNode.data.ID === ID) {
-            let index = rootNode.parent.children.indexOf(this);
+            let index = rootNode.parent.children.indexOf(rootNode);
 
             rootNode.parent.children.splice(index, 1);
             return true;

@@ -17,7 +17,7 @@ export class TreeNode {
         this.children.forEach(child => child.traverse(callback) );
     }
 
-    get previousSibling() {
+    previousSibling() {
         let index = this.parent.children.indexOf(this);
 
         if(index > 0) {
@@ -27,7 +27,7 @@ export class TreeNode {
         }
     }
 
-    get nextSibling() {
+    nextSibling() {
         let index = this.parent.children.indexOf(this);
 
         if(index < this.parent.children.length - 1) {

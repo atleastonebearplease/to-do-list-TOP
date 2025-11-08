@@ -33,6 +33,8 @@ export class Main {
         this.dom.addTaskButton.addEventListener("click", this.handleAddTaskButton);
 
         document.addEventListener("keydown", this.handleKeyPresses);
+
+        document.addEventListener("click", this.handleClicks);
     }
 
     handleAddTaskButton(event) {
@@ -69,8 +71,6 @@ export class Main {
     }
 
     handleDeleteTaskButton(event) {
-        debugger;
-        
         let taskDomNode = event.target.closest(".task");
 
         TreeService.removeNodeByID(this.root, taskDomNode.dataset.id);
@@ -96,16 +96,24 @@ export class Main {
                     let focusedID = focused.closest(".task").dataset.id;
                     this.view.render(this.root);
 
-                    let newElementToFocus = this.dom.taskSectionRoot.querySelector(`[data-id="${focusedID}"]`);
-
-                    newElementToFocus.querySelector(".task-content").focus();
+                    this.#focusTask(focusedID);
                 }
             }
         }
     }
 
     handleClicks(event) {
-        
+        if(event.target.closest(".task")) {
+            let result = TaskEventService.handleClicks(event, this.root);
+
+            if(result.domChanged) {
+                this.view.render(this.root);
+
+                if(result.elementID) {
+                    this.#focusTask(result.elementID);
+                }
+            }
+        }
     }
 
     #makeNewTask(name) {
@@ -113,5 +121,11 @@ export class Main {
 
         newTask.updateIDLayers(this.root.data);
         this.root.addChild(newTask.treeNode);
+    }
+
+    #focusTask(ID) {
+        let newElementToFocus = this.dom.taskSectionRoot.querySelector(`[data-id="${ID}"]`);
+
+        newElementToFocus.querySelector(".task-content").focus();
     }
 }

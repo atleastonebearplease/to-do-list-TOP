@@ -55,10 +55,17 @@ Controller:
   Task:
     ☐ Make the delete button work again
       Turns out that we have to do event delegation with clicks to be able to handle, can't add listener to element since redraws happen
-      ☐ Make a new function to handle clicks for page
-      ☐ Check to see if delete key was clicked
-      ☐ Find the nearest .task (.closest(".task"));
-      ☐ Perform the delete operation as normal on the .task
+      ✔ Make a new function to handle clicks for page @done(25-11-08 06:59)
+      ✔ Check to see if delete key was clicked @done(25-11-08 06:59)
+      ✔ Find the nearest .task (.closest(".task")); @done(25-11-08 06:59)
+      ✔ Put the focus on another element @done(25-11-08 08:14)
+        We may only want this behavior if there was already a focused task element
+        ✔ If the element has a next sibling, use that @done(25-11-08 08:14)
+        ✔ If it has a previous siblin, use that @done(25-11-08 08:14)
+        ✔ If it has neither, use the parent element @done(25-11-08 08:14)
+        ✔ If the parent element is ROOT, use nothing (there are no more tasks) @done(25-11-08 08:14)
+      ✔ Perform the delete operation as normal on the .task @done(25-11-08 08:14)
+
 
     ✔ The ability to make a task a sub-task with the tab key @done(25-11-02 16:58)
       ✔ We need to implement the renderer to make this match the Tree @done(25-11-02 16:58)
@@ -91,8 +98,13 @@ Controller:
     ☐ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers.
   
 ACTIONS THIS COMMIT
--Saved the focusedElement ID upon new render of new sub task
--Refocused the previously focused object
+-Added the ability to delete again
+    -Added function to handle clicks in TaskEventHandler
+    -Added function to find the next element to focus on in TaskEventHandler
+    -Added a return object from handle clicks. Likely will need to for handle keys as well.
+-Added the ability to focus the next most relevant task after deletion
+-Fixed the removeNodeByID function to remove the correct element instead of the last element
+    Was using this instead of rootNode in recursive function. This was referring to Class prototype in static function
 
 
 
