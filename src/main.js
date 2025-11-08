@@ -62,11 +62,13 @@ export class Main {
         if(inputEvent.target.parentNode !== null && inputEvent.type === "change") { //If the parentNode has not already been removed
             let inputElement = inputEvent.target;
 
-            this.#makeNewTask(inputElement.value);
+            let newTaskID = this.#makeNewTask(inputElement.value);
 
             this.view.render(this.root);
 
             inputElement.remove();
+
+            this.#focusTask(newTaskID);
         }
     }
 
@@ -121,6 +123,8 @@ export class Main {
 
         newTask.updateIDLayers(this.root.data);
         this.root.addChild(newTask.treeNode);
+
+        return newTask.ID;
     }
 
     #focusTask(ID) {

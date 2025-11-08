@@ -53,7 +53,7 @@ View:
 Controller:
 
   Task:
-    ☐ Make the delete button work again
+    ✔ Make the delete button work again @done(25-11-08 08:45)
       Turns out that we have to do event delegation with clicks to be able to handle, can't add listener to element since redraws happen
       ✔ Make a new function to handle clicks for page @done(25-11-08 06:59)
       ✔ Check to see if delete key was clicked @done(25-11-08 06:59)
@@ -65,6 +65,9 @@ Controller:
         ✔ If it has neither, use the parent element @done(25-11-08 08:14)
         ✔ If the parent element is ROOT, use nothing (there are no more tasks) @done(25-11-08 08:14)
       ✔ Perform the delete operation as normal on the .task @done(25-11-08 08:14)
+    
+    ☐ Make creating a new task focus on that task after it is entered
+      ☐ 
 
 
     ✔ The ability to make a task a sub-task with the tab key @done(25-11-02 16:58)
