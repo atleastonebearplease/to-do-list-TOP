@@ -66,8 +66,7 @@ Controller:
         ✔ If the parent element is ROOT, use nothing (there are no more tasks) @done(25-11-08 08:14)
       ✔ Perform the delete operation as normal on the .task @done(25-11-08 08:14)
     
-    ☐ Make creating a new task focus on that task after it is entered
-      ☐ 
+    ✔ Make creating a new task focus on that task after it is entered @done(25-11-08 09:01)
 
 
     ✔ The ability to make a task a sub-task with the tab key @done(25-11-02 16:58)
@@ -75,6 +74,10 @@ Controller:
     ✔ When a task is made into a sub-task, the element should be refocused @done(25-11-04 15:50)
       ✔ Before redraw, save the ID of the currently focused task @done(25-11-04 15:50)
       ✔ After redraw, find the task that was focused and re-focus it. @done(25-11-04 15:50)
+
+    ☐ Make shift+tab move a task up the task tree
+      ☐ Implement looking for shift+tab
+
     ☐ Put the saving of focused state into it's own function
       Possibly make a state variable/object in main to keep this state    
       ☐ Call SaveFocusState before render and LoadFocusState after render
@@ -90,10 +93,11 @@ Controller:
 
     ☐ Implement the ability to add a description
       This means that the task should expand below and allow editing of text    
-    ☐ Make delete for parent also delete children
+    ✔ Make delete for parent also delete children @done(25-11-09 15:53)
     ☐ Select a task with the arrow keys (once one has already been selected)
     ☐ The last task in the last section should be focused upon page load
     ☐ Move tasks up and down with keyboard controls
+      That is, using ctrl+arrow keys
     ☐ Drag and drop tasks to move them
     ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
     ☐ Ability to check off tasks
@@ -101,14 +105,12 @@ Controller:
     ☐ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers.
   
 ACTIONS THIS COMMIT
--Added the ability to delete again
-    -Added function to handle clicks in TaskEventHandler
-    -Added function to find the next element to focus on in TaskEventHandler
-    -Added a return object from handle clicks. Likely will need to for handle keys as well.
--Added the ability to focus the next most relevant task after deletion
--Fixed the removeNodeByID function to remove the correct element instead of the last element
-    Was using this instead of rootNode in recursive function. This was referring to Class prototype in static function
-
+-Added Shift+Tab to make move sub-tasks up a level
+ -Removed change of Element dataset.id in "Tab" handling as it is not necessary since tree is rebuilt
+ -Changed key event handling to be keyup, not key down
+ -Added more tasks by default for testing
+ -Added addNextSibling function to TreeNode
+ 
 
 
 Archive:

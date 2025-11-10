@@ -24,4 +24,3 @@ function printTree(node, depth = 0) {
 let main = new Main();
 
 main.initialize();
-

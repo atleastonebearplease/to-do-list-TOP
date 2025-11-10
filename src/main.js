@@ -25,14 +25,24 @@ export class Main {
         //TODO: TESTING
         this.#makeNewTask("Get Milk");
         this.#makeNewTask("Hold the door");
-        this.#makeNewTask("Get me outta here");
+        this.#makeNewTask("Run forest run");
+        this.#makeNewTask("Get stuff done");
+        this.#makeNewTask("To do this later");
+        this.#makeNewTask("Dont to do it yet");
+        this.#makeNewTask("Use to do if you want to live");
         this.view.render(this.root);
     }
 
     initialize() {
         this.dom.addTaskButton.addEventListener("click", this.handleAddTaskButton);
 
-        document.addEventListener("keydown", this.handleKeyPresses);
+        document.addEventListener("keydown", (event) => {
+            if(event.key === "Tab") {
+                event.preventDefault();
+            }
+        });
+
+        document.addEventListener("keyup", this.handleKeyPresses);
 
         document.addEventListener("click", this.handleClicks);
     }

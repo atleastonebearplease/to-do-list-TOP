@@ -12,6 +12,21 @@ export class TreeNode {
         node.parent = this;
     }
 
+    addNextSibling(node) {
+        if(this.parent) {
+            let index = this.parent.children.indexOf(this);
+
+            //If we this node is at the end of the array, just push it
+            if(index === this.parent.children.length - 1) {
+                this.parent.children.push(node);
+                node.parent = this.parent;
+            } else {
+                this.parent.children.splice(index + 1, 0, node);
+                node.parent = this.parent;
+            }
+        }
+    }
+
     traverse(callback) {
         callback(this);
         this.children.forEach(child => child.traverse(callback) );
