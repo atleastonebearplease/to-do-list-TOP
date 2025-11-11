@@ -20,11 +20,6 @@ Model:
       ☐ Do the same, but for a whole project. ProjectLoader
 
 View:
-  ✔ Create a View class @done(25-11-02 16:58)
-    View should host all of the projects and should help in making new DOM elements. May not be neccessary since we are moving much functionality into View and using it to render the page. We'll see. 
-    ✔ Create render function that can render all of the task elements from the root element @done(25-11-02 16:58)
-        I think this can be accomplished by giving all tasks an indent class, starting with indent_0. Then we can pull that number out and use it for the depth calculation. Like, get the parent element depth and start there. Or even include a depth attribute. data.depth; data-depth = 0
-    ✔ Rewrite render such that it does all prep, then calls the recursive function on the node provided @done(25-11-02 16:58)
 
   Tasks:
     ☐ Tasks and their section need to be in unordered list
@@ -53,54 +48,20 @@ View:
 Controller:
 
   Task:
-    ✔ Make the delete button work again @done(25-11-08 08:45)
-      Turns out that we have to do event delegation with clicks to be able to handle, can't add listener to element since redraws happen
-      ✔ Make a new function to handle clicks for page @done(25-11-08 06:59)
-      ✔ Check to see if delete key was clicked @done(25-11-08 06:59)
-      ✔ Find the nearest .task (.closest(".task")); @done(25-11-08 06:59)
-      ✔ Put the focus on another element @done(25-11-08 08:14)
-        We may only want this behavior if there was already a focused task element
-        ✔ If the element has a next sibling, use that @done(25-11-08 08:14)
-        ✔ If it has a previous siblin, use that @done(25-11-08 08:14)
-        ✔ If it has neither, use the parent element @done(25-11-08 08:14)
-        ✔ If the parent element is ROOT, use nothing (there are no more tasks) @done(25-11-08 08:14)
-      ✔ Perform the delete operation as normal on the .task @done(25-11-08 08:14)
-    
-    ✔ Make creating a new task focus on that task after it is entered @done(25-11-08 09:01)
-
-
-    ✔ The ability to make a task a sub-task with the tab key @done(25-11-02 16:58)
-      ✔ We need to implement the renderer to make this match the Tree @done(25-11-02 16:58)
-    ✔ When a task is made into a sub-task, the element should be refocused @done(25-11-04 15:50)
-      ✔ Before redraw, save the ID of the currently focused task @done(25-11-04 15:50)
-      ✔ After redraw, find the task that was focused and re-focus it. @done(25-11-04 15:50)
-
-    ☐ Make shift+tab move a task up the task tree
-      ☐ Implement looking for shift+tab
-
-    ☐ Put the saving of focused state into it's own function
-      Possibly make a state variable/object in main to keep this state    
-      ☐ Call SaveFocusState before render and LoadFocusState after render
-        To make this just function calls, need to have state in main for focus object
-        ☐ Check to make sure that the ID is not null before trying to refocus an
-
-    
-      
-
+    ☐ Ability to check off tasks
+      ☐ Add a checkbox to the tasks
+      ☐ When the user clicks the checkbox, it should change the text to be crossed out
+    ☐ Select a task with the arrow keys (once one has already been selected)
     ☐ Implement project sidebar with live projects
       ☐ The projects sub-headings need to be based on the sections/headings in the project
 
-
     ☐ Implement the ability to add a description
       This means that the task should expand below and allow editing of text    
-    ✔ Make delete for parent also delete children @done(25-11-09 15:53)
-    ☐ Select a task with the arrow keys (once one has already been selected)
     ☐ The last task in the last section should be focused upon page load
     ☐ Move tasks up and down with keyboard controls
       That is, using ctrl+arrow keys
     ☐ Drag and drop tasks to move them
     ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
-    ☐ Ability to check off tasks
   Events:
     ☐ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers.
   
@@ -111,9 +72,33 @@ ACTIONS THIS COMMIT
  -Added more tasks by default for testing
  -Added addNextSibling function to TreeNode
  
-
-
 Archive:
+  ✔ Create a View class @done(25-11-02 16:58) @project(View)
+    View should host all of the projects and should help in making new DOM elements. May not be neccessary since we are moving much functionality into View and using it to render the page. We'll see. 
+  ✔ Create render function that can render all of the task elements from the root element @done(25-11-02 16:58) @project(View)
+    I think this can be accomplished by giving all tasks an indent class, starting with indent_0. Then we can pull that number out and use it for the depth calculation. Like, get the parent element depth and start there. Or even include a depth attribute. data.depth; data-depth = 0
+  ✔ Rewrite render such that it does all prep, then calls the recursive function on the node provided @done(25-11-02 16:58) @project(View)
+  ✔ Make the delete button work again @done(25-11-08 08:45) @project(Controller.Task)
+    Turns out that we have to do event delegation with clicks to be able to handle, can't add listener to element since redraws happen
+  ✔ Make a new function to handle clicks for page @done(25-11-08 06:59) @project(Controller.Task)
+  ✔ Check to see if delete key was clicked @done(25-11-08 06:59) @project(Controller.Task)
+  ✔ Find the nearest .task (.closest(".task")); @done(25-11-08 06:59) @project(Controller.Task)
+  ✔ Put the focus on another element @done(25-11-08 08:14) @project(Controller.Task)
+    We may only want this behavior if there was already a focused task element
+  ✔ If the element has a next sibling, use that @done(25-11-08 08:14) @project(Controller.Task)
+  ✔ If it has a previous siblin, use that @done(25-11-08 08:14) @project(Controller.Task)
+  ✔ If it has neither, use the parent element @done(25-11-08 08:14) @project(Controller.Task)
+  ✔ If the parent element is ROOT, use nothing (there are no more tasks) @done(25-11-08 08:14) @project(Controller.Task)
+  ✔ Perform the delete operation as normal on the .task @done(25-11-08 08:14) @project(Controller.Task)
+  ✔ Make creating a new task focus on that task after it is entered @done(25-11-08 09:01) @project(Controller.Task)
+  ✔ The ability to make a task a sub-task with the tab key @done(25-11-02 16:58) @project(Controller.Task)
+  ✔ We need to implement the renderer to make this match the Tree @done(25-11-02 16:58) @project(Controller.Task)
+  ✔ When a task is made into a sub-task, the element should be refocused @done(25-11-04 15:50) @project(Controller.Task)
+  ✔ Before redraw, save the ID of the currently focused task @done(25-11-04 15:50) @project(Controller.Task)
+  ✔ After redraw, find the task that was focused and re-focus it. @done(25-11-04 15:50) @project(Controller.Task)
+  ✔ Make shift+tab move a task up the task tree @done(25-11-11 10:45) @project(Controller.Task)
+  ✔ Implement looking for shift+tab @done(25-11-11 10:45) @project(Controller.Task)
+  ✔ Make delete for parent also delete children @done(25-11-09 15:53) @project(Controller.Task)
   ✔ Add removeNodeByID(root, ID) function @done(25-10-29 15:09) @project(Model.Node)
     Recursively check for the first match and splice it out of the root's children array (ChatGPT)
   ✔ Make the delete button only show upon hovering over the task @done(25-10-27 10:22) @project(View.Design and Style)

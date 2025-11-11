@@ -17,28 +17,40 @@ export class DOM {
         this.toDoItems.appendChild(newToDoSection);
     }
 
-    makeNewTaskElement(title = "", id = "") {
-        let newTask = document.createElement("li");
-        newTask.classList.add("task");
-        newTask.dataset.id = id;
+    makeNewTaskElement(taskNode) {
+        let task = taskNode.data;
+        
+        let newTaskElement = document.createElement("li");
+        newTaskElement.classList.add("task");
+        newTaskElement.dataset.id = task.ID;
 
         let taskContent = document.createElement("div");
         taskContent.classList.add("task-content");
         taskContent.tabIndex = 0;
+
+        let checkBox = document.createElement("input");
+        checkBox.type = "checkbox";
+        checkBox.classList.add("task-checkbox");
+        taskContent.appendChild(checkBox);
+
+        if(task.isComplete() ) {
+            taskContent.classList.add("task-complete");
+            checkBox.checked = true;
+        }
+
         
         let taskTitleSpan = document.createElement("span");
         taskTitleSpan.classList.add("task-text");
-        taskTitleSpan.innerText = title;
-
+        taskTitleSpan.innerText = task.title;
         taskContent.appendChild(taskTitleSpan);
 
         taskContent.appendChild(this.makeNewTaskDeleteButton());
 
-        newTask.appendChild(taskContent);
+        newTaskElement.appendChild(taskContent);
 
-        //newTask.tabIndex = 0; //Make focusable;
+        //newTaskElement.tabIndex = 0; //Make focusable;
 
-        return newTask;
+        return newTaskElement;
     }
 
     makeNewTaskInput() {

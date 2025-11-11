@@ -27,16 +27,18 @@ export class View {
     }
 
     #renderRecursive(node, parentElement) {
-        let newTask = this.dom.makeNewTaskElement(node.data.title, node.data.ID);
+        let newTask = this.dom.makeNewTaskElement(node);
 
         parentElement.appendChild(newTask);
 
-        for(const child of node.children) {
+        if(node.children.length > 0) {
             let newTaskList = this.dom.createTaskList();
 
-            newTask.appendChild(newTaskList);
+            for(const child of node.children) {
+                newTask.appendChild(newTaskList);
 
-            this.#renderRecursive(child, newTaskList);
+                this.#renderRecursive(child, newTaskList);
+            }
         }
     }
 }

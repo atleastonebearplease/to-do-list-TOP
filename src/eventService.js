@@ -67,13 +67,27 @@ export class TaskEventService {
 
             TreeService.removeNodeByID(rootNode, taskDomNode.dataset.id);
 
-            console.log(`Delete task ${taskDomNode.innerText} - ID: ${taskDomNode.dataset.id}`);
-
             taskDomNode.remove();
 
             return {
                 domChanged: true, 
                 elementID: nextElementToFocusID,
+            }
+        }
+
+        if(event.target.classList.contains("task-checkbox")) {
+            let taskDomNode = event.target.closest(".task");
+            let taskText = taskDomNode.querySelector(".task-text");
+
+            let treeNode = TreeService.findNodeByID(rootNode, taskDomNode.dataset.id);
+            if(event.target.checked) {
+                treeNode.data.complete();
+
+                taskText.classList.add("task-complete");
+            } else {
+                treeNode.data.unComplete();
+
+                taskText.classList.remove("task-complete");
             }
         }
 

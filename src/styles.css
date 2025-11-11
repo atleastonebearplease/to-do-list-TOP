@@ -116,8 +116,19 @@
     cursor: pointer;
 }
 
+.task-checkbox {
+    margin: 0 .5rem;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
 .task-content { 
-        
+    display: flex;
+    align-items: center;
+}
+
+.task-complete { 
+    text-decoration: line-through;
 }
 
 .task-content:focus {
