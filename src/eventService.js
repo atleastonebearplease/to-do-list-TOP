@@ -48,11 +48,6 @@ export class TaskEventService {
 
                     return true;
                 }
-
-
-                //TODO: Handle when shift+tab is pressed
-                //Haven't determined if we need a global key state thing or not. Do we need to abstract this or have
-                //something that contains more state globally? Such as settings IIFE
             }
         }
 

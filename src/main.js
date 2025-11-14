@@ -5,6 +5,7 @@ import { TreeNode } from "./treeNode.js";
 import { TreeService } from "./treeService.js";
 import { Task } from "./task.js";
 import { TaskEventService } from "./eventService.js";
+import { TaskRepository } from "./taskRepository.js";
 
 export class Main {
     dom;
@@ -18,18 +19,19 @@ export class Main {
 
         this.handleAddTaskButton = this.handleAddTaskButton.bind(this);
         this.handleNewToDoInput = this.handleNewToDoInput.bind(this);
-        this.handleDeleteTaskButton = this.handleDeleteTaskButton.bind(this);
         this.handleKeyPresses = this.handleKeyPresses.bind(this);
         this.handleClicks = this.handleClicks.bind(this);
 
-        //TODO: TESTING
-        this.#makeNewTask("Get Milk");
-        this.#makeNewTask("Hold the door");
-        this.#makeNewTask("Run forest run");
-        this.#makeNewTask("Get stuff done");
-        this.#makeNewTask("To do this later");
-        this.#makeNewTask("Dont to do it yet");
-        this.#makeNewTask("Use to do if you want to live");
+        // this.#makeNewTask("Get Milk");
+        // this.#makeNewTask("Hold the door");
+        // this.#makeNewTask("Run forest run");
+        // this.#makeNewTask("Get stuff done");
+        // this.#makeNewTask("To do this later");
+        // this.#makeNewTask("Dont to do it yet");
+        // this.#makeNewTask("Use to do if you want to live");
+
+        TaskRepository.loadTasks(this.root);
+
         this.view.render(this.root);
     }
 
@@ -79,21 +81,11 @@ export class Main {
             inputElement.remove();
 
             this.#focusTask(newTaskID);
+
+            TaskRepository.saveTasks(this.root);
         }
     }
-
-    handleDeleteTaskButton(event) {
-        let taskDomNode = event.target.closest(".task");
-
-        TreeService.removeNodeByID(this.root, taskDomNode.dataset.id);
-
-        console.log(`Delete task ${taskDomNode.innerText} - ID: ${taskDomNode.dataset.id}`);
-
-        taskDomNode.remove();
-
-        this.view.render(this.root);
-    }
-
+    
     handleKeyPresses(event) {
         if(event.key === "Tab") {
             event.preventDefault(); //Don't want tabbing arouind the other elements in page
@@ -104,11 +96,14 @@ export class Main {
         if(focused)
         {
             if(focused.classList.contains("task-content") ) {
+
+                //TODO: Change handleKeys to return an object
                 if(TaskEventService.handleKeys(event, this.root)) {
                     let focusedID = focused.closest(".task").dataset.id;
                     this.view.render(this.root);
 
                     this.#focusTask(focusedID);
+                    TaskRepository.saveTasks(this.root);
                 }
             }
         }
@@ -124,6 +119,8 @@ export class Main {
                 if(result.elementID) {
                     this.#focusTask(result.elementID);
                 }
+
+                TaskRepository.saveTasks(this.root);
             }
         }
     }

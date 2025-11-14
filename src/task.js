@@ -2,6 +2,7 @@
 import { format } from "date-fns"
 import { IDService } from "./idService.js";
 import { TreeNode } from "./treeNode.js";
+import { Serializable } from "./serializable.js";
 
 export class Task {
     title;
@@ -13,6 +14,7 @@ export class Task {
     #completionDateString = "";
     ID = "";
     treeNode;
+    serializable;
     
     constructor(title, description = "") {
         this.title = title;
@@ -20,6 +22,27 @@ export class Task {
         this.completed = false;
         this.ID = IDService.getNewTaskID();
         this.treeNode = new TreeNode(this);
+
+        this.serializable = new Serializable(
+            {
+                toJSON: () => ({
+                    title: this.title, 
+                    description: this.description,
+                    completed: this.completed,
+                    dueDate: this.dueDate,
+                    dueDateString: this.dueDateString,
+                    completionDate: this.#completionDate,
+                    completionDateString: this.#completionDateString,
+                    ID: this.ID
+                }), 
+
+                fromJSON: (json) => {
+                    Object.assign(this, json);
+                    //Static serializable method attach here(Or make the whole serialization static E.g. Task.toJSON(task))
+                    return this;
+                }
+            }
+        )
     }
 
     isComplete() {

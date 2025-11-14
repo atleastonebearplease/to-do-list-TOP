@@ -1,31 +1,30 @@
-General:
-  ☐ Update the UML diagram in diagrams.io
+Next Up (Cross-domain):
+  ☐ Make the TaskEventService.handleKeys function return an object
+  ☐ Enter key with task focused should start a new sibling task
+  ☐ Select a task with the arrow keys (once one has already been selected)
+  ☐ The last task in the last section should be focused upon page load
+  ☐ Move tasks up and down with keyboard controls
+      That is, using ctrl+arrow keys
+  ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
 
 Model:
 
-  Node:
-    ☐ TreeNode and TreeService
-      ☐ Now add the findNode(predicate) function
-        This finds a node based on a call back function that tests for a condition (depth first recursively)
-        and return the node. Used for finding by title, due date, completed items, etc.
-      ☐ Now add removeNode(root, predicate) function
-      ☐ Consider adding a map function to perform operations on it (such as saving the whole tree?)
-
   Task: 
-    ☐ Get the Task to be serializable
-      ☐ Create the Serializable object (where you'll implement the save and load functions for each Serializable);
-      ☐ Implement a function to write a task to local storage
-      ☐ Implement a functin to read a task from local storage 
-      ☐ Extract these into TaskLoader
-      ☐ Do the same, but for a whole project. ProjectLoader
+    ✔ Get the Task to be serializable @done(25-11-14 15:12)
+
+    ☐ Get projects to be serializable
+
+    ☐ Make the settings serializable
+      ☐ Last project ID
+      ☐ Last task ID
+          This to make sure that Task ID's remain unique
 
 View:
 
   Tasks:
-    ☐ Tasks and their section need to be in unordered list
-      ☐ You can make a css rule to indent every child of a child (e.g. .task-list .task-list {indent})
-      ☐ Rework the makeNewTaskElement function in DOM to fit the new format
-      ☐ 
+    ✔ Tasks and their section need to be in unordered list @done(25-11-14 15:15)
+      ✔ You can make a css rule to indent every child of a child (e.g. .task-list .task-list {indent}) @done(25-11-14 15:15)
+      ✔ Rework the makeNewTaskElement function in DOM to fit the new format @done(25-11-14 15:15)
     ☐ Make the tasks section a fixed width in the page
     ☐ Add the option to center it or to place it on the left side
     ☐ Make the delete button a trash can icon
@@ -46,33 +45,39 @@ View:
         ☐ Heading/Sections
 
 Controller:
+  ☐ Make main static (so it can be global)
+    Is this actually a good idea?
+  ☐ Make DOM static
 
   Task:
-    ☐ Ability to check off tasks
-      ☐ Add a checkbox to the tasks
-      ☐ When the user clicks the checkbox, it should change the text to be crossed out
-    ☐ Select a task with the arrow keys (once one has already been selected)
     ☐ Implement project sidebar with live projects
       ☐ The projects sub-headings need to be based on the sections/headings in the project
 
     ☐ Implement the ability to add a description
       This means that the task should expand below and allow editing of text    
-    ☐ The last task in the last section should be focused upon page load
-    ☐ Move tasks up and down with keyboard controls
-      That is, using ctrl+arrow keys
+    
     ☐ Drag and drop tasks to move them
-    ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
-  Events:
-    ☐ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers.
-  
+
 ACTIONS THIS COMMIT
--Added Shift+Tab to make move sub-tasks up a level
- -Removed change of Element dataset.id in "Tab" handling as it is not necessary since tree is rebuilt
- -Changed key event handling to be keyup, not key down
- -Added more tasks by default for testing
- -Added addNextSibling function to TreeNode
- 
+-Add ability to save tasks to session token in local storage
+-Add ability to load tasks from session token in local storage
+-Add saving after changing TreeNode state
+    -This was in handleKeyPresses and handleClicks
+-Removed handleDeleteTaskButton function from Main. This is handled in TaskEventService.handleClicks();
+
 Archive:
+  ✔ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers. @done(25-11-14 15:11) @project(Controller.Events)
+  ✔ Create the Serializable object (where you'll implement the save and load functions for each Serializable); @done(25-11-13 09:55) @project(Model.Task)
+  ✔ Implement a function to write a task to local storage @done(25-11-13 09:55) @project(Model.Task)
+  ✔ Implement a function to read a task from local storage @done(25-11-14 15:10) @project(Model.Task)
+  ✔ Extract these into TaskLoader @done(25-11-13 09:55) @project(Model.Task)
+  ✔ Fix tab and shift+tab such that they are correctly placed in task lists @done(25-11-11 15:21) @project(Controller.Task)
+    We were making a new task list for every child, instead of only the ones that have kids, and appending it
+  ✔ Ability to check off tasks @done(25-11-12 06:39) @project(Controller.Task)
+  ✔ Add a checkbox to the tasks @done(25-11-11 13:32) @project(Controller.Task)
+  ✔ When the user clicks the checkbox, it should change the text to be crossed out @done(25-11-11 15:24) @project(Controller.Task)
+  ✔ The underlying Task model should also be complete @done(25-11-11 15:31) @project(Controller.Task)
+  ✔ When re-rendering, complete tasks should have the task-complete added @done(25-11-11 15:31) @project(Controller.Task)
   ✔ Create a View class @done(25-11-02 16:58) @project(View)
     View should host all of the projects and should help in making new DOM elements. May not be neccessary since we are moving much functionality into View and using it to render the page. We'll see. 
   ✔ Create render function that can render all of the task elements from the root element @done(25-11-02 16:58) @project(View)
