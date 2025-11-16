@@ -87,7 +87,7 @@ export class TaskEventService {
         }
 
         return {
-            domChanged: false,
+            domChanged: true,
             elementID: undefined,
         }
     }

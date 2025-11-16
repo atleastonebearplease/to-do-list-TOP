@@ -1,4 +1,16 @@
+
+
+
+
+
+
+
+
+
+
+
 Next Up (Cross-domain):
+  ✔ Fix loading such that completed tasks stay completed @done(25-11-16 14:40)
   ☐ Make the TaskEventService.handleKeys function return an object
   ☐ Enter key with task focused should start a new sibling task
   ☐ Select a task with the arrow keys (once one has already been selected)
@@ -59,11 +71,10 @@ Controller:
     ☐ Drag and drop tasks to move them
 
 ACTIONS THIS COMMIT
--Add ability to save tasks to session token in local storage
--Add ability to load tasks from session token in local storage
--Add saving after changing TreeNode state
-    -This was in handleKeyPresses and handleClicks
--Removed handleDeleteTaskButton function from Main. This is handled in TaskEventService.handleClicks();
+-Changed the checkbox portion of TaskEventService.handleClicks() to return domChanged true
+-Updated the Serializable fromJSON function to take the json argument as this was causing issues loading
+-Task completion is now persistent
+
 
 Archive:
   ✔ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers. @done(25-11-14 15:11) @project(Controller.Events)

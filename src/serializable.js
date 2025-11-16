@@ -8,7 +8,7 @@ export class Serializable {
         return this._toJSON();
     }
 
-    fromJSON() {
-        return this._fromJSON();
+    fromJSON(json) {
+        return this._fromJSON(json);
     }
 }
