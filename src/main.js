@@ -96,13 +96,13 @@ export class Main {
         if(focused)
         {
             if(focused.classList.contains("task-content") ) {
-
+                let result = TaskEventService.handleKeys(event, this.root);
                 //TODO: Change handleKeys to return an object
-                if(TaskEventService.handleKeys(event, this.root)) {
-                    let focusedID = focused.closest(".task").dataset.id;
+
+                if(result.domChanged) {
                     this.view.render(this.root);
 
-                    this.#focusTask(focusedID);
+                    this.#focusTask(result.elementID);
                     TaskRepository.saveTasks(this.root);
                 }
             }

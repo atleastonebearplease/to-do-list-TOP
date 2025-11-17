@@ -12,7 +12,7 @@ export class TaskEventService {
         if(event.key === "Tab") {
             if(!event.shiftKey) {
 
-                let childTaskElement = event.target.parentNode;
+                let childTaskElement = event.target.closest(".task");
 
                 let childNode = TreeService.findNodeByID(rootNode, childTaskElement.dataset.id);
 
@@ -28,7 +28,10 @@ export class TaskEventService {
                     parentNode.addChild(childNode);
                     childNode.data.updateIDLayers(parentNode.data);
                     childTaskElement.dataset.id = childNode.data.ID; //Must update so that we can refocus
-                    return true;
+                    return { 
+                        domChanged: true,
+                        elementID: childTaskElement.dataset.id,
+                    }
                 }
             } else {
                 console.log("Shift + Tab");
@@ -46,12 +49,18 @@ export class TaskEventService {
                     childNode.data.updateIDLayers(parentNode.data);
                     childTaskElement.dataset.id = childNode.data.ID; //Must update so that we can refocus
 
-                    return true;
+                    return { 
+                        domChanged: true,
+                        elementID: childTaskElement.dataset.id,
+                    }
                 }
             }
         }
 
-        //Get the task element to be inside of the one above it
+        return {
+            domChanged: false,
+            elementID: undefined,
+        }
     }
 
     static handleClicks(event, rootNode) {
@@ -84,10 +93,15 @@ export class TaskEventService {
 
                 taskText.classList.remove("task-complete");
             }
+
+            return {
+                domChanged: true, 
+                elementID: taskDomNode.dataset.id,
+            }
         }
 
         return {
-            domChanged: true,
+            domChanged: false,
             elementID: undefined,
         }
     }
