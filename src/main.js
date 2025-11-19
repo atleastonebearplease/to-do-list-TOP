@@ -141,6 +141,17 @@ export class Main {
 
                     TaskRepository.saveTasks(this.root);
                 }
+            } else if(target.classList.contains("task-checkbox")) {
+                let result = this.taskCommands.clickCheckBox(taskElement.dataset.id);
+
+                if(result.boxChecked) {
+                    this.view.checkOffTask(taskElement);
+                } else {
+                    this.view.uncheckTask(taskElement);
+                }
+
+                TaskRepository.saveTasks(this.root);
+                this.view.focusTask(result.taskID);
             }
 
             // let result = TaskEventService.handleClicks(event, this.root);

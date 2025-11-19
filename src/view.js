@@ -38,6 +38,18 @@ export class View {
         }
     }
 
+    checkOffTask(taskElement) {
+        let taskText = taskElement.querySelector(".task-text");
+
+        taskText.classList.add("task-complete");
+    }
+
+    uncheckTask(taskElement) {
+        let taskText = taskElement.querySelector(".task-text");
+
+        taskText.classList.remove("task-complete");
+    }
+
     #renderRecursive(node, parentElement) {
         let newTask = this.dom.makeNewTaskElement(node);
 

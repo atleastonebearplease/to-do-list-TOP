@@ -75,6 +75,30 @@ export class TaskCommands {
         }
     }
 
+    clickCheckBox(taskID) {
+        let nodeToCheck = TreeService.findNodeByID(this.root, taskID);
+
+        let task = nodeToCheck.data;
+
+        if(task.isComplete() ) {
+            task.unComplete();
+
+            return {
+                domChanged: true,
+                taskID: task.ID,
+                boxChecked: false
+            }
+        } else {
+            task.complete();
+
+            return {
+                domChanged: true,
+                taskID: task.ID,
+                boxChecked: true
+            }
+        }
+    }
+
     #calculateNextFocusAfterDelete(nodeToDelete) {
         let nextSibling = nodeToDelete.nextSibling();
         let previousSibling = nodeToDelete.previousSibling();
