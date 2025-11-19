@@ -9,12 +9,13 @@ import { IDService } from "./idService.js";
 
 export class TaskEventService {
     static handleKeys(event, rootNode) {
+        let childTaskElement = event.target.closest(".task");
+
+        let childNode = TreeService.findNodeByID(rootNode, childTaskElement.dataset.id);
+
         if(event.key === "Tab") {
+
             if(!event.shiftKey) {
-
-                let childTaskElement = event.target.closest(".task");
-
-                let childNode = TreeService.findNodeByID(rootNode, childTaskElement.dataset.id);
 
                 let parentNode = childNode.previousSibling();
 
@@ -36,10 +37,6 @@ export class TaskEventService {
             } else {
                 console.log("Shift + Tab");
 
-                let childTaskElement = event.target.parentNode;
-
-                let childNode = TreeService.findNodeByID(rootNode, childTaskElement.dataset.id);
-
                 let parentNode = childNode.parent.parent;
 
                 if(parentNode) {
@@ -55,6 +52,8 @@ export class TaskEventService {
                     }
                 }
             }
+        } else if (event.key === "Enter") {
+            //Do stuff here
         }
 
         return {

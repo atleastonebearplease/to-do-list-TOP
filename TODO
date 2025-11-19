@@ -11,8 +11,20 @@
 
 Next Up (Cross-domain):
   ✔ Fix loading such that completed tasks stay completed @done(25-11-16 14:40)
-  ☐ Make the TaskEventService.handleKeys function return an object
+  ✔ Make the TaskEventService.handleKeys function return an object @done(25-11-17 10:24)
+
+  Refactor: 
+    Refer to the UML diagram in drawio
+    ☐ Spend some time writing out the purpose for each class and it's responsibilities. This will help to make the right decisions in the future.
+    ☐ Write out the TaskCommands class to replace the TaskEventService class - don't make it static
+      ☐ TaskCommands should not know about the DOM, only View and DOM should
+    ☐ Add a function to View for creating blank input with a listener argument and one for inserting after an element
+    ☐ Rewrite the Main class to use the new TaskCommands and link them up with events in the class
+
+
+
   ☐ Enter key with task focused should start a new sibling task
+    To do this, we need TaskEventService to have access to make a new task input. To accomplish this, I think it's best to just make Main static and then the "Enter" key logic can call main to make a new task input. Main can assign the listener in that function, then when the input handling is called, that is still in Main. 
   ☐ Select a task with the arrow keys (once one has already been selected)
   ☐ The last task in the last section should be focused upon page load
   ☐ Move tasks up and down with keyboard controls
@@ -71,9 +83,11 @@ Controller:
     ☐ Drag and drop tasks to move them
 
 ACTIONS THIS COMMIT
--Changed the checkbox portion of TaskEventService.handleClicks() to return domChanged true
--Updated the Serializable fromJSON function to take the json argument as this was causing issues loading
--Task completion is now persistent
+-Updated the handle keys to return an object
+-Fixed where Tab handling was not returning an object
+-Updated logic in Tab handling to use event.target.closest(".task") for readability and consistency
+-Changed main handleKeypresses to use the new object returned by handle keys
+
 
 
 Archive:
