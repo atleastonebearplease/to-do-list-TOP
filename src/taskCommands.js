@@ -21,6 +21,36 @@ export class TaskCommands {
                 taskID: childNode.data.ID
             }
         }
+
+        return {
+            domChanged: false,
+            taskID: undefined,
+        }
     }
-    
+
+    indentOut(taskID) {
+        let childNode = TreeService.findNodeByID(this.root, taskID);
+
+        //Because we can only add children, the child's original parent 
+        //will now be a sibling, it's grandparent now it's parent
+        let parentNode = childNode.parent.parent;
+
+        if(parentNode) {
+            TreeService.removeNodeByNodeReference(childNode);
+
+            childNode.parent.addNextSibling(childNode);
+            childNode.data.updateIDLayers(parentNode.data);
+
+            return {
+                domChanged: true, 
+                taskID: childNode.data.ID,
+            }
+        }
+
+        return {
+            domChanged: false,
+            taskID: undefined,
+        }
+    }
+
 }

@@ -108,25 +108,15 @@ export class Main {
                         this.view.focusTask(result.taskID);
                     }
                 } 
-                else if(event.key === "Tab") { 
-                    // let result = this.taskCommands.indentOut(this.#getTaskIdFromEvent(event));
+                else if(event.key === "Tab") { //shift is pressed
+                    let result = this.taskCommands.indentOut(this.#getTaskIDFromEvent(event));
 
-                    // if(result.domChanged) {
-                    //     this.view.render(this.root);
+                    if(result.domChanged) {
+                        this.view.render(this.root);
 
-                    //     this.view.focusTask(result.taskID);
-                    // }
+                        this.view.focusTask(result.taskID);
+                    }
                 }
-                
-                // let result = TaskEventService.handleKeys(event, this.root);
-                // //TODO: Change handleKeys to return an object
-
-                // if(result.domChanged) {
-                //     this.view.render(this.root);
-
-                //     this.view.focusTask(result.elementID);
-                //     TaskRepository.saveTasks(this.root);
-                // }
             }
         }
     }
