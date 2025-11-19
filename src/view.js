@@ -1,3 +1,11 @@
+/*
+    This class handles the rendering of the app. Anything that has to do with  |
+    the DOM should come through here. It will be responsible for adding new 
+    inputs for classes, for creating task elements, and eventually for new 
+    project sections and new projects on the sidebar. These may eventually be 
+    delegated into new classes, but for now they'll be here
+*/
+
 import { DOM } from "./dom.js";
 
 export class View {
@@ -6,10 +14,6 @@ export class View {
 
     constructor() {
         this.dom = new DOM();
-    }
-
-    #clearTasks() {
-        this.dom.taskSectionRoot.innerHTML = "";
     }
 
     render(root) {
@@ -26,6 +30,12 @@ export class View {
         rootElement.appendChild(parentElement);
     }
 
+    focusTask(taskID) {
+        let newElementToFocus = this.dom.taskSectionRoot.querySelector(`[data-id="${taskID}"]`);
+
+        newElementToFocus.querySelector(".task-content").focus();
+    }
+
     #renderRecursive(node, parentElement) {
         let newTask = this.dom.makeNewTaskElement(node);
 
@@ -40,5 +50,9 @@ export class View {
                 this.#renderRecursive(child, newTaskList);
             }
         }
+    }
+    
+    #clearTasks() {
+        this.dom.taskSectionRoot.innerHTML = "";
     }
 }

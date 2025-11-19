@@ -6,6 +6,7 @@ import { TreeService } from "./treeService.js";
 import { Task } from "./task.js";
 import { TaskEventService } from "./eventService.js";
 import { TaskRepository } from "./taskRepository.js";
+import { TaskCommands } from "./taskCommands.js";
 
 export class Main {
     dom;
@@ -16,6 +17,7 @@ export class Main {
         this.dom = new DOM();
         this.root = new Task("ROOT").treeNode;
         this.view = new View();
+        this.taskCommands = new TaskCommands(this.root);
 
         this.handleAddTaskButton = this.handleAddTaskButton.bind(this);
         this.handleNewToDoInput = this.handleNewToDoInput.bind(this);
@@ -80,7 +82,7 @@ export class Main {
 
             inputElement.remove();
 
-            this.#focusTask(newTaskID);
+            this.view.focusTask(newTaskID);
 
             TaskRepository.saveTasks(this.root);
         }
@@ -96,15 +98,35 @@ export class Main {
         if(focused)
         {
             if(focused.classList.contains("task-content") ) {
-                let result = TaskEventService.handleKeys(event, this.root);
-                //TODO: Change handleKeys to return an object
+                
+                if(event.key === "Tab" && !event.shiftKey) {                    
+                    let result = this.taskCommands.indentIn(this.#getTaskIDFromEvent(event));
 
-                if(result.domChanged) {
-                    this.view.render(this.root);
+                    if(result.domChanged) {
+                        this.view.render(this.root);
 
-                    this.#focusTask(result.elementID);
-                    TaskRepository.saveTasks(this.root);
+                        this.view.focusTask(result.taskID);
+                    }
+                } 
+                else if(event.key === "Tab") { 
+                    // let result = this.taskCommands.indentOut(this.#getTaskIdFromEvent(event));
+
+                    // if(result.domChanged) {
+                    //     this.view.render(this.root);
+
+                    //     this.view.focusTask(result.taskID);
+                    // }
                 }
+                
+                // let result = TaskEventService.handleKeys(event, this.root);
+                // //TODO: Change handleKeys to return an object
+
+                // if(result.domChanged) {
+                //     this.view.render(this.root);
+
+                //     this.view.focusTask(result.elementID);
+                //     TaskRepository.saveTasks(this.root);
+                // }
             }
         }
     }
@@ -117,7 +139,7 @@ export class Main {
                 this.view.render(this.root);
 
                 if(result.elementID) {
-                    this.#focusTask(result.elementID);
+                    this.view.focusTask(result.elementID);
                 }
 
                 TaskRepository.saveTasks(this.root);
@@ -134,9 +156,11 @@ export class Main {
         return newTask.ID;
     }
 
-    #focusTask(ID) {
-        let newElementToFocus = this.dom.taskSectionRoot.querySelector(`[data-id="${ID}"]`);
+    #getTaskIDFromEvent(event) {
+        let taskElement = event.target.closest(".task");
 
-        newElementToFocus.querySelector(".task-content").focus();
+        if(taskElement) return taskElement.dataset.id;
+
+        console.error("Task element not found: getTaskIDFromEvent");
     }
 }
