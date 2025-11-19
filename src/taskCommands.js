@@ -1,3 +1,8 @@
+/*                                                                            |
+    Provides domain-level operations on task objects. Public functions should
+    be domain level and non-domain helper functions should be private.
+*/
+
 import { TreeService } from "./treeService.js";
 
 export class TaskCommands {

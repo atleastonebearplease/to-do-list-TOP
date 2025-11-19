@@ -1,6 +1,7 @@
-/* eslint-disable no-unused-vars */
-import { TreeNode } from "./treeNode.js";
-import { IDService } from "./idService.js";
+/*
+    This classes purpose is to provide a named space for operations on the    |
+    tree of tasks. It should remain stateless.
+*/
 
 export class TreeService {
     static findNodeByID(rootNode, ID) {

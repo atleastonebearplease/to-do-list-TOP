@@ -16,12 +16,12 @@ Next Up (Cross-domain):
   Refactor: 
     Refer to the UML diagram in drawio
     ☐ Spend some time writing out the purpose for each class and it's responsibilities. This will help to make the right decisions in the future.
-    ☐ Write out the TaskCommands class to replace the TaskEventService class - don't make it static
+    ✔ Write out the TaskCommands class to replace the TaskEventService class - don't make it static @done(25-11-19 09:17)
       TaskCommands should not know about the DOM, only View and DOM should 
       ✔ Start with the "Tab" functionality - indenting. Then replace the function in main with the TaskCommands version @done(25-11-19 07:55)
       ✔ Do Shift+Tab next @done(25-11-19 08:32)
       ✔ Do clicking of delete button @done(25-11-19 09:04)
-      ☐ Checkbox next
+      ✔ Checkbox next @done(25-11-19 09:17)
     ☐ Add DOM functionality into View
       Since much of what DOM does, if not all, is just part of the View, DOM functions can be made private helpers of View
       ☐ Move makeNewTaskElement into View - call it newTaskElement, just pass in task
@@ -91,11 +91,9 @@ Controller:
     ☐ Drag and drop tasks to move them
 
 ACTIONS THIS COMMIT
--Added "checkOffTask" function to View - helper for working on the DOM side
--Added "uncheckTask" function to View
--Added clickCheckBox function to TaskCommands
--Restored function of checkboxes in Main
-
+-Added comments explaining the purpose of each class/file
+-Deleted eventService as it is now deprecated and unused
+-Removed imports for eventService
 
 Archive:
   ✔ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers. @done(25-11-14 15:11) @project(Controller.Events)

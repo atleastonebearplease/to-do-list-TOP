@@ -4,7 +4,6 @@ import { View } from "./view.js";
 import { TreeNode } from "./treeNode.js";
 import { TreeService } from "./treeService.js";
 import { Task } from "./task.js";
-import { TaskEventService } from "./eventService.js";
 import { TaskRepository } from "./taskRepository.js";
 import { TaskCommands } from "./taskCommands.js";
 
@@ -150,21 +149,10 @@ export class Main {
                     this.view.uncheckTask(taskElement);
                 }
 
-                TaskRepository.saveTasks(this.root);
                 this.view.focusTask(result.taskID);
+
+                TaskRepository.saveTasks(this.root);
             }
-
-            // let result = TaskEventService.handleClicks(event, this.root);
-
-            // if(result.domChanged) {
-            //     this.view.render(this.root);
-
-            //     if(result.elementID) {
-            //         this.view.focusTask(result.elementID);
-            //     }
-
-            //     TaskRepository.saveTasks(this.root);
-            // }
         }
     }
 
