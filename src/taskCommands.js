@@ -53,4 +53,48 @@ export class TaskCommands {
         }
     }
 
+    deleteTask(taskID) {
+        let nodeToDelete = TreeService.findNodeByID(this.root, taskID);
+
+        if(nodeToDelete) {
+            let nextFocusID = this.#calculateNextFocusAfterDelete(nodeToDelete);
+
+            TreeService.removeNodeByNodeReference(nodeToDelete);
+
+            return {
+                domChanged: true,
+                taskID: nextFocusID
+            }
+        } else {
+            console.error("Asked to delete non-existent task");
+
+            return {
+                domChanged: false,
+                taskID: undefined
+            }
+        }
+    }
+
+    #calculateNextFocusAfterDelete(nodeToDelete) {
+        let nextSibling = nodeToDelete.nextSibling();
+        let previousSibling = nodeToDelete.previousSibling();
+        let parentElement = nodeToDelete.parent;
+
+        //Check if it exists. Next, then previous, then parent (as long as parent is not ROOT)
+        if(nextSibling) {
+            return nextSibling.data.ID;
+        } 
+        else if(previousSibling) {
+            return previousSibling.data.ID;
+        } 
+        else if (parentElement) {
+            if(parentElement.data.title !== "ROOT") {
+                return parentElement.data.ID;
+            } 
+            else {
+                return undefined;
+            }
+        }
+    }
+
 }

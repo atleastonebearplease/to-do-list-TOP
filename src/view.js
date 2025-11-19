@@ -31,9 +31,11 @@ export class View {
     }
 
     focusTask(taskID) {
-        let newElementToFocus = this.dom.taskSectionRoot.querySelector(`[data-id="${taskID}"]`);
+        if(taskID) {
+            let newElementToFocus = this.dom.taskSectionRoot.querySelector(`[data-id="${taskID}"]`);
 
-        newElementToFocus.querySelector(".task-content").focus();
+            newElementToFocus.querySelector(".task-content").focus();
+        }
     }
 
     #renderRecursive(node, parentElement) {

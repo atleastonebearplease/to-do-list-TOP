@@ -106,6 +106,8 @@ export class Main {
                         this.view.render(this.root);
 
                         this.view.focusTask(result.taskID);
+
+                        TaskRepository.saveTasks(this.root);
                     }
                 } 
                 else if(event.key === "Tab") { //shift is pressed
@@ -115,6 +117,8 @@ export class Main {
                         this.view.render(this.root);
 
                         this.view.focusTask(result.taskID);
+
+                        TaskRepository.saveTasks(this.root);
                     }
                 }
             }
@@ -122,18 +126,34 @@ export class Main {
     }
 
     handleClicks(event) {
-        if(event.target.closest(".task")) {
-            let result = TaskEventService.handleClicks(event, this.root);
+        let target = event.target; 
 
-            if(result.domChanged) {
-                this.view.render(this.root);
+        let taskElement = target.closest(".task");
+        
+        if(taskElement) {
 
-                if(result.elementID) {
-                    this.view.focusTask(result.elementID);
+            if(target.classList.contains("delete-task-button")) {
+                let result = this.taskCommands.deleteTask(taskElement.dataset.id);
+
+                if(result.domChanged) {
+                    this.view.render(this.root);
+                    this.view.focusTask(result.taskID);
+
+                    TaskRepository.saveTasks(this.root);
                 }
-
-                TaskRepository.saveTasks(this.root);
             }
+
+            // let result = TaskEventService.handleClicks(event, this.root);
+
+            // if(result.domChanged) {
+            //     this.view.render(this.root);
+
+            //     if(result.elementID) {
+            //         this.view.focusTask(result.elementID);
+            //     }
+
+            //     TaskRepository.saveTasks(this.root);
+            // }
         }
     }
 
