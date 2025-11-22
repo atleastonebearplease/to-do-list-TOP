@@ -14,12 +14,17 @@ export class View {
 
     constructor() {
         this.dom = new DOM();
+
+        this.taskSectionRoot = document.querySelector(".task-sections-wrapper");
+        this.addTaskButton = document.querySelector(".add-task-button");
+        this.rootTaskList = document.querySelector(".task-list:first-of-type");
     }
 
     render(root) {
         this.#clearTasks();
 
         let parentElement = this.dom.createTaskList();
+        this.rootTaskList = parentElement; //Reset the reference to the root task list
 
         for(const child of root.children) {
             this.#renderRecursive(child, parentElement);
@@ -32,7 +37,7 @@ export class View {
 
     focusTask(taskID) {
         if(taskID) {
-            let newElementToFocus = this.dom.taskSectionRoot.querySelector(`[data-id="${taskID}"]`);
+            let newElementToFocus = this.taskSectionRoot.querySelector(`[data-id="${taskID}"]`);
 
             newElementToFocus.querySelector(".task-content").focus();
         }
@@ -48,6 +53,38 @@ export class View {
         let taskText = taskElement.querySelector(".task-text");
 
         taskText.classList.remove("task-complete");
+    }
+
+    insertBlankInputAtEnd(inputHandler) {
+        let newInput = this.dom.makeNewTaskInput();
+
+        newInput.addEventListener("blur", inputHandler);
+        newInput.addEventListener("change", inputHandler);
+
+        this.rootTaskList.appendChild(newInput);
+
+        newInput.focus();
+    }
+
+    insertBlankInputAfter(taskElement, inputHandler) {
+        let newInput = this.dom.makeNewTaskInput();
+
+        newInput.addEventListener("blur", inputHandler);
+        newInput.addEventListener("change", inputHandler);
+
+        taskElement.after(newInput);
+
+        newInput.focus();
+    }
+
+    getNewSiblingTaskID(inputElement) {
+        let previousTask = inputElement.previousSibling;
+
+        if(previousTask) {
+            return previousTask.dataset.id;
+        } else {
+            return undefined;
+        }
     }
 
     #renderRecursive(node, parentElement) {
@@ -67,6 +104,6 @@ export class View {
     }
     
     #clearTasks() {
-        this.dom.taskSectionRoot.innerHTML = "";
+        this.taskSectionRoot.innerHTML = "";
     }
 }

@@ -37,7 +37,7 @@ export class Main {
     }
 
     initialize() {
-        this.dom.addTaskButton.addEventListener("click", this.handleAddTaskButton);
+        this.view.addTaskButton.addEventListener("click", this.handleAddTaskButton);
 
         document.addEventListener("keydown", (event) => {
             if(event.key === "Tab") {
@@ -51,37 +51,36 @@ export class Main {
     }
 
     handleAddTaskButton(event) {
-        //Will eventually use event to get the parent of the AddTaskButton to add to different sections
-        //TODO Use event to add tasks to the correct section
-        let toDoItems = document.querySelector(".task-sections-wrapper > .task-list");
-
-        let taskTitleInput = this.dom.makeNewTaskInput();
-
-        taskTitleInput.addEventListener("change", this.handleNewToDoInput);
-        taskTitleInput.addEventListener("blur", this.handleNewToDoInput);
-
-        toDoItems.appendChild(taskTitleInput);
-
-        taskTitleInput.focus();
+        this.view.insertBlankInputAtEnd(this.handleNewToDoInput);
     }
 
     handleNewToDoInput(inputEvent){
-        if(inputEvent.type === "blur") {
-            if(inputEvent.target.value === "") {
-                inputEvent.target.remove(); //If input is empty, remove the new task element
-            }
+        if(inputEvent.target.value === "") {
+            inputEvent.target.remove(); //If input is empty, remove the new task element
+            return;
         }
         
-        if(inputEvent.target.parentNode !== null && inputEvent.type === "change") { //If the parentNode has not already been removed
-            let inputElement = inputEvent.target;
+        let inputElement = inputEvent.target;
 
-            let newTaskID = this.#makeNewTask(inputElement.value);
+        inputElement.removeEventListener("blur", this.handleNewToDoInput);
+        inputElement.removeEventListener("change", this.handleNewToDoInput);
+
+        let newTask = new Task(inputElement.value);
+
+        let siblingTaskID = this.view.getNewSiblingTaskID(inputElement);
+
+        if(siblingTaskID) {
+            this.taskCommands.insertTaskAfter(siblingTaskID, newTask);
 
             this.view.render(this.root);
+            this.view.focusTask(newTask.ID);
 
-            inputElement.remove();
+            TaskRepository.saveTasks(this.root);
+        } else /* We are in the root list */ {
+            this.taskCommands.insertTaskAtRoot(newTask);
 
-            this.view.focusTask(newTaskID);
+            this.view.render(this.root);
+            this.view.focusTask(newTask.ID);
 
             TaskRepository.saveTasks(this.root);
         }
@@ -94,32 +93,38 @@ export class Main {
 
         let focused = document.activeElement;
 
-        if(focused)
-        {
-            if(focused.classList.contains("task-content") ) {
-                
-                if(event.key === "Tab" && !event.shiftKey) {                    
-                    let result = this.taskCommands.indentIn(this.#getTaskIDFromEvent(event));
+        if(focused.classList.contains("task-content") && focused) {
+            
+            if(event.key === "Tab" && !event.shiftKey) {                    
+                let result = this.taskCommands.indentIn(this.#getTaskIDFromEvent(event));
 
-                    if(result.domChanged) {
-                        this.view.render(this.root);
+                if(result.domChanged) {
+                    this.view.render(this.root);
 
-                        this.view.focusTask(result.taskID);
+                    this.view.focusTask(result.taskID);
 
-                        TaskRepository.saveTasks(this.root);
-                    }
-                } 
-                else if(event.key === "Tab") { //shift is pressed
-                    let result = this.taskCommands.indentOut(this.#getTaskIDFromEvent(event));
-
-                    if(result.domChanged) {
-                        this.view.render(this.root);
-
-                        this.view.focusTask(result.taskID);
-
-                        TaskRepository.saveTasks(this.root);
-                    }
+                    TaskRepository.saveTasks(this.root);
                 }
+            } 
+            else if(event.key === "Tab") { //shift is pressed
+                let result = this.taskCommands.indentOut(this.#getTaskIDFromEvent(event));
+
+                if(result.domChanged) {
+                    this.view.render(this.root);
+
+                    this.view.focusTask(result.taskID);
+
+                    TaskRepository.saveTasks(this.root);
+                }
+            }
+            else if(event.key === "Enter") {
+                /* We are not making a new task here yet. Let's just focus on getting the new input 
+                after the currently focused task. We can then update the input handler insert a new task into the tree
+                after the prior task in the DOM. We would just find the ID of the task before the input field, then call a 
+                task command to insert a task after that task's ID in the tree.*/
+                let taskElement = focused.closest(".task");
+
+                this.view.insertBlankInputAfter(taskElement, this.handleNewToDoInput);
             }
         }
     }
@@ -154,15 +159,6 @@ export class Main {
                 TaskRepository.saveTasks(this.root);
             }
         }
-    }
-
-    #makeNewTask(name) {
-        let newTask = new Task(name);
-
-        newTask.updateIDLayers(this.root.data);
-        this.root.addChild(newTask.treeNode);
-
-        return newTask.ID;
     }
 
     #getTaskIDFromEvent(event) {

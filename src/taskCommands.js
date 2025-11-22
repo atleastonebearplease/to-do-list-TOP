@@ -104,6 +104,20 @@ export class TaskCommands {
         }
     }
 
+    insertTaskAfter(taskID, task) {
+        let siblingNode = TreeService.findNodeByID(this.root, taskID);
+
+        siblingNode.addNextSibling(task.treeNode);
+
+        task.updateIDLayers(siblingNode.parent.data);
+    }
+
+    insertTaskAtRoot(task) {
+        this.root.addChild(task.treeNode);
+
+        task.updateIDLayers(this.root.data);
+    }
+
     #calculateNextFocusAfterDelete(nodeToDelete) {
         let nextSibling = nodeToDelete.nextSibling();
         let previousSibling = nodeToDelete.previousSibling();

@@ -12,6 +12,18 @@
 Next Up (Cross-domain):
   ✔ Fix loading such that completed tasks stay completed @done(25-11-16 14:40)
   ✔ Make the TaskEventService.handleKeys function return an object @done(25-11-17 10:24)
+  ☐ Enter key with task focused should start a new sibling task
+    ✔ Add portion to listen for 'Enter' key in main @done(25-11-21 12:53)
+    ✔ Add a function to View for creating blank input with a listener argument and one for inserting after an element @done(25-11-21 18:35)
+      ✔ Make DOM a purely functional class with no state and add state to View @done(25-11-21 13:06)
+        ✔ Remove addNewProjectSection from DOM @done(25-11-21 13:05)
+        ✔ Add the references to add task button, to do items, and taskSectionRoot to view. @done(25-11-21 13:06)
+      ✔ Write insertBlankInputAtEnd() @done(25-11-21 18:35)
+      ✔ Write insertBlankInputAfter(taskElement); @done(25-11-21 18:35)
+    ☐ Fix the error that is occurring when adding new Task next to a sub-task
+  ☐ Add a addPreviousSibling(node) function to TreeNode
+  ☐ Add a remove() function to TreeNode
+    To remove itself from the structure
 
   Refactor: 
     Refer to the UML diagram in drawio
@@ -22,17 +34,7 @@ Next Up (Cross-domain):
       ✔ Do Shift+Tab next @done(25-11-19 08:32)
       ✔ Do clicking of delete button @done(25-11-19 09:04)
       ✔ Checkbox next @done(25-11-19 09:17)
-    ☐ Add DOM functionality into View
-      Since much of what DOM does, if not all, is just part of the View, DOM functions can be made private helpers of View
-      ☐ Move makeNewTaskElement into View - call it newTaskElement, just pass in task
-      ☐ Move makeNewTaskInput, name it newTaskInputAtEnd()
-      ☐ Write the new newTaskInputAfter(taskElement)
-    ☐ Add a function to View for creating blank input with a listener argument and one for inserting after an element
 
-
-
-  ☐ Enter key with task focused should start a new sibling task
-    To do this, we need TaskEventService to have access to make a new task input. To accomplish this, I think it's best to just make Main static and then the "Enter" key logic can call main to make a new task input. Main can assign the listener in that function, then when the input handling is called, that is still in Main. 
   ☐ Select a task with the arrow keys (once one has already been selected)
   ☐ The last task in the last section should be focused upon page load
   ☐ Move tasks up and down with keyboard controls
@@ -91,9 +93,19 @@ Controller:
     ☐ Drag and drop tasks to move them
 
 ACTIONS THIS COMMIT
--Added comments explaining the purpose of each class/file
--Deleted eventService as it is now deprecated and unused
--Removed imports for eventService
+-Added insertTaskAfter and insertTaskAtRoot functions to TaskCommands
+-Removed state from DOM class and made it purely functional
+  -Also removed function for adding project sections - we aren't there yet
+-Tidied up the inputEvent handling function in Main. 
+  -Made the insertion of tasks relative to the location of the input
+-Removed makeNewTask from main as it was no longer relevant
+-Updated the View class
+  -Added state to View class for task root and add task button. Updated internal references to match
+  -Added functions for inserting blank inputs at the end and after a certain task
+  -Added getNewSiblingTaskID to View to get the nearest task ID to the input or return undefined
+
+
+
 
 Archive:
   ✔ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers. @done(25-11-14 15:11) @project(Controller.Events)
