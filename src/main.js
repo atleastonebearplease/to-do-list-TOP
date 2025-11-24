@@ -6,6 +6,7 @@ import { TreeService } from "./treeService.js";
 import { Task } from "./task.js";
 import { TaskRepository } from "./taskRepository.js";
 import { TaskCommands } from "./taskCommands.js";
+import { IDService } from "./idService.js";
 
 export class Main {
     dom;
@@ -31,7 +32,7 @@ export class Main {
         // this.#makeNewTask("Dont to do it yet");
         // this.#makeNewTask("Use to do if you want to live");
 
-        TaskRepository.loadTasks(this.root);
+        this.#loadAll();
 
         this.view.render(this.root);
     }
@@ -75,14 +76,14 @@ export class Main {
             this.view.render(this.root);
             this.view.focusTask(newTask.ID);
 
-            TaskRepository.saveTasks(this.root);
+            this.#saveAll();
         } else /* We are in the root list */ {
             this.taskCommands.insertTaskAtRoot(newTask);
 
             this.view.render(this.root);
             this.view.focusTask(newTask.ID);
 
-            TaskRepository.saveTasks(this.root);
+            this.#saveAll();
         }
     }
     
@@ -103,7 +104,7 @@ export class Main {
 
                     this.view.focusTask(result.taskID);
 
-                    TaskRepository.saveTasks(this.root);
+                    this.#saveAll();
                 }
             } 
             else if(event.key === "Tab") { //shift is pressed
@@ -114,7 +115,7 @@ export class Main {
 
                     this.view.focusTask(result.taskID);
 
-                    TaskRepository.saveTasks(this.root);
+                    this.#saveAll();
                 }
             }
             else if(event.key === "Enter") {
@@ -143,7 +144,7 @@ export class Main {
                     this.view.render(this.root);
                     this.view.focusTask(result.taskID);
 
-                    TaskRepository.saveTasks(this.root);
+                    this.#saveAll();
                 }
             } else if(target.classList.contains("task-checkbox")) {
                 let result = this.taskCommands.clickCheckBox(taskElement.dataset.id);
@@ -156,7 +157,7 @@ export class Main {
 
                 this.view.focusTask(result.taskID);
 
-                TaskRepository.saveTasks(this.root);
+                this.#saveAll();
             }
         }
     }
@@ -167,5 +168,15 @@ export class Main {
         if(taskElement) return taskElement.dataset.id;
 
         console.error("Task element not found: getTaskIDFromEvent");
+    }
+
+    #saveAll() {
+        TaskRepository.saveTasks(this.root);
+        IDService.saveIDs();
+    }
+
+    #loadAll() {
+        TaskRepository.loadTasks(this.root);
+        IDService.loadIDs();
     }
 }

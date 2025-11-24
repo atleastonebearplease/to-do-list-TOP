@@ -23,9 +23,9 @@ export class TaskRepository {
     static loadTasks(rootNode) {
         let objString = localStorage.getItem("session");
 
-        let tasksObject = JSON.parse(objString);
+        if(objString !== null) {
 
-        if(tasksObject !== null) {
+            let tasksObject = JSON.parse(objString);
 
             if(tasksObject.children) {
                 for(const child of tasksObject.children) {

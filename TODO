@@ -23,9 +23,9 @@ Next Up (Cross-domain):
     ✔ Fix the error that is occurring when adding new Task next to a sub-task @done(25-11-22 15:06)
   ✔ Add a remove() function to TreeNode and remove from TreeService @done(25-11-24 07:40)
     To remove itself from the structure - much like a DOM element
-  ☐ Make the settings serializable
-      ☐ Last project ID
-      ☐ Last task ID
+  ✔ Make the settings serializable @done(25-11-24 09:57)
+      ✔ Last project ID @done(25-11-24 09:57)
+      ✔ Last task ID @done(25-11-24 09:57)
           This to make sure that Task ID's remain unique
   ☐ Drag and drop tasks to move them
     ☐ Create or update a small project (testing javascript) to test out the dragging API
@@ -90,16 +90,7 @@ Controller:
       This means that the task should expand below and allow editing of text    
 
 ACTIONS THIS COMMIT
--Added insertTaskAfter and insertTaskAtRoot functions to TaskCommands
--Removed state from DOM class and made it purely functional
-  -Also removed function for adding project sections - we aren't there yet
--Tidied up the inputEvent handling function in Main. 
-  -Made the insertion of tasks relative to the location of the input
--Removed makeNewTask from main as it was no longer relevant
--Updated the View class
-  -Added state to View class for task root and add task button. Updated internal references to match
-  -Added functions for inserting blank inputs at the end and after a certain task
-  -Added getNewSiblingTaskID to View to get the nearest task ID to the input or return undefined
+
 
 
 

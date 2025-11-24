@@ -53,4 +53,43 @@ export class IDService {
         //current task ID is to the end. The last ID in the sequence is the unique
         //task's ID
     }
+
+    static saveIDs() {
+        let idsObject = this.#toJSON();
+
+        let idsString = JSON.stringify(idsObject);
+
+        localStorage.setItem("fortira-ids", idsString);
+    }
+
+    static loadIDs() {
+        let idsString = localStorage.getItem("fortira-ids");
+
+        let idsObject = JSON.parse(idsString);
+
+        if(idsObject) {
+            this.#fromJSON(idsObject);
+        }
+    }
+
+    static #toJSON() {
+        return {
+            currentTaskID: this.currentTaskID,
+            currentProjectID: this.currentProjectID
+        }
+    }
+
+    static #fromJSON(json) {
+        if(json.currentTaskID) {
+            this.currentTaskID = json.currentTaskID;
+        } else {
+            this.currentTaskID = 0;
+        }
+
+        if(json.currentProjectID) {
+            this.currentProjectID = json.currentProjectID;
+        } else {
+            this.currentProjectID = 0;
+        }
+    }
 }
