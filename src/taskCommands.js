@@ -16,7 +16,7 @@ export class TaskCommands {
         let parentNode = childNode.previousSibling();
 
         if(parentNode) {
-            TreeService.removeNodeByNodeReference(childNode); //Cut it from it's current spot
+            childNode.remove(); //Cut it from it's current spot
 
             parentNode.addChild(childNode);
             childNode.data.updateIDLayers(parentNode.data);
@@ -41,7 +41,7 @@ export class TaskCommands {
         let parentNode = childNode.parent.parent;
 
         if(parentNode) {
-            TreeService.removeNodeByNodeReference(childNode);
+            childNode.remove();
 
             childNode.parent.addNextSibling(childNode);
             childNode.data.updateIDLayers(parentNode.data);
@@ -64,8 +64,8 @@ export class TaskCommands {
         if(nodeToDelete) {
             let nextFocusID = this.#calculateNextFocusAfterDelete(nodeToDelete);
 
-            TreeService.removeNodeByNodeReference(nodeToDelete);
-
+            nodeToDelete.remove();
+            
             return {
                 domChanged: true,
                 taskID: nextFocusID

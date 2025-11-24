@@ -35,32 +35,4 @@ export class TreeService {
         }
         return false;   
     }
-
-    static removeNodeByNodeReference(node) {
-        let index = node.parent.children.indexOf(node);
-
-        node.parent.children.splice(index, 1);
-    }
-
-
 }
-
-
-/*
-rootNode
-    Child1
-        grandChild
-    Chil2
-END
-
-rootNode === ID? No
-    SEARCH CHILDREN
-    child1 === ID? No
-        SEARCH CHILDREN
-        grandchild === ID? YES
-        RETURN GRANDCHILD
-    NODE.ID === ID
-    RETURN NODE
-NODE.ID === ID
-RETURN NODE
-*/

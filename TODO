@@ -12,7 +12,7 @@
 Next Up (Cross-domain):
   ✔ Fix loading such that completed tasks stay completed @done(25-11-16 14:40)
   ✔ Make the TaskEventService.handleKeys function return an object @done(25-11-17 10:24)
-  ☐ Enter key with task focused should start a new sibling task
+  ✔ Enter key with task focused should start a new sibling task @done(25-11-22 15:06)
     ✔ Add portion to listen for 'Enter' key in main @done(25-11-21 12:53)
     ✔ Add a function to View for creating blank input with a listener argument and one for inserting after an element @done(25-11-21 18:35)
       ✔ Make DOM a purely functional class with no state and add state to View @done(25-11-21 13:06)
@@ -20,10 +20,16 @@ Next Up (Cross-domain):
         ✔ Add the references to add task button, to do items, and taskSectionRoot to view. @done(25-11-21 13:06)
       ✔ Write insertBlankInputAtEnd() @done(25-11-21 18:35)
       ✔ Write insertBlankInputAfter(taskElement); @done(25-11-21 18:35)
-    ☐ Fix the error that is occurring when adding new Task next to a sub-task
-  ☐ Add a addPreviousSibling(node) function to TreeNode
-  ☐ Add a remove() function to TreeNode
-    To remove itself from the structure
+    ✔ Fix the error that is occurring when adding new Task next to a sub-task @done(25-11-22 15:06)
+  ✔ Add a remove() function to TreeNode and remove from TreeService @done(25-11-24 07:40)
+    To remove itself from the structure - much like a DOM element
+  ☐ Make the settings serializable
+      ☐ Last project ID
+      ☐ Last task ID
+          This to make sure that Task ID's remain unique
+  ☐ Drag and drop tasks to move them
+    ☐ Create or update a small project (testing javascript) to test out the dragging API
+
 
   Refactor: 
     Refer to the UML diagram in drawio
@@ -48,28 +54,24 @@ Model:
 
     ☐ Get projects to be serializable
 
-    ☐ Make the settings serializable
-      ☐ Last project ID
-      ☐ Last task ID
-          This to make sure that Task ID's remain unique
-
 View:
 
   Tasks:
     ✔ Tasks and their section need to be in unordered list @done(25-11-14 15:15)
       ✔ You can make a css rule to indent every child of a child (e.g. .task-list .task-list {indent}) @done(25-11-14 15:15)
       ✔ Rework the makeNewTaskElement function in DOM to fit the new format @done(25-11-14 15:15)
-    ☐ Make the tasks section a fixed width in the page
+
     ☐ Add the option to center it or to place it on the left side
-    ☐ Make the delete button a trash can icon
-    ☐ Add a divider between tasks
-    ☐ Add a checkbox to the tasks
+
+    ✔ Add a checkbox to the tasks @done(25-11-22 15:07)
 
   Design and Style:
     ☐ Fix the CSS to have background expand with the page - Grid or Flex?
     ☐ Project section on sidebar should stay in place
     ☐ Style the input to not be retarded looking
-
+    ☐ Make the tasks section a fixed width in the page
+    ☐ Make the delete button a trash can icon
+    ☐ Add a divider between tasks
   DOM:
     ☐ Refactor sections of the site into their respective components, static classes should do
       ☐ Sidebar
@@ -79,9 +81,6 @@ View:
         ☐ Heading/Sections
 
 Controller:
-  ☐ Make main static (so it can be global)
-    Is this actually a good idea?
-  ☐ Make DOM static
 
   Task:
     ☐ Implement project sidebar with live projects
@@ -89,8 +88,6 @@ Controller:
 
     ☐ Implement the ability to add a description
       This means that the task should expand below and allow editing of text    
-    
-    ☐ Drag and drop tasks to move them
 
 ACTIONS THIS COMMIT
 -Added insertTaskAfter and insertTaskAtRoot functions to TaskCommands

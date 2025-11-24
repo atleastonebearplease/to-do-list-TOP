@@ -51,4 +51,10 @@ export class TreeNode {
             return undefined;
         }
     }
+
+    remove() {
+        let index = this.parent.children.indexOf(this);
+
+        this.parent.children.splice(index, 1);
+    }
 }
