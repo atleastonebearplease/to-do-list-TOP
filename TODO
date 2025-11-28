@@ -1,45 +1,32 @@
-
-
-
-
-
-
-
-
-
-
-
 Next Up (Cross-domain):
-  ✔ Fix loading such that completed tasks stay completed @done(25-11-16 14:40)
-  ✔ Make the TaskEventService.handleKeys function return an object @done(25-11-17 10:24)
-  ✔ Enter key with task focused should start a new sibling task @done(25-11-22 15:06)
-    ✔ Add portion to listen for 'Enter' key in main @done(25-11-21 12:53)
-    ✔ Add a function to View for creating blank input with a listener argument and one for inserting after an element @done(25-11-21 18:35)
-      ✔ Make DOM a purely functional class with no state and add state to View @done(25-11-21 13:06)
-        ✔ Remove addNewProjectSection from DOM @done(25-11-21 13:05)
-        ✔ Add the references to add task button, to do items, and taskSectionRoot to view. @done(25-11-21 13:06)
-      ✔ Write insertBlankInputAtEnd() @done(25-11-21 18:35)
-      ✔ Write insertBlankInputAfter(taskElement); @done(25-11-21 18:35)
-    ✔ Fix the error that is occurring when adding new Task next to a sub-task @done(25-11-22 15:06)
-  ✔ Add a remove() function to TreeNode and remove from TreeService @done(25-11-24 07:40)
-    To remove itself from the structure - much like a DOM element
-  ✔ Make the settings serializable @done(25-11-24 09:57)
-      ✔ Last project ID @done(25-11-24 09:57)
-      ✔ Last task ID @done(25-11-24 09:57)
-          This to make sure that Task ID's remain unique
   ☐ Drag and drop tasks to move them
-    ☐ Create or update a small project (testing javascript) to test out the dragging API
+    ✔ Create or update a small project (testing javascript) to test out the dragging API @done(25-11-25 15:30)
+    ✔ Add the draggable attribute to all task elements @done(25-11-27 17:33)
+    ✔ Create a "drag handle" that is position to the left side of the task. @done(25-11-28 10:48)
+      It should make everything on the task visible like hovering does on the main part of the task
+    ☐ Make all of the tasks droppable
+      ☐ Add an event listener for dragover
+      ☐ The event listener should check if the draggedover element is a task, and if so, call event.preventdefault.
+        Thus, the tasks are now droppable
+    ☐ Create a handler for drag start
+      ✔ Add the handler on click @done(25-11-28 12:22)
+      ☐ Remove the handle on click release
+      ☐ Set the drag image to the whole .task
+      ☐ Needs to add the task-id to the data store so that it can be retrieved later
+    ☐ Add an listener to prevent the dragover event when we are dragging over a task
+    ☐ Add a hover effect when you are hovering over a droppable item
+      ☐ This can be simply adding a class when we are over and removing when we leave
+      ☐ We can also add a placeholder where it is going to go.
+        You can use some of the logic from the KanBan thing
+    ☐ The task should be draggable where there is no text and have a drag handle
+
+    NOTES
+      On double-click, you can pull up a dialog to edit the title and description
 
 
   Refactor: 
     Refer to the UML diagram in drawio
     ☐ Spend some time writing out the purpose for each class and it's responsibilities. This will help to make the right decisions in the future.
-    ✔ Write out the TaskCommands class to replace the TaskEventService class - don't make it static @done(25-11-19 09:17)
-      TaskCommands should not know about the DOM, only View and DOM should 
-      ✔ Start with the "Tab" functionality - indenting. Then replace the function in main with the TaskCommands version @done(25-11-19 07:55)
-      ✔ Do Shift+Tab next @done(25-11-19 08:32)
-      ✔ Do clicking of delete button @done(25-11-19 09:04)
-      ✔ Checkbox next @done(25-11-19 09:17)
 
   ☐ Select a task with the arrow keys (once one has already been selected)
   ☐ The last task in the last section should be focused upon page load
@@ -50,20 +37,12 @@ Next Up (Cross-domain):
 Model:
 
   Task: 
-    ✔ Get the Task to be serializable @done(25-11-14 15:12)
-
     ☐ Get projects to be serializable
 
 View:
 
   Tasks:
-    ✔ Tasks and their section need to be in unordered list @done(25-11-14 15:15)
-      ✔ You can make a css rule to indent every child of a child (e.g. .task-list .task-list {indent}) @done(25-11-14 15:15)
-      ✔ Rework the makeNewTaskElement function in DOM to fit the new format @done(25-11-14 15:15)
-
     ☐ Add the option to center it or to place it on the left side
-
-    ✔ Add a checkbox to the tasks @done(25-11-22 15:07)
 
   Design and Style:
     ☐ Fix the CSS to have background expand with the page - Grid or Flex?
@@ -90,12 +69,45 @@ Controller:
       This means that the task should expand below and allow editing of text    
 
 ACTIONS THIS COMMIT
-
-
-
-
+-Added a drag handle to tasks
+-Changed project title in the HTML
+-Cleaned up comments in Main constructor
+-Added two new functions for clicks to Main, handleMouseDown and handleMouseUp
+-Removed old handleClicks function from Main
+-Added dragStart and dragEnd handler to the View class
+-Removed gray left border from subtasks
+-Added debug code to LoadTasks to create a few testing tasks with legit names (Task 1, Task 2, etc.)
+-Bound the new drag handlers in View class so they can be passed as event listeners
 
 Archive:
+  ✔ Fix loading such that completed tasks stay completed @done(25-11-16 14:40) @project(Next Up (Cross-domain))
+  ✔ Make the TaskEventService.handleKeys function return an object @done(25-11-17 10:24) @project(Next Up (Cross-domain))
+  ✔ Enter key with task focused should start a new sibling task @done(25-11-22 15:06) @project(Next Up (Cross-domain))
+  ✔ Add portion to listen for 'Enter' key in main @done(25-11-21 12:53) @project(Next Up (Cross-domain))
+  ✔ Add a function to View for creating blank input with a listener argument and one for inserting after an element @done(25-11-21 18:35) @project(Next Up (Cross-domain))
+  ✔ Make DOM a purely functional class with no state and add state to View @done(25-11-21 13:06) @project(Next Up (Cross-domain))
+  ✔ Remove addNewProjectSection from DOM @done(25-11-21 13:05) @project(Next Up (Cross-domain))
+  ✔ Add the references to add task button, to do items, and taskSectionRoot to view. @done(25-11-21 13:06) @project(Next Up (Cross-domain))
+  ✔ Write insertBlankInputAtEnd() @done(25-11-21 18:35) @project(Next Up (Cross-domain))
+  ✔ Write insertBlankInputAfter(taskElement); @done(25-11-21 18:35) @project(Next Up (Cross-domain))
+  ✔ Fix the error that is occurring when adding new Task next to a sub-task @done(25-11-22 15:06) @project(Next Up (Cross-domain))
+  ✔ Add a remove() function to TreeNode and remove from TreeService @done(25-11-24 07:40) @project(Next Up (Cross-domain))
+    To remove itself from the structure - much like a DOM element
+  ✔ Make the settings serializable @done(25-11-24 09:57) @project(Next Up (Cross-domain))
+  ✔ Last project ID @done(25-11-24 09:57) @project(Next Up (Cross-domain))
+  ✔ Last task ID @done(25-11-24 09:57) @project(Next Up (Cross-domain))
+    This to make sure that Task ID's remain unique
+  ✔ Write out the TaskCommands class to replace the TaskEventService class - don't make it static @done(25-11-19 09:17) @project(Next Up (Cross-domain).Refactor)
+    TaskCommands should not know about the DOM, only View and DOM should 
+  ✔ Start with the "Tab" functionality - indenting. Then replace the function in main with the TaskCommands version @done(25-11-19 07:55) @project(Next Up (Cross-domain).Refactor)
+  ✔ Do Shift+Tab next @done(25-11-19 08:32) @project(Next Up (Cross-domain).Refactor)
+  ✔ Do clicking of delete button @done(25-11-19 09:04) @project(Next Up (Cross-domain).Refactor)
+  ✔ Checkbox next @done(25-11-19 09:17) @project(Next Up (Cross-domain).Refactor)
+  ✔ Get the Task to be serializable @done(25-11-14 15:12) @project(Model.Task)
+  ✔ Tasks and their section need to be in unordered list @done(25-11-14 15:15) @project(View.Tasks)
+  ✔ You can make a css rule to indent every child of a child (e.g. .task-list .task-list {indent}) @done(25-11-14 15:15) @project(View.Tasks)
+  ✔ Rework the makeNewTaskElement function in DOM to fit the new format @done(25-11-14 15:15) @project(View.Tasks)
+  ✔ Add a checkbox to the tasks @done(25-11-22 15:07) @project(View.Tasks)
   ✔ https://docs.google.com/document/d/1QdBHUfMLn31EnHHUrpzSZmKh0Dkc2n_tq0JXcHisb34/edit?tab=t.0#heading=h.97xph2wj183t - How to handle event propagation with Event Handlers. @done(25-11-14 15:11) @project(Controller.Events)
   ✔ Create the Serializable object (where you'll implement the save and load functions for each Serializable); @done(25-11-13 09:55) @project(Model.Task)
   ✔ Implement a function to write a task to local storage @done(25-11-13 09:55) @project(Model.Task)

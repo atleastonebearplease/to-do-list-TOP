@@ -11,6 +11,7 @@ import { DOM } from "./dom.js";
 export class View {
 
     dom;
+    draggedTask; 
 
     constructor() {
         this.dom = new DOM();
@@ -18,6 +19,11 @@ export class View {
         this.taskSectionRoot = document.querySelector(".task-sections-wrapper");
         this.addTaskButton = document.querySelector(".add-task-button");
         this.rootTaskList = document.querySelector(".task-list:first-of-type");
+        this.dragStart = this.dragStart.bind(this);
+        this.dragEnd = this.dragEnd.bind(this);
+
+        //TODO: Add event listener for dragover on taskSectionRoot and prevent default if we are dragging over a task
+        //
     }
 
     render(root) {
@@ -106,4 +112,50 @@ export class View {
     #clearTasks() {
         this.taskSectionRoot.innerHTML = "";
     }
+
+    setDraggedTask(taskElement) {
+        this.draggedTask = taskElement;
+        
+        if(!taskElement) console.error("view.setDraggedTask called with undefined task");
+    }
+
+    removeDraggedTask() {
+        this.draggedTask.removeEventListener("dragstart", this.dragStart);
+
+        console.log(`Removed listener from ${this.#getTaskTitle(this.draggedTask)}`);
+
+        this.draggedTask = undefined;
+    }
+
+    getDraggedTask() {
+        return this.draggedTask;
+    }
+
+    dragStart(event) {
+        event.dataTransfer.clearData();
+
+        event.dataTransfer.effectAllowed = "move";
+
+        //We need to handle both the drag handle and the task itself
+        let taskElement = event.target;
+
+        if(event.target.classList.contains("drag-handle")) {
+            taskElement = event.target.closest(".task");
+        }
+
+        this.setDraggedTask(taskElement);
+        event.dataTransfer.setData("task-id", event.target.dataset.id);
+
+        let taskText = this.#getTaskTitle(taskElement);
+        console.log(`Task title: ${taskText}`);
+    }
+
+    dragEnd(event) {
+        this.removeDraggedTask();
+    }
+
+    #getTaskTitle(taskElement) {
+        return taskElement.querySelector(".task-text").innerText;
+    }
+    
 }

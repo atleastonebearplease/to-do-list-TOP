@@ -37,7 +37,14 @@ export class TaskRepository {
                 }
             }
         }
-        
+        //TODO: This is a debug. Uncomment and run to add a set of new tasks
+/*         for(let i=0; i<10; i++) {
+            let newTask = new Task("Task " + i, "Taskie Waskie");
+
+            rootNode.addChild(newTask.treeNode);
+
+            newTask.updateIDLayers(rootNode.data);
+        } */
     }
 
     static #saveTasksRecursive(node) {

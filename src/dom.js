@@ -6,10 +6,16 @@ export class DOM {
         let newTaskElement = document.createElement("li");
         newTaskElement.classList.add("task");
         newTaskElement.dataset.id = task.ID;
+        newTaskElement.draggable = true;
 
         let taskContent = document.createElement("div");
         taskContent.classList.add("task-content");
         taskContent.tabIndex = 0;
+
+        let dragHandle = document.createElement("div");
+        dragHandle.classList.add("drag-handle");
+        dragHandle.draggable = true;
+        taskContent.appendChild(dragHandle);
 
         let checkBox = document.createElement("input");
         checkBox.type = "checkbox";
@@ -20,7 +26,6 @@ export class DOM {
             taskContent.classList.add("task-complete");
             checkBox.checked = true;
         }
-
         
         let taskTitleSpan = document.createElement("span");
         taskTitleSpan.classList.add("task-text");

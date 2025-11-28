@@ -22,15 +22,8 @@ export class Main {
         this.handleAddTaskButton = this.handleAddTaskButton.bind(this);
         this.handleNewToDoInput = this.handleNewToDoInput.bind(this);
         this.handleKeyPresses = this.handleKeyPresses.bind(this);
-        this.handleClicks = this.handleClicks.bind(this);
-
-        // this.#makeNewTask("Get Milk");
-        // this.#makeNewTask("Hold the door");
-        // this.#makeNewTask("Run forest run");
-        // this.#makeNewTask("Get stuff done");
-        // this.#makeNewTask("To do this later");
-        // this.#makeNewTask("Dont to do it yet");
-        // this.#makeNewTask("Use to do if you want to live");
+        this.handleMouseDown = this.handleMouseDown.bind(this);
+        this.handleMouseUp = this.handleMouseUp.bind(this);
 
         this.#loadAll();
 
@@ -48,7 +41,8 @@ export class Main {
 
         document.addEventListener("keyup", this.handleKeyPresses);
 
-        document.addEventListener("click", this.handleClicks);
+        document.addEventListener("mousedown", this.handleMouseDown);
+        document.addEventListener("mouseup", this.handleMouseUp);
     }
 
     handleAddTaskButton(event) {
@@ -130,7 +124,7 @@ export class Main {
         }
     }
 
-    handleClicks(event) {
+    handleMouseDown(event) {
         let target = event.target; 
 
         let taskElement = target.closest(".task");
@@ -158,8 +152,17 @@ export class Main {
                 this.view.focusTask(result.taskID);
 
                 this.#saveAll();
+            } else if(target.classList.contains("drag-handle") || taskElement) {
+                taskElement.addEventListener("dragstart", this.view.dragStart);
+                taskElement.addEventListener("dragend", this.view.dragEnd);
             }
         }
+    }
+
+    handleMouseUp(event) {
+        let target = event.target; 
+
+        let taskElement = target.closest(".task");
     }
 
     #getTaskIDFromEvent(event) {
