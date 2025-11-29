@@ -6,19 +6,18 @@ Next Up (Cross-domain):
       It should make everything on the task visible like hovering does on the main part of the task
     ☐ Make all of the tasks droppable
       ☐ Add an event listener for dragover
-      ☐ The event listener should check if the draggedover element is a task, and if so, call event.preventdefault.
+      ☐ The event listener should check if the draggedover element is a task, and if so, call event.preventdefault
         Thus, the tasks are now droppable
     ☐ Create a handler for drag start
       ✔ Add the handler on click @done(25-11-28 12:22)
-      ☐ Remove the handle on click release
-      ☐ Set the drag image to the whole .task
-      ☐ Needs to add the task-id to the data store so that it can be retrieved later
-    ☐ Add an listener to prevent the dragover event when we are dragging over a task
+      ✔ Remove the handle on click release @done(25-11-29 10:46)
+      ✔ Set the drag image to the whole .task @done(25-11-29 10:46)
+      ✔ Needs to add the task-id to the data store so that it can be retrieved later @done(25-11-29 10:46)
     ☐ Add a hover effect when you are hovering over a droppable item
       ☐ This can be simply adding a class when we are over and removing when we leave
       ☐ We can also add a placeholder where it is going to go.
         You can use some of the logic from the KanBan thing
-    ☐ The task should be draggable where there is no text and have a drag handle
+    ✔ The task should be draggable where there is no text and have a drag handle @done(25-11-29 10:49)
 
     NOTES
       On double-click, you can pull up a dialog to edit the title and description

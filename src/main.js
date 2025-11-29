@@ -154,7 +154,7 @@ export class Main {
                 this.#saveAll();
             } else if(target.classList.contains("drag-handle") || taskElement) {
                 taskElement.addEventListener("dragstart", this.view.dragStart);
-                taskElement.addEventListener("dragend", this.view.dragEnd);
+
             }
         }
     }
@@ -163,6 +163,8 @@ export class Main {
         let target = event.target; 
 
         let taskElement = target.closest(".task");
+
+        this.view.removeDraggedTask();
     }
 
     #getTaskIDFromEvent(event) {
