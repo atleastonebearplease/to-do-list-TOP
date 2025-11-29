@@ -181,6 +181,10 @@
     z-index: 10;
 }
 
+.drag-enter {
+    opacity: 0.4;
+}
+
 /* Utilities */
 
 .debug {

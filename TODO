@@ -13,11 +13,18 @@ Next Up (Cross-domain):
       ✔ Remove the handle on click release @done(25-11-29 10:46)
       ✔ Set the drag image to the whole .task @done(25-11-29 10:46)
       ✔ Needs to add the task-id to the data store so that it can be retrieved later @done(25-11-29 10:46)
-    ☐ Add a hover effect when you are hovering over a droppable item
-      ☐ This can be simply adding a class when we are over and removing when we leave
-      ☐ We can eventually add a placeholder where it is going to go.
+    ✔ Add a hover effect when you are hovering over a droppable item @done(25-11-29 16:51)
+      ✔ This can be simply adding a class when we are over and removing when we leave @done(25-11-29 16:51)
+      ✔ We can eventually add a placeholder where it is going to go. @done(25-11-29 16:51)
         You can use some of the logic from the KanBan thing
     ✔ The task should be draggable where there is no text and have a drag handle @done(25-11-29 10:49)
+    ☐ Make the drop actually move the target node to the node you're on
+      ☐ The behavior needs to be the following:
+        ☐ If we are above the middle of the task and drop, place the task above
+        ☐ If we are below the middle of the task, place below
+        ☐ This should work for sub-tasks automatically?
+      ☐ We can use the same logic to put a placeholder and remove it as needed
+        You can use the KanBan board logic there
 
     NOTES
       On double-click, you can pull up a dialog to edit the title and description
@@ -68,9 +75,8 @@ Controller:
       This means that the task should expand below and allow editing of text    
 
 ACTIONS THIS COMMIT
--Moved dragging over into the View side completely
--Added the event listeners to the taskSectionRoot and then used event delegation
--Added logging to see the dropping and dragging functionality
+-Added dragEnter and dragLeave functions
+-Added a simple style to visibly highlight which class is being hovered for drag
 
 Archive:
   ✔ Fix loading such that completed tasks stay completed @done(25-11-16 14:40) @project(Next Up (Cross-domain))

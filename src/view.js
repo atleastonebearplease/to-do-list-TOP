@@ -23,17 +23,16 @@ export class View {
         this.dragEnd = this.dragEnd.bind(this);
         this.dragOver = this.dragOver.bind(this);
         this.drop = this.drop.bind(this);
+        this.dragEnter = this.dragEnter.bind(this);
+        this.dragLeave = this.dragLeave.bind(this);
 
         this.taskSectionRoot.addEventListener("dragstart", this.dragStart);
         this.taskSectionRoot.addEventListener("dragover", this.dragOver);
         this.taskSectionRoot.addEventListener("drop", this.drop);
         this.taskSectionRoot.addEventListener("dragend", this.dragEnd);
 
-        /*
-        //TODO: Add dragEnter and dragLeave for visuals 
         this.taskSectionRoot.addEventListener("dragenter", this.dragEnter);
-        this.taskSectionRoot.addEventListneer("dragleave", this.dragLeave):
-         */
+        this.taskSectionRoot.addEventListener("dragleave", this.dragLeave);
 
     }
 
@@ -62,13 +61,15 @@ export class View {
         let el = event.target;
 
         //If it's a task element or a child element of a task
-        if(el.classList.contains(".task") || el.closest(".task") ) {
+        if(el.classList.contains("task") || el.closest(".task") ) {
             event.preventDefault(); //Make it droppable
             console.log("I'm being dragged over: " + this.#getTaskTitle(el.closest(".task")));
         }
     }
 
     drop(event) {
+        //TODO: Update to actually change the task, and make sure that we aren't on top of the currently dragged one, more below
+        //Also refer to KanBan board logic
         //Rewrite to change el to Task
         //Also check to see if it exists, if not, return
         //Also check to make sure that it is not the task we are trying to drag itself, if so, return
@@ -95,10 +96,28 @@ export class View {
         event.dataTransfer.clearData();
     }
 
+    dragEnter(event) {
+        let taskEl = event.target.closest(".task");
+
+        if(!taskEl) return;
+
+        if(!taskEl.contains(event.relatedTarget)) {
+            taskEl.classList.add("drag-enter");
+        }
+    }
+
+    dragLeave(event) {
+        let taskEl = event.target.closest(".task");
+
+        if(!taskEl) return;
+
+        if(!taskEl.contains(event.relatedTarget) ) {
+            taskEl.classList.remove("drag-enter");
+        }
+    }
+
     setDraggedTask(taskElement) {
         this.draggedTask = taskElement;
-
-        taskElement.addEventListener("dragend", this.dragEnd);
         
         if(!taskElement) console.error("view.setDraggedTask called with undefined task");
     }
