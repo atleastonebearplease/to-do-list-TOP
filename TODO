@@ -4,18 +4,18 @@ Next Up (Cross-domain):
     ✔ Add the draggable attribute to all task elements @done(25-11-27 17:33)
     ✔ Create a "drag handle" that is position to the left side of the task. @done(25-11-28 10:48)
       It should make everything on the task visible like hovering does on the main part of the task
-    ☐ Make all of the tasks droppable
-      ☐ Add an event listener for dragover
-      ☐ The event listener should check if the draggedover element is a task, and if so, call event.preventdefault
+    ✔ Make all of the tasks droppable @done(25-11-29 16:27)
+      ✔ Add an event listener for dragover @done(25-11-29 16:26)
+      ✔ The event listener should check if the draggedover element is a task, and if so, call event.preventdefault @done(25-11-29 16:26)
         Thus, the tasks are now droppable
-    ☐ Create a handler for drag start
+    ✔ Create a handler for drag start @done(25-11-29 16:27)
       ✔ Add the handler on click @done(25-11-28 12:22)
       ✔ Remove the handle on click release @done(25-11-29 10:46)
       ✔ Set the drag image to the whole .task @done(25-11-29 10:46)
       ✔ Needs to add the task-id to the data store so that it can be retrieved later @done(25-11-29 10:46)
     ☐ Add a hover effect when you are hovering over a droppable item
       ☐ This can be simply adding a class when we are over and removing when we leave
-      ☐ We can also add a placeholder where it is going to go.
+      ☐ We can eventually add a placeholder where it is going to go.
         You can use some of the logic from the KanBan thing
     ✔ The task should be draggable where there is no text and have a drag handle @done(25-11-29 10:49)
 
@@ -68,15 +68,9 @@ Controller:
       This means that the task should expand below and allow editing of text    
 
 ACTIONS THIS COMMIT
--Added a drag handle to tasks
--Changed project title in the HTML
--Cleaned up comments in Main constructor
--Added two new functions for clicks to Main, handleMouseDown and handleMouseUp
--Removed old handleClicks function from Main
--Added dragStart and dragEnd handler to the View class
--Removed gray left border from subtasks
--Added debug code to LoadTasks to create a few testing tasks with legit names (Task 1, Task 2, etc.)
--Bound the new drag handlers in View class so they can be passed as event listeners
+-Moved dragging over into the View side completely
+-Added the event listeners to the taskSectionRoot and then used event delegation
+-Added logging to see the dropping and dragging functionality
 
 Archive:
   ✔ Fix loading such that completed tasks stay completed @done(25-11-16 14:40) @project(Next Up (Cross-domain))

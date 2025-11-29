@@ -22,11 +22,93 @@ export class View {
         this.dragStart = this.dragStart.bind(this);
         this.dragEnd = this.dragEnd.bind(this);
         this.dragOver = this.dragOver.bind(this);
+        this.drop = this.drop.bind(this);
 
+        this.taskSectionRoot.addEventListener("dragstart", this.dragStart);
         this.taskSectionRoot.addEventListener("dragover", this.dragOver);
+        this.taskSectionRoot.addEventListener("drop", this.drop);
+        this.taskSectionRoot.addEventListener("dragend", this.dragEnd);
 
-        //TODO: Add event listener for dragover on taskSectionRoot and prevent default if we are dragging over a task
-        //
+        /*
+        //TODO: Add dragEnter and dragLeave for visuals 
+        this.taskSectionRoot.addEventListener("dragenter", this.dragEnter);
+        this.taskSectionRoot.addEventListneer("dragleave", this.dragLeave):
+         */
+
+    }
+
+    dragStart(event) {
+        let el = event.target;
+        let taskElement = el.closest(".task");
+
+        if(!taskElement) return;
+        
+        event.dataTransfer.clearData();
+
+        event.dataTransfer.effectAllowed = "move";
+
+        this.setDraggedTask(taskElement);
+        event.dataTransfer.setData("task-id", event.target.dataset.id);
+        event.dataTransfer.setDragImage(taskElement, -7, -7);
+
+        //TODO: Create a clone and leave the original in place with reduced opacity; later
+        //if we drop a task, we just re-render; if we fail to drop (dragend), then we remove the opacity
+
+        let taskText = this.#getTaskTitle(taskElement);
+        console.log(`We started dragging task: ${taskText}`);
+    }
+
+    dragOver(event) {
+        let el = event.target;
+
+        //If it's a task element or a child element of a task
+        if(el.classList.contains(".task") || el.closest(".task") ) {
+            event.preventDefault(); //Make it droppable
+            console.log("I'm being dragged over: " + this.#getTaskTitle(el.closest(".task")));
+        }
+    }
+
+    drop(event) {
+        //Rewrite to change el to Task
+        //Also check to see if it exists, if not, return
+        //Also check to make sure that it is not the task we are trying to drag itself, if so, return
+        
+        event.preventDefault();
+
+        let el = event.target;
+
+        if(el.closest(".task")) {
+            console.log("I'm being dropped on: " + this.#getTaskTitle(el.closest(".task")));
+        }
+    }
+
+    dragEnd(event) {
+        let taskEl = this.getDraggedTask();
+
+        if(!taskEl) return;
+
+        let taskTitle = this.#getTaskTitle(taskEl);
+        
+        console.log("Ending drag on: " + taskTitle);
+
+        this.removeDraggedTask();
+        event.dataTransfer.clearData();
+    }
+
+    setDraggedTask(taskElement) {
+        this.draggedTask = taskElement;
+
+        taskElement.addEventListener("dragend", this.dragEnd);
+        
+        if(!taskElement) console.error("view.setDraggedTask called with undefined task");
+    }
+
+    removeDraggedTask() {
+        this.draggedTask = undefined;
+    }
+
+    getDraggedTask() {
+        return this.draggedTask;
     }
 
     render(root) {
@@ -114,74 +196,6 @@ export class View {
     
     #clearTasks() {
         this.taskSectionRoot.innerHTML = "";
-    }
-
-    setDraggedTask(taskElement) {
-        this.draggedTask = taskElement;
-
-        taskElement.addEventListener("dragend", this.dragEnd);
-        taskElement.addEventListener("drop", this.drop);
-        
-        if(!taskElement) console.error("view.setDraggedTask called with undefined task");
-    }
-
-    removeDraggedTask() {
-        this.draggedTask.removeEventListener("dragstart", this.dragStart);
-        this.draggedTask.removeEventListener("dragend", this.dragEnd);
-        this.draggedTask.removeEventListener("drop", this.drop);
-
-        console.log(`Removed listener from ${this.#getTaskTitle(this.draggedTask)}`);
-
-        this.draggedTask = undefined;
-    }
-
-    getDraggedTask() {
-        return this.draggedTask;
-}
-
-    dragStart(event) {
-        event.dataTransfer.clearData();
-
-        event.dataTransfer.effectAllowed = "move";
-
-        //We need to handle both the drag handle and the task itself
-        let taskElement = event.target;
-
-        if(event.target.classList.contains("drag-handle")) {
-            taskElement = event.target.closest(".task");
-        }
-
-        this.setDraggedTask(taskElement);
-        event.dataTransfer.setData("task-id", event.target.dataset.id);
-        event.dataTransfer.setDragImage(taskElement, -7, -7);
-
-        let taskText = this.#getTaskTitle(taskElement);
-        console.log(`Task title: ${taskText}`);
-    }
-
-    dragOver(event) {
-        let el = event.target;
-
-        //If it's a task element or a child element of a task
-        if(el.classList.contains(".task") || el.closest(".task") ) {
-            event.preventDefault(); //Make it droppable
-            console.log("I'm being dragged over: " + this.#getTaskTitle(el.closest(".task")));
-        }
-    }
-
-    dragEnd(event) {
-        this.removeDraggedTask();
-        event.dataTransfer.clearData();
-    }
-
-    drop(event) {
-        event.preventDefault();
-
-        let el = event.target;
-
-        if(el.classList.contains(".task") || el.closest(".task")) {
-            console.log("I'm being dropped on: " + this.#getTaskTitle(el.closest(".task")));
-        }
     }
 
     #getTaskTitle(taskElement) {

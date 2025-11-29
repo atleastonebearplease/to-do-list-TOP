@@ -152,19 +152,12 @@ export class Main {
                 this.view.focusTask(result.taskID);
 
                 this.#saveAll();
-            } else if(target.classList.contains("drag-handle") || taskElement) {
-                taskElement.addEventListener("dragstart", this.view.dragStart);
-
             }
         }
     }
 
     handleMouseUp(event) {
-        let target = event.target; 
-
-        let taskElement = target.closest(".task");
-
-        this.view.removeDraggedTask();
+        //Nothing for now homie
     }
 
     #getTaskIDFromEvent(event) {
