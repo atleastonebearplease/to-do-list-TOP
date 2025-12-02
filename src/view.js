@@ -11,7 +11,7 @@ import { DOM } from "./dom.js";
 export class View {
 
     dom;
-    draggedTask; 
+    draggedTask;
 
     constructor() {
         this.dom = new DOM();
@@ -28,12 +28,11 @@ export class View {
 
         this.taskSectionRoot.addEventListener("dragstart", this.dragStart);
         this.taskSectionRoot.addEventListener("dragover", this.dragOver);
-        this.taskSectionRoot.addEventListener("drop", this.drop);
-        this.taskSectionRoot.addEventListener("dragend", this.dragEnd);
-
         this.taskSectionRoot.addEventListener("dragenter", this.dragEnter);
-        this.taskSectionRoot.addEventListener("dragleave", this.dragLeave);
 
+        document.addEventListener("dragleave", this.dragLeave);
+        document.addEventListener("drop", this.drop);
+        document.addEventListener("dragend", this.dragEnd);
     }
 
     dragStart(event) {
@@ -58,13 +57,7 @@ export class View {
     }
 
     dragOver(event) {
-        let el = event.target;
-
-        //If it's a task element or a child element of a task
-        if(el.classList.contains("task") || el.closest(".task") ) {
-            event.preventDefault(); //Make it droppable
-            console.log("I'm being dragged over: " + this.#getTaskTitle(el.closest(".task")));
-        }
+        this.movePlaceholder(event);
     }
 
     drop(event) {
@@ -84,16 +77,15 @@ export class View {
     }
 
     dragEnd(event) {
-        let taskEl = this.getDraggedTask();
+        let taskEl = this.draggedTask;
+        if(taskEl) {
+            let taskTitle = this.#getTaskTitle(taskEl);
+            console.log("Ending drag on: " + taskTitle);
+            this.removeDraggedTask();
+            event.dataTransfer.clearData();
+        }
 
-        if(!taskEl) return;
-
-        let taskTitle = this.#getTaskTitle(taskEl);
-        
-        console.log("Ending drag on: " + taskTitle);
-
-        this.removeDraggedTask();
-        event.dataTransfer.clearData();
+        this.removePlaceholder();
     }
 
     dragEnter(event) {
@@ -102,18 +94,86 @@ export class View {
         if(!taskEl) return;
 
         if(!taskEl.contains(event.relatedTarget)) {
-            taskEl.classList.add("drag-enter");
+            //Do stuff here
         }
     }
 
     dragLeave(event) {
-        let taskEl = event.target.closest(".task");
+        let el = event.target;
 
-        if(!taskEl) return;
-
-        if(!taskEl.contains(event.relatedTarget) ) {
-            taskEl.classList.remove("drag-enter");
+        if(!el.closest(".task-sections-wrapper")) {
+            this.removePlaceholder();
         }
+
+        //TODO: remove the placeholder on drag leave if we aren't in a task
+    }
+
+    movePlaceholder(event) {
+        /* 
+        This only fires when over a task
+        We may not need to check if we are inside the placeholder
+        It may be that we check if the placeholder is already above if we detected mouse above
+            We didn't detect
+            Remove the placeholder (while maintaining a reference) and make a new one, placing above
+        Or already below if we detect mouse below
+            If we don't detect, we remove the current placeholder (while maintaining a reference) and make a new one below
+
+        We also have to check if the previous sibling/next sibling exists in the above scenarios
+        */
+        //We have this.draggedTask as well
+        let placeholder = this.getPlaceholder();
+
+        if(placeholder) {
+            const rect = placeholder.getBoundingClientRect();
+
+            if(
+                rect.top <= event.clientY && 
+                rect.bottom >= event.clientY
+            ) {
+                return;
+            }
+        }
+
+        let task = event.target.closest(".task");
+
+        if(!task) return;
+
+        event.preventDefault(); //It is a task, so make it droppable
+
+        let rect = task.getBoundingClientRect();
+        if(rect.bottom - (rect.height / 2) >= event.clientY) {
+        
+            console.log("Top");
+            //The cursor is above
+            if(!placeholder) {
+                placeholder = this.makePlaceholder(this.draggedTask);
+
+                let taskParent = task.parentElement;
+                taskParent.insertBefore(placeholder, task);
+            } else {
+                placeholder.remove();
+
+                let taskParent = task.parentElement;
+                taskParent.insertBefore(placeholder, task);
+            }
+
+            return;
+        } 
+
+        if(rect.bottom - (rect.height / 2) <= event.clientY) {
+            console.log("Bottom");
+            //the cursor is below
+            if(!placeholder) {
+                placeholder = this.makePlaceholder(this.draggedTask);
+
+                task.after(placeholder);
+            } else {
+                placeholder.remove();
+
+                task.after(placeholder);
+            }
+
+        }   
     }
 
     setDraggedTask(taskElement) {
@@ -124,10 +184,6 @@ export class View {
 
     removeDraggedTask() {
         this.draggedTask = undefined;
-    }
-
-    getDraggedTask() {
-        return this.draggedTask;
     }
 
     render(root) {
@@ -185,6 +241,27 @@ export class View {
         taskElement.after(newInput);
 
         newInput.focus();
+    }
+
+    makePlaceholder(draggedTask) {
+        let placeholder = document.createElement("div");
+        placeholder.classList.add("placeholder");
+
+        let rect = draggedTask.getBoundingClientRect();
+
+        placeholder.style.height = `${rect.height}px`;
+
+        return placeholder;
+    }
+
+    getPlaceholder() {
+        return document.querySelector(".placeholder");
+    }
+
+    removePlaceholder() {
+        let placeholder = this.getPlaceholder();
+
+        placeholder?.remove();
     }
 
     getNewSiblingTaskID(inputElement) {

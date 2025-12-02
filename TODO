@@ -1,44 +1,22 @@
 Next Up (Cross-domain):
   ☐ Drag and drop tasks to move them
-    ✔ Create or update a small project (testing javascript) to test out the dragging API @done(25-11-25 15:30)
-    ✔ Add the draggable attribute to all task elements @done(25-11-27 17:33)
-    ✔ Create a "drag handle" that is position to the left side of the task. @done(25-11-28 10:48)
-      It should make everything on the task visible like hovering does on the main part of the task
-    ✔ Make all of the tasks droppable @done(25-11-29 16:27)
-      ✔ Add an event listener for dragover @done(25-11-29 16:26)
-      ✔ The event listener should check if the draggedover element is a task, and if so, call event.preventdefault @done(25-11-29 16:26)
-        Thus, the tasks are now droppable
-    ✔ Create a handler for drag start @done(25-11-29 16:27)
-      ✔ Add the handler on click @done(25-11-28 12:22)
-      ✔ Remove the handle on click release @done(25-11-29 10:46)
-      ✔ Set the drag image to the whole .task @done(25-11-29 10:46)
-      ✔ Needs to add the task-id to the data store so that it can be retrieved later @done(25-11-29 10:46)
-    ✔ Add a hover effect when you are hovering over a droppable item @done(25-11-29 16:51)
-      ✔ This can be simply adding a class when we are over and removing when we leave @done(25-11-29 16:51)
-      ✔ We can eventually add a placeholder where it is going to go. @done(25-11-29 16:51)
-        You can use some of the logic from the KanBan thing
-    ✔ The task should be draggable where there is no text and have a drag handle @done(25-11-29 10:49)
-    ☐ Make the drop actually move the target node to the node you're on
-      ☐ The behavior needs to be the following:
-        ☐ If we are above the middle of the task and drop, place the task above
-        ☐ If we are below the middle of the task, place below
-        ☐ This should work for sub-tasks automatically?
-      ☐ We can use the same logic to put a placeholder and remove it as needed
-        You can use the KanBan board logic there
-
+    ☐ Now make it such that dropping actually moves the tasks
+      ☐ Pull the ID from the task
+      ☐ We need to expose some function from Main to handle the dropping of da shit
+      ☐ Make sure that if we are dropping on a tasks own children, we don't complete the drop
+    ☐ Don't worry about the visual effect. We will be adding placeholders regardless
     NOTES
       On double-click, you can pull up a dialog to edit the title and description
-
-
-  Refactor: 
-    Refer to the UML diagram in drawio
-    ☐ Spend some time writing out the purpose for each class and it's responsibilities. This will help to make the right decisions in the future.
 
   ☐ Select a task with the arrow keys (once one has already been selected)
   ☐ The last task in the last section should be focused upon page load
   ☐ Move tasks up and down with keyboard controls
       That is, using ctrl+arrow keys
   ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
+
+  Refactor: 
+    Refer to the UML diagram in drawio
+    ☐ Spend some time writing out the purpose for each class and it's responsibilities. This will help to make the right decisions in the future.
 
 Model:
 
@@ -75,10 +53,41 @@ Controller:
       This means that the task should expand below and allow editing of text    
 
 ACTIONS THIS COMMIT
--Added dragEnter and dragLeave functions
--Added a simple style to visibly highlight which class is being hovered for drag
+-Changed event listener to be on document for dragend and drop
+    -So we can remove placeholders, effects, etc.
 
 Archive:
+  ✔ Create or update a small project (testing javascript) to test out the dragging API @done(25-11-25 15:30) @project(Next Up (Cross-domain))
+  ✔ Add the draggable attribute to all task elements @done(25-11-27 17:33) @project(Next Up (Cross-domain))
+  ✔ Create a "drag handle" that is position to the left side of the task. @done(25-11-28 10:48) @project(Next Up (Cross-domain))
+    It should make everything on the task visible like hovering does on the main part of the task
+  ✔ Make all of the tasks droppable @done(25-11-29 16:27) @project(Next Up (Cross-domain))
+  ✔ Add an event listener for dragover @done(25-11-29 16:26) @project(Next Up (Cross-domain))
+  ✔ The event listener should check if the draggedover element is a task, and if so, call event.preventdefault @done(25-11-29 16:26) @project(Next Up (Cross-domain))
+    Thus, the tasks are now droppable
+  ✔ Create a handler for drag start @done(25-11-29 16:27) @project(Next Up (Cross-domain))
+  ✔ Add the handler on click @done(25-11-28 12:22) @project(Next Up (Cross-domain))
+  ✔ Remove the handle on click release @done(25-11-29 10:46) @project(Next Up (Cross-domain))
+  ✔ Set the drag image to the whole .task @done(25-11-29 10:46) @project(Next Up (Cross-domain))
+  ✔ Needs to add the task-id to the data store so that it can be retrieved later @done(25-11-29 10:46) @project(Next Up (Cross-domain))
+  ✔ Add a hover effect when you are hovering over a droppable item @done(25-11-29 16:51) @project(Next Up (Cross-domain))
+  ✔ This can be simply adding a class when we are over and removing when we leave @done(25-11-29 16:51) @project(Next Up (Cross-domain))
+  ✔ We can eventually add a placeholder where it is going to go. @done(25-11-29 16:51) @project(Next Up (Cross-domain))
+    You can use some of the logic from the KanBan thing
+  ✔ The task should be draggable where there is no text and have a drag handle @done(25-11-29 10:49) @project(Next Up (Cross-domain))
+  ✔ Change the dragend and drop listeners to be for the entire document (so you can handle cases when they aren't over the tasks) @done(25-12-01 11:58) @project(Next Up (Cross-domain))
+  ✔ Make the placeholder happen @done(25-12-01 19:34) @project(Next Up (Cross-domain))
+  ✔ Add a function to view to make a placeholder @done(25-12-01 12:31) @project(Next Up (Cross-domain))
+  ✔ Test it by adding it when dragging @done(25-12-01 12:31) @project(Next Up (Cross-domain))
+  ✔ The behavior needs to be the following: @done(25-12-01 19:34) @project(Next Up (Cross-domain))
+    Use the kanban logic here
+  ✔ If we are above the middle of the task and drop, place the placeholder above @done(25-12-01 19:00) @project(Next Up (Cross-domain))
+    Bounding client rect here - use KanBan logic
+  ✔ If we are below the middle of the task, place below @done(25-12-01 19:00) @project(Next Up (Cross-domain))
+  ✔ This should work for sub-tasks automatically? @done(25-12-01 19:00) @project(Next Up (Cross-domain))
+  ✔ If we are on the same task place, do not put a placeholder @done(25-12-01 19:00) @project(Next Up (Cross-domain))
+  ✔ If we are on the placeholder, no need to do anything further @done(25-12-01 19:34) @project(Next Up (Cross-domain))
+  ✔ Remove the placeholder upon drag leave if we are not over a task (or task root maybe? ) @done(25-12-01 19:34) @project(Next Up (Cross-domain))
   ✔ Fix loading such that completed tasks stay completed @done(25-11-16 14:40) @project(Next Up (Cross-domain))
   ✔ Make the TaskEventService.handleKeys function return an object @done(25-11-17 10:24) @project(Next Up (Cross-domain))
   ✔ Enter key with task focused should start a new sibling task @done(25-11-22 15:06) @project(Next Up (Cross-domain))
