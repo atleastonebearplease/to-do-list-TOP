@@ -140,11 +140,6 @@ export class View {
 
         event.preventDefault(); //It is a task, so make it droppable
 
-        if(task === this.draggedTask) {
-            this.removePlaceholder();
-            return;
-        }
-
         let rect = task.getBoundingClientRect();
         if(rect.bottom - (rect.height / 2) >= event.clientY) {
             //The cursor is above
