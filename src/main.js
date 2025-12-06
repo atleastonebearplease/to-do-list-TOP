@@ -16,7 +16,7 @@ export class Main {
     constructor() {
         this.dom = new DOM();
         this.root = new Task("ROOT").treeNode;
-        this.view = new View();
+        this.view = new View(this);
         this.taskCommands = new TaskCommands(this.root);
 
         this.handleAddTaskButton = this.handleAddTaskButton.bind(this);
@@ -158,6 +158,15 @@ export class Main {
 
     handleMouseUp(event) {
         //Nothing for now homie
+    }
+
+    dropTask(draggedID, droppedID, dropPosition) {
+        let newID = this.taskCommands.moveTask(draggedID, droppedID, dropPosition);
+
+        this.view.render(this.root);
+        this.view.focusTask(newID);
+
+        this.#saveAll();
     }
 
     #getTaskIDFromEvent(event) {

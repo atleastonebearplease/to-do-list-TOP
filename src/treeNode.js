@@ -27,6 +27,20 @@ export class TreeNode {
         }
     }
 
+    addPreviousSibling(node) {
+        if(this.parent) {
+            let index = this.parent.children.indexOf(this);
+
+            if(index === 0) {
+                this.parent.children.splice(0, 0, node);
+                node.parent = this.parent;
+            } else {
+                this.parent.children.splice(index -1, 0, node);
+                node.parent = this.parent;
+            }
+        }
+    }
+
     traverse(callback) {
         callback(this);
         this.children.forEach(child => child.traverse(callback) );

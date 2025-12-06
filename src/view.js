@@ -12,9 +12,11 @@ export class View {
 
     dom;
     draggedTask;
+    controller;
 
-    constructor() {
+    constructor(main) {
         this.dom = new DOM();
+        this.controller = main;
 
         this.taskSectionRoot = document.querySelector(".task-sections-wrapper");
         this.addTaskButton = document.querySelector(".add-task-button");
@@ -69,10 +71,48 @@ export class View {
         
         event.preventDefault();
 
-        let el = event.target;
+        let placeholder = event.target;
+        let task = event.target.closest(".task");
 
-        if(el.closest(".task")) {
-            console.log("I'm being dropped on: " + this.#getTaskTitle(el.closest(".task")));
+        if(task || placeholder.classList.contains("placeholder")) {
+            let placeholder = this.getPlaceholder(); //placeholder should exist
+
+            if(!placeholder) console.error("PLACEHOLDER DID NOT EXIST FOR DROP");
+
+            let taskAbove = placeholder.previousSibling;
+
+            if(taskAbove) {
+
+                //If we are dropping on the task we are trying to drag, we're in the same spot
+                if(taskAbove === this.draggedTask) {
+                    this.removePlaceholder();
+                    this.removeDraggedTask();
+                    return;
+                }
+
+                let dropID = taskAbove.dataset.id;
+
+                this.controller.dropTask(event.dataTransfer.getData("task-id"), dropID, "below");
+                this.removeDraggedTask();
+                return;
+            }
+
+            let taskBelow = placeholder.nextSibling;
+
+            if(taskBelow) {
+
+                if(taskBelow === this.draggedTask) {
+                    this.removePlaceholder();
+                    this.removeDraggedTask();
+                    return;
+                }
+
+                let dropID = taskBelow.dataset.id;
+
+                this.controller.dropTask(event.dataTransfer.getData("task-id"), dropID, "above");
+                this.removeDraggedTask();
+                return; 
+            }
         }
     }
 
@@ -124,6 +164,8 @@ export class View {
         let placeholder = this.getPlaceholder();
 
         if(placeholder) {
+            event.preventDefault(); //Allow placeholder to be droppable as well
+
             const rect = placeholder.getBoundingClientRect();
 
             if(

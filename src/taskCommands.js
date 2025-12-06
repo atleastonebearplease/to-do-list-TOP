@@ -112,6 +112,28 @@ export class TaskCommands {
         task.updateIDLayers(siblingNode.parent.data);
     }
 
+    insertTaskBefore(taskID, task) {
+        let siblingNode = TreeService.findNodeByID(this.root, taskID);
+
+        siblingNode.addPreviousSibling(task.treeNode);
+
+        task.updateIDLayers(siblingNode.parent.data);
+    }
+
+    moveTask(movedTaskID, taskTargetID, position) {
+        let movingTaskNode = TreeService.findNodeByID(this.root, movedTaskID);
+
+        TreeService.removeNodeByID(this.root, movedTaskID);
+
+        if(position === "below") {
+            this.insertTaskAfter(taskTargetID, movingTaskNode.data);
+        } else if(position === "above") {
+            this.insertTaskBefore(taskTargetID, movingTaskNode.data);
+        }
+
+        return movingTaskNode.data.ID;
+    }
+
     insertTaskAtRoot(task) {
         this.root.addChild(task.treeNode);
 
