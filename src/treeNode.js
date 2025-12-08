@@ -71,4 +71,19 @@ export class TreeNode {
 
         this.parent.children.splice(index, 1);
     }
+
+    hasChild(node) {
+        let nodeIsChild = false;
+        
+        for(const child of this.children) {
+            nodeIsChild = node === child;
+            if(nodeIsChild) {
+                break;
+            }
+
+            nodeIsChild = child.hasChild(node);
+        }
+
+        return nodeIsChild; 
+    }
 }

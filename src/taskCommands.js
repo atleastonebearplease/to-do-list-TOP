@@ -123,6 +123,12 @@ export class TaskCommands {
     moveTask(movedTaskID, taskTargetID, position) {
         let movingTaskNode = TreeService.findNodeByID(this.root, movedTaskID);
 
+        let targetTaskNode = TreeService.findNodeByID(this.root, taskTargetID);
+
+        if(movingTaskNode.hasChild(targetTaskNode)) {
+            return undefined;
+        }
+
         TreeService.removeNodeByID(this.root, movedTaskID);
 
         if(position === "below") {

@@ -163,10 +163,14 @@ export class Main {
     dropTask(draggedID, droppedID, dropPosition) {
         let newID = this.taskCommands.moveTask(draggedID, droppedID, dropPosition);
 
-        this.view.render(this.root);
-        this.view.focusTask(newID);
+        if(newID) {
+            this.view.render(this.root);
+            this.view.focusTask(newID);
 
-        this.#saveAll();
+            this.#saveAll();
+        } else {
+            this.view.focusTask(draggedID);
+        }
     }
 
     #getTaskIDFromEvent(event) {

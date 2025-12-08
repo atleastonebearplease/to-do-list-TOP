@@ -1,11 +1,9 @@
 Next Up (Cross-domain):
   ☐ Drag and drop tasks to move them
-    ✔ Don't display a placeholder if we are going to drop in the same place as our dragged @done(25-12-05 16:52)
-      ✔ I think if we are over the dragged task, we just return @done(25-12-05 16:52)
     ☐ Now make it such that dropping actually moves the tasks
-      ☐ Pull the ID from the task
-      ☐ We need to expose some function from Main to handle the dropping of da shit
+      ✔ We need to expose some function from Main to handle the dropping of da shit @done(25-12-06 17:50)
       ☐ Make sure that if we are dropping on a tasks own children, we don't complete the drop
+        This may entail checking to see if a node is a child of another (is the node I'm being dropped on one of my children?)
     NOTES
       On double-click, you can pull up a dialog to edit the title and description
 
@@ -14,6 +12,8 @@ Next Up (Cross-domain):
   ☐ Move tasks up and down with keyboard controls
       That is, using ctrl+arrow keys
   ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
+  ☐ Fix bug where you can click down on checkbox, which changes task to crossed out, but then drag away leaving box unchecked
+    ☐ Change the effects to happen whenever you mouse up rather than mouse down.
 
   Refactor: 
     Refer to the UML diagram in drawio
