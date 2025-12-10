@@ -125,6 +125,10 @@ export class Main {
     }
 
     handleMouseDown(event) {
+
+    }
+
+    handleMouseUp(event) {
         let target = event.target; 
 
         let taskElement = target.closest(".task");
@@ -154,10 +158,6 @@ export class Main {
                 this.#saveAll();
             }
         }
-    }
-
-    handleMouseUp(event) {
-        //Nothing for now homie
     }
 
     dropTask(draggedID, droppedID, dropPosition) {
