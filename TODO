@@ -6,9 +6,10 @@ Next Up (Cross-domain):
         This may entail checking to see if a node is a child of another (is the node I'm being dropped on one of my children?)
     NOTES
       On double-click, you can pull up a dialog to edit the title and description
-  ☐ Fix bug where you can click down on checkbox, which changes task to crossed out, but then drag away leaving box unchecked
-    ☐ Change the effects to happen whenever you mouse up rather than mouse down.
+  ✔ Fix bug where you can click down on checkbox, which changes task to crossed out, but then drag away leaving box unchecked @done(25-12-10 15:29)
+    ✔ Change the effects to happen whenever you mouse up rather than mouse down. @done(25-12-10 15:30)
   ☐ Select a task with the arrow keys (once one has already been selected)
+  ☐ Make the drag handles only appear when hovering over the task
   ☐ The last task in the last section should be focused upon page load
   ☐ Move tasks up and down with keyboard controls
       That is, using ctrl+arrow keys
