@@ -4,7 +4,7 @@
     --primary-color: #bed496;
     --primary-color__darker: #B7D392;
 
-    --site-background: #f4f4f1;
+    --site-background: #ffffff;
 
     --side-bar-section-margin: 2rem 1rem 2rem 1rem;
     --side-bar-project-heading-margin: 2rem;
@@ -111,7 +111,6 @@
 
 .task {
     padding-top: 0.175rem;
-    border-radius: 8px;
     cursor: pointer;
     position: relative;
 }
@@ -125,6 +124,19 @@
 .task-content { 
     display: flex;
     align-items: center;
+    background-color: #f8f8f7;
+    border-radius: 0.5rem;
+    padding: 0.125rem 0;
+
+    /* border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #e7e7e4;
+
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #e7e7e4; */
+
+    border: 1px solid #efefeb;
 }
 
 .task-complete { 
@@ -142,6 +154,8 @@
 .delete-task-button {
     opacity: 0;
     visibility: hidden;
+    margin-left: auto;
+    margin-right: 1rem;
 }
 
 .task-content:hover .delete-task-button {
@@ -160,6 +174,11 @@
     height: 1rem;
     width: 1rem;
     outline: 1px solid red;
+    /* 
+    //TODO: Permanently remove the drag handles
+    */
+    display: none;
+
 }
 
 .add-task-button {
