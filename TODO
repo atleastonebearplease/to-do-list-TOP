@@ -1,21 +1,11 @@
-Next Up (Cross-domain):
-  ✔ Drag and drop tasks to move them @done(25-12-08 12:07)
-    ✔ Now make it such that dropping actually moves the tasks @done(25-12-08 12:07)
-      ✔ We need to expose some function from Main to handle the dropping of da shit @done(25-12-06 17:50)
-      ✔ Make sure that if we are dropping on a tasks own children, we don't complete the drop @done(25-12-08 12:07)
-        This may entail checking to see if a node is a child of another (is the node I'm being dropped on one of my children?)
-  ✔ Fix bug where you can click down on checkbox, which changes task to crossed out, but then drag away leaving box unchecked @done(25-12-10 15:29)
-    ✔ Change the effects to happen whenever you mouse up rather than mouse down. @done(25-12-10 15:30)
-  ☐ Select a task with the arrow keys (once one has already been selected)
-    ✔ Set up listening for arrow up and down keys on keydown @done(25-12-10 16:57)
-    ☐ Create function in view for changing focus to next task
-      ✔ Make function for focusing next task @done(25-12-10 18:11)
-        ✔ Takes into account when the next task is not necessarily a sibling @done(25-12-10 18:11)
-      ☐ Make a function for focuing previous task
-        ☐ Make sure it takes into account when it's previous sibling has children (recursion again)
-START HEREEEE============================================================================================= (Inside of View)
-  ☐ Make the drag handles only appear when hovering over the task
-  ☐ The last task in the last section should be focused upon page load
+
+
+
+MVP Features:
+
+
+Next Up:
+☐ Make the drag handles only appear when hovering over the task
   ☐ Move tasks up and down with keyboard controls
       That is, using ctrl+arrow keys
   ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
@@ -23,9 +13,23 @@ START HEREEEE===================================================================
   NOTES
   On double-click, you can pull up a dialog to edit the title and description
 
+  ☐ Make the ESC key get you out of the input box and focus the previous task
+  ☐ CTRL+Enter makes a sub-task of the current task
+  ☐ Make the same thing happen when the arrow keys are pressed
+  ☐ Double click should allow editing of task title
+    ☐ I think we can accomplish this by replacing the task-text with an input box
+      ☐ Write the view function replaceTaskTextWithInput
+      ☐ Write a new handler handleEditToDoInput
+      ☐ Write a new task command editTask(taskID, title, description, ...);
+  ☐ Implement project sidebar with live projects - NEW BRANCH
+  ☐ Fix drag handles bug
+  ☐ Make tab only bring a task down one level
+    Right now it takes a task and all-sub tasks and moves them down a level. This should only happen with drag-and-drop/Move, not sub-tasking
+    You would use some of the logic you've already used with moving the focus around; that is, with parents and such. This type of move would
+    be much easier within task commands though. Doing it in the HTML would be pointless since the underlying tasks would change. 
+
 ACTIONS THIS COMMIT
--Changed handleKeyPresses in main to handleKeyUp and added handleKeyDown
--Added function to view to get the currently focusedTaskID if there is one;
+
 
   Refactor: 
     Refer to the UML diagram in drawio
@@ -34,38 +38,72 @@ ACTIONS THIS COMMIT
 Model:
 
   Task: 
-    ☐ Get projects to be serializable
+    ✔ Get projects to be serializable @done(25-12-11 11:29)
 
 View:
 
-  Tasks:
-    ☐ Add the option to center it or to place it on the left side
-
   Design and Style:
     ☐ Fix the CSS to have background expand with the page - Grid or Flex?
-    ☐ Project section on sidebar should stay in place
-    ☐ Style the input to not be retarded looking
-    ☐ Make the tasks section a fixed width in the page
-    ☐ Make the delete button a trash can icon
-    ☐ Add a divider between tasks
-  DOM:
-    ☐ Refactor sections of the site into their respective components, static classes should do
-      ☐ Sidebar
-        ☐ Projects
-        ☐ Options
-      ☐ Tasks
-        ☐ Heading/Sections
+      I think it would be best to have a simple underline and blend the rest with the background, but play with it
+    ☐ Brighten up the backgrond of the page slightly
+    ☐ Push the Add Task button into the background slightly
+      ☐ Remove it's background
+      ☐ Make the font thicker, but less contrast
+
+    Sidebar:
+      ☐ Project section on sidebar should stay in place
+        It should be fixed, and the rest of the page should scroll
+      ☐ Reduce the width of the sidebar
+      ☐ Reduce the sidebar font size on all aspects
+      ☐ Push the project section items into the background visually
+        Reduce contrast, decrease font-size, etc.
+      ☐ Add some padding around the side bar to show the website background and round the top-left and bottom-left corners
+        This is to give a sense that the sidebar is merely a widget sitting in the primary focus of the app, the task section
+      ☐ Remove the Fortira logo
+      Profile Header:
+        ☐ Add in a profile picture circle thing
+        ☐ Add fake notification icon
+          ☐ Make sure that it has hover changes on cursor and icon
+
+    Delete Button:
+      ☐ Make the delete button a large trash can icon
+      ☐ Make it at the end of the task (on the right side)
+      ☐ Create a warning dialog if the task has sub-sub tasks
+
+    Tasks:
+      ☐ Remove drag handles
+      ☐ Make the tasks section a fixed width in the page
+      ☐ Bring tasks into the foreground more
+        ☐ This can either be a line, or just a background and spacing between tasks
+          Visually bring tasks into the foreground and add separation
+      ☐ Change the hover of tasks
+        ☐ 
+      ☐ Change what the task focus looks like
+        The original idea was to use a vibrant blue accent. Play with it
+      ☐ Add a shadow that drops over the sidebar to the left
+      ☐ Style the new task input to not be retarded looking
 
 Controller:
 
   Task:
-    ☐ Implement project sidebar with live projects
-      ☐ The projects sub-headings need to be based on the sections/headings in the project
-
     ☐ Implement the ability to add a description
       This means that the task should expand below and allow editing of text    
 
 Archive:
+  ✔ Drag and drop tasks to move them @done(25-12-08 12:07) @project(Next Up (Cross-domain))
+  ✔ Now make it such that dropping actually moves the tasks @done(25-12-08 12:07) @project(Next Up (Cross-domain))
+  ✔ We need to expose some function from Main to handle the dropping of da shit @done(25-12-06 17:50) @project(Next Up (Cross-domain))
+  ✔ Make sure that if we are dropping on a tasks own children, we don't complete the drop @done(25-12-08 12:07) @project(Next Up (Cross-domain))
+    This may entail checking to see if a node is a child of another (is the node I'm being dropped on one of my children?)
+  ✔ Fix bug where you can click down on checkbox, which changes task to crossed out, but then drag away leaving box unchecked @done(25-12-10 15:29) @project(Next Up (Cross-domain))
+  ✔ Change the effects to happen whenever you mouse up rather than mouse down. @done(25-12-10 15:30) @project(Next Up (Cross-domain))
+  ✔ Select a task with the arrow keys (once one has already been selected) @done(25-12-11 11:24) @project(Next Up (Cross-domain))
+  ✔ Set up listening for arrow up and down keys on keydown @done(25-12-10 16:57) @project(Next Up (Cross-domain))
+  ✔ Create function in view for changing focus to next task @done(25-12-11 11:23) @project(Next Up (Cross-domain))
+  ✔ Make function for focusing next task @done(25-12-10 18:11) @project(Next Up (Cross-domain))
+  ✔ Takes into account when the next task is not necessarily a sibling @done(25-12-10 18:11) @project(Next Up (Cross-domain))
+  ✔ Make a function for focuing previous task @done(25-12-11 11:23) @project(Next Up (Cross-domain))
+  ✔ Make sure it takes into account when it's previous sibling has children (recursion again) @done(25-12-11 11:23) @project(Next Up (Cross-domain))
   ✔ Create or update a small project (testing javascript) to test out the dragging API @done(25-11-25 15:30) @project(Next Up (Cross-domain))
   ✔ Add the draggable attribute to all task elements @done(25-11-27 17:33) @project(Next Up (Cross-domain))
   ✔ Create a "drag handle" that is position to the left side of the task. @done(25-11-28 10:48) @project(Next Up (Cross-domain))
