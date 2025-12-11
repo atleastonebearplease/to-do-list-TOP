@@ -244,9 +244,117 @@ export class View {
         if(taskID) {
             let newElementToFocus = this.taskSectionRoot.querySelector(`[data-id="${taskID}"]`);
 
-            newElementToFocus.querySelector(".task-content").focus();
+            this.#focusTaskContent(newElementToFocus);
         }
     }
+
+    focusPreviousTask() {
+        let current = document.activeElement; 
+
+        if(current.classList.contains("task-content") ) {
+            let currentTaskElement = current.closest(".task");
+
+            let previousTask = currentTaskElement.previousSibling;
+
+            if(previousTask) {
+                this.#focusPreviousTaskRecursive(previousTask);
+            } else {
+                let parent = currentTaskElement.parentNode.closest(".task");
+
+                if(parent) {
+                    this.#focusTaskContent(parent);
+                }
+            }
+        }
+    }
+
+    #focusPreviousTaskRecursive(lastTask) {
+        let childTaskList = lastTask.querySelector(".task-list");
+
+        if(childTaskList) {
+            let lastChild = childTaskList.lastElementChild;
+
+            this.#focusPreviousTaskRecursive(lastChild);
+        } else {
+            this.#focusTaskContent(lastTask);
+        }
+        
+        /* The overall psuedocode for previous task
+        If I have a previous sibling
+            If the previous sibling does not have children
+                Focus it
+            If the previous sibling does have children
+
+                Go to the last child
+                If last child does not have children
+                    Focus it
+                If last child does have children
+                    Go to last child of last child
+                        //We are recursing fam
+        If I do not have a prevoius sibling
+            Go to my parent
+            If my parent is a task
+                Focus it
+            If my parent is not a task
+                Do nothing because we are at the root
+                
+        */
+    }
+
+    focusNextTask() { 
+        let current = document.activeElement; 
+
+        if(current.classList.contains("task-content") ) {
+            let currentTaskElement = current.closest(".task");
+
+            let child = currentTaskElement.querySelector(".task");
+
+            if(child) {
+                this.#focusTaskContent(child);
+            } else {
+                let nextTask = currentTaskElement.nextSibling;
+
+                if(nextTask) {
+                    this.#focusTaskContent(nextTask);
+                } else {
+                    this.#focusNextTaskRecursive(currentTaskElement);
+                }
+            }
+        }
+    }
+
+    #focusNextTaskRecursive(lastTask) {
+        let parent = lastTask.parentNode.closest(".task"); //Choose the parent, otherwise the "closest" task is this task itself
+
+        if(parent) {
+            let nextSibling = parent.nextSibling;
+
+            if(nextSibling) {
+                this.#focusTaskContent(nextSibling);
+            } else {
+                this.#focusNextTaskRecursive(parent);
+            }
+        } else {
+            return false;
+        }
+    }
+
+    #focusTaskContent(taskElement) {
+        taskElement.querySelector(".task-content")?.focus();
+    }
+
+    getFocusedTaskID() {
+        let current = document.activeElement;
+
+        if(current.classList.contains("task-content") ) {
+            let task = current.closest(".task");
+
+            return task.dataset.id;
+        } else {
+            return undefined;
+        }
+    }
+
 
     checkOffTask(taskElement) {
         let taskText = taskElement.querySelector(".task-text");

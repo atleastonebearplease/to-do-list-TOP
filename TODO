@@ -4,17 +4,28 @@ Next Up (Cross-domain):
       ✔ We need to expose some function from Main to handle the dropping of da shit @done(25-12-06 17:50)
       ✔ Make sure that if we are dropping on a tasks own children, we don't complete the drop @done(25-12-08 12:07)
         This may entail checking to see if a node is a child of another (is the node I'm being dropped on one of my children?)
-    NOTES
-      On double-click, you can pull up a dialog to edit the title and description
   ✔ Fix bug where you can click down on checkbox, which changes task to crossed out, but then drag away leaving box unchecked @done(25-12-10 15:29)
     ✔ Change the effects to happen whenever you mouse up rather than mouse down. @done(25-12-10 15:30)
   ☐ Select a task with the arrow keys (once one has already been selected)
+    ✔ Set up listening for arrow up and down keys on keydown @done(25-12-10 16:57)
+    ☐ Create function in view for changing focus to next task
+      ✔ Make function for focusing next task @done(25-12-10 18:11)
+        ✔ Takes into account when the next task is not necessarily a sibling @done(25-12-10 18:11)
+      ☐ Make a function for focuing previous task
+        ☐ Make sure it takes into account when it's previous sibling has children (recursion again)
+START HEREEEE============================================================================================= (Inside of View)
   ☐ Make the drag handles only appear when hovering over the task
   ☐ The last task in the last section should be focused upon page load
   ☐ Move tasks up and down with keyboard controls
       That is, using ctrl+arrow keys
   ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
 
+  NOTES
+  On double-click, you can pull up a dialog to edit the title and description
+
+ACTIONS THIS COMMIT
+-Changed handleKeyPresses in main to handleKeyUp and added handleKeyDown
+-Added function to view to get the currently focusedTaskID if there is one;
 
   Refactor: 
     Refer to the UML diagram in drawio
@@ -53,10 +64,6 @@ Controller:
 
     ☐ Implement the ability to add a description
       This means that the task should expand below and allow editing of text    
-
-ACTIONS THIS COMMIT
--Changed event listener to be on document for dragend and drop
-    -So we can remove placeholders, effects, etc.
 
 Archive:
   ✔ Create or update a small project (testing javascript) to test out the dragging API @done(25-11-25 15:30) @project(Next Up (Cross-domain))

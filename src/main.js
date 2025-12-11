@@ -21,7 +21,8 @@ export class Main {
 
         this.handleAddTaskButton = this.handleAddTaskButton.bind(this);
         this.handleNewToDoInput = this.handleNewToDoInput.bind(this);
-        this.handleKeyPresses = this.handleKeyPresses.bind(this);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleMouseDown = this.handleMouseDown.bind(this);
         this.handleMouseUp = this.handleMouseUp.bind(this);
 
@@ -33,14 +34,8 @@ export class Main {
     initialize() {
         this.view.addTaskButton.addEventListener("click", this.handleAddTaskButton);
 
-        document.addEventListener("keydown", (event) => {
-            if(event.key === "Tab") {
-                event.preventDefault();
-            }
-        });
-
-        document.addEventListener("keyup", this.handleKeyPresses);
-
+        document.addEventListener("keydown", this.handleKeyDown);
+        document.addEventListener("keyup", this.handleKeyUp);
         document.addEventListener("mousedown", this.handleMouseDown);
         document.addEventListener("mouseup", this.handleMouseUp);
     }
@@ -81,7 +76,7 @@ export class Main {
         }
     }
     
-    handleKeyPresses(event) {
+    handleKeyUp(event) {
         if(event.key === "Tab") {
             event.preventDefault(); //Don't want tabbing arouind the other elements in page
         }
@@ -113,14 +108,26 @@ export class Main {
                 }
             }
             else if(event.key === "Enter") {
-                /* We are not making a new task here yet. Let's just focus on getting the new input 
-                after the currently focused task. We can then update the input handler insert a new task into the tree
-                after the prior task in the DOM. We would just find the ID of the task before the input field, then call a 
-                task command to insert a task after that task's ID in the tree.*/
                 let taskElement = focused.closest(".task");
 
                 this.view.insertBlankInputAfter(taskElement, this.handleNewToDoInput);
             }
+        }
+    }
+
+    handleKeyDown(event) {
+        if(event.key === "Tab") {
+            event.preventDefault();
+        }
+        
+        if(event.key === "ArrowUp") {
+            console.log("Arrow key up");
+
+            this.view.focusPreviousTask();
+        } else if(event.key === "ArrowDown") {
+            console.log("Arrow key down");
+            
+            this.view.focusNextTask();
         }
     }
 
