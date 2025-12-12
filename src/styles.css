@@ -1,4 +1,6 @@
 @import url("josh-c-styles.css");
+@import url("ClashGrotesk_Complete/Fonts/WEB/css/clash-grotesk.css");
+@import url("AzeretMono_Complete/Fonts/WEB/css/azeret-mono.css");
 
 :root {
     --primary-color: #bed496;
@@ -8,6 +10,12 @@
 
     --side-bar-section-margin: 2rem 1rem 2rem 1rem;
     --side-bar-project-heading-margin: 2rem;
+
+    --CG-regular: "ClashGrotesk-Regular";
+    --CG-medium: "ClashGrotesk-Medium";
+    --CG-light: "ClashGrotesk-Light";
+
+    --AM-bold: "AzeretMono-Bold"
 }
 
 * {
@@ -22,7 +30,12 @@
     grid-template-columns: 25rem 1fr;
 }
 
-/* Sidebar */
+/*===================  
+
+Sidebar 
+
+====================*/
+
 .sidebar {
     grid-column: 1/2;
 
@@ -50,6 +63,8 @@
 
 .project-card__header {
     font-weight: bold;
+    font-family: var(--AM-bold), 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.25rem;
     padding-left: var(--side-bar-project-heading-margin);
     border-radius: 6px;
 }
@@ -62,6 +77,7 @@
     padding-left: calc( var(--side-bar-project-heading-margin) * 1.5 ); 
     color: #292929;
     border-radius: 6px;
+    font-family: var(--CG-medium), 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .project-card__section:hover {
@@ -90,6 +106,9 @@
 
 .site-main__header {
     margin-top: 2rem;
+    font-weight: bold;
+    font-family: var(--AM-bold), 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 2rem;
 }
 
 .task-sections__wrapper {
@@ -143,12 +162,23 @@
     text-decoration: line-through;
 }
 
-.task-content:focus {
-    outline: 1px solid red;
+.task-content:focus,
+.task-content:focus-visible
+{
+    outline: none;
+    box-shadow:
+    1px 2px 2px hsla(0, 5%, 76%, 0.5),
+    2px 4px 4px hsla(0, 5%, 76%, 0.5),
+    4px 8px 8px hsla(0, 5%, 76%, 0.5);
 }
 
 .task-content:hover {
     background-color: hsl(226, 100%, 97%);
+}
+
+.task-text {
+    font-family: var(--CG-regular), 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.125rem;
 }
 
 .delete-task-button {

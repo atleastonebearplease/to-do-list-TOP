@@ -43,6 +43,7 @@ Model:
 View:
 
   Design and Style:
+    ☐ FIND A BETTER FONT======================
     ☐ Fix the CSS to have background expand with the page - Grid or Flex?
       I think it would be best to have a simple underline and blend the rest with the background, but play with it
     ✔ Brighten up the backgrond of the page slightly @done(25-12-11 17:26)
@@ -73,6 +74,8 @@ View:
     Tasks:
       ☐ Change what the task focus looks like
         The original idea was to use a vibrant blue accent. Play with it
+        ☐ You've got a shadow now, try making it blue
+        ☐ Add an effect to make the size larger with an animation
 
       ✔ Bring tasks into the foreground more @done(25-12-11 17:43)
         ✔ This can either be a line, or just a background and spacing between tasks @done(25-12-11 17:43)
@@ -85,7 +88,10 @@ View:
       ☐ Add a shadow that drops over the sidebar to the left
       ☐ Style the new task input to not be retarded looking
       Checkbox: 
-        ☐ Make checkbox a bit smaller
+        ☐ Change into a white circle
+          ☐ Make a small gap between the edge of the task and the cirlce
+          ☐ When it is clicked, it fill in green and turns the background of the task into washed-out green
+          ☐ It also reduce contrast significantly on the task text, rather than doing the cross out
         ☐ Add space between the checkbox and task title
 
 Controller:
