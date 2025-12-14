@@ -101,13 +101,14 @@ Sidebar
     grid-column: 2/3;
     
     margin: 4rem;
+    margin-top: 2rem;
 }
 
 .site-main__header {
-    margin-top: 2rem;
+    margin: 0 0 2.5rem 0;
     font-weight: bold;
     font-family: var(--AM-bold), 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 2rem;
+    font-size: 2.5rem; 
 }
 
 .task-sections-wrapper {
@@ -201,6 +202,12 @@ Sidebar
 .task-text {
     font-family: var(--CG-regular), 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 1.125rem;
+    color: rgb(32, 32, 32);
+}
+
+.task-sections-wrapper > .task-list > .task > .task-content > .task-text {
+    color: black;
+    font-size: 1.25rem;
 }
 
 .delete-task-button {

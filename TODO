@@ -22,11 +22,7 @@ Next Up:
       ☐ Write a new handler handleEditToDoInput
       ☐ Write a new task command editTask(taskID, title, description, ...);
   ☐ Implement project sidebar with live projects - NEW BRANCH
-  ☐ Fix drag handles bug
-  ☐ Make tab only bring a task down one level
-    Right now it takes a task and all-sub tasks and moves them down a level. This should only happen with drag-and-drop/Move, not sub-tasking
-    You would use some of the logic you've already used with moving the focus around; that is, with parents and such. This type of move would
-    be much easier within task commands though. Doing it in the HTML would be pointless since the underlying tasks would change. 
+  ☐ Fix drop bug where drop placeholder still exists, but drop still fails
 
 ACTIONS THIS COMMIT
 
