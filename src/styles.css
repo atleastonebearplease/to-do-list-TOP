@@ -46,6 +46,9 @@ Sidebar
     display: flex;
     flex-direction: column;
     align-content: center;
+
+    position: sticky;
+    top: 0;
 }
 
 .profile-section {
