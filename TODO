@@ -39,10 +39,12 @@ Model:
 View:
 
   Design and Style:
+    ☐ Choose a primary color, and accent (call to action) color, and then a site color
     ✔ FIND A BETTER FONT====================== @done(25-12-12 11:25)
     ☐ Fix the CSS to have background expand with the page - Grid or Flex?
       I think it would be best to have a simple underline and blend the rest with the background, but play with it
     ✔ Brighten up the backgrond of the page slightly @done(25-12-11 17:26)
+    ☐ Consider making the sidebar very sublte green and making the text black still, but with green highlights (like todoist with red)
     Add Task Button:
       ☐ Push the Add Task button into the background slightly
         ☐ Remove it's background
@@ -50,7 +52,8 @@ View:
       ☐ Push the button further down the page
 
     Sidebar:
-      ☐ Project section on sidebar should stay in place
+      ☐ Make the sidebar a very desatuarted green color
+      ✔ Project section on sidebar should stay in place @done(25-12-14 14:21)
         It should be fixed, and the rest of the page should scroll
       ☐ Reduce the width of the sidebar
       ☐ Reduce the sidebar font size on all aspects
@@ -70,6 +73,11 @@ View:
       ☐ Create a warning dialog if the task has sub-sub tasks
 
     Tasks:
+      ☐ Add a horizontal line between Title and tasks on page
+      ☐ Try adding a subtle horizontal blue line between tasks and removing the task backgrounds
+        ☐ Make the lines fade out on either end
+        ☐ When a task is selected, you an make the background blue and fade the ends
+      ☐ Add some icons to the top right of the page so it doesn't look so naked
       ✔ Change what the task focus looks like @done(25-12-12 12:57)
         The original idea was to use a vibrant blue accent. Play with it
         ✔ You've got a shadow now, try making it blue @done(25-12-12 12:57)
@@ -78,7 +86,7 @@ View:
       ✔ Bring tasks into the foreground more @done(25-12-11 17:43)
         ✔ This can either be a line, or just a background and spacing between tasks @done(25-12-11 17:43)
           Visually bring tasks into the foreground and add separation
-      ☐ ME NEXT ========More space between project title and tasks
+      ✔ ME NEXT ========More space between project title and tasks @done(25-12-15 15:22)
       ☐ Remove drag handles
       ☐ Make the tasks section a fixed width in the page
       ☐ Change the hover of tasks
