@@ -39,38 +39,50 @@ Model:
 View:
 
   Design and Style:
-    ☐ Choose a primary color, and accent (call to action) color, and then a site color
-    ✔ FIND A BETTER FONT====================== @done(25-12-12 11:25)
-    ☐ Fix the CSS to have background expand with the page - Grid or Flex?
-      I think it would be best to have a simple underline and blend the rest with the background, but play with it
-    ✔ Brighten up the backgrond of the page slightly @done(25-12-11 17:26)
-    ☐ Consider making the sidebar very sublte green and making the text black still, but with green highlights (like todoist with red)
-    Add Task Button:
-      ☐ Push the Add Task button into the background slightly
-        ☐ Remove it's background
-        ☐ Make the font thicker, but less contrast
-      ☐ Push the button further down the page
-
-    Sidebar:
-      ☐ Make the sidebar a very desatuarted green color
-      ✔ Project section on sidebar should stay in place @done(25-12-14 14:21)
-        It should be fixed, and the rest of the page should scroll
-      ☐ Reduce the width of the sidebar
-      ☐ Reduce the sidebar font size on all aspects
-      ☐ Push the project section items into the background visually
-        Reduce contrast, decrease font-size, etc.
-      ☐ Add some padding around the side bar to show the website background and round the top-left and bottom-left corners
-        This is to give a sense that the sidebar is merely a widget sitting in the primary focus of the app, the task section
-      ☐ Remove the Fortira logo
-      Profile Header:
-        ☐ Add in a profile picture circle thing
-        ☐ Add fake notification icon
-          ☐ Make sure that it has hover changes on cursor and icon
+    ☐ Make hover background brighter, not darker
+    ☐ Try changing the background of tasks to white, but adding a dark blue left border
+    
+    Profile Header:
+    ☐ Add in a profile picture circle thing
+    ☐ Add fake notification icon
+      ☐ Make sure that it has hover changes on cursor and icon
 
     Delete Button:
       ☐ Make the delete button a large trash can icon
       ☐ Make it at the end of the task (on the right side)
       ☐ Create a warning dialog if the task has sub-sub tasks
+
+    Checkbox: 
+    ☐ Change into a white circle
+      ☐ Make a small gap between the edge of the task and the cirlce
+      ☐ When it is clicked, it fill in green and turns the background of the task into washed-out green
+      ☐ It also reduce contrast significantly on the task text, rather than doing the cross out
+    ☐ Add space between the checkbox and task title
+
+    ✔ Choose a primary color, and accent (call to action) color, and then a site color @done(25-12-15 19:02)
+    ✔ FIND A BETTER FONT====================== @done(25-12-12 11:25)
+    ✔ Fix the CSS to have background expand with the page - Grid or Flex? @done(25-12-15 19:02)
+      I think it would be best to have a simple underline and blend the rest with the background, but play with it
+    ✔ Brighten up the backgrond of the page slightly @done(25-12-11 17:26)
+    ✔ Consider making the sidebar very sublte green and making the text black still, but with green highlights (like todoist with red) @done(25-12-15 19:02)
+    Add Task Button:
+      ✘ Push the Add Task button into the background slightly @cancelled(25-12-15 19:05)
+        ✘ Remove it's background @cancelled(25-12-15 19:05)
+        ✘ Make the font thicker, but less contrast @cancelled(25-12-15 19:05)
+      ☐ Push the button further down the page
+
+    Sidebar:
+      ✔ Make the sidebar a very desatuarted green color @done(25-12-15 19:02)
+      ✔ Project section on sidebar should stay in place @done(25-12-14 14:21)
+        It should be fixed, and the rest of the page should scroll
+      ✔ Reduce the width of the sidebar @done(25-12-15 19:02)
+      ✔ Reduce the sidebar font size on all aspects @done(25-12-15 19:02)
+        Reduce contrast, decrease font-size, etc.
+      ✔ Add some padding around the side bar to show the website background and round the top-left and bottom-left corners @done(25-12-15 19:04)
+        This is to give a sense that the sidebar is merely a widget sitting in the primary focus of the app, the task section
+      ✔ Remove the Fortira logo @done(25-12-15 19:05)
+      ☐ Change the highlight of the "Projects"
+
 
     Tasks:
       ☐ Add a horizontal line between Title and tasks on page
@@ -87,18 +99,14 @@ View:
         ✔ This can either be a line, or just a background and spacing between tasks @done(25-12-11 17:43)
           Visually bring tasks into the foreground and add separation
       ✔ ME NEXT ========More space between project title and tasks @done(25-12-15 15:22)
-      ☐ Remove drag handles
+      ✔ Remove drag handles @done(25-12-15 19:07)
       ☐ Make the tasks section a fixed width in the page
-      ☐ Change the hover of tasks
-        ☐ Make the task your hovering "pop" a bit. Add shadow, make the task slightly larger with a small delay/animation
-      ☐ Add a shadow that drops over the sidebar to the left
+      ✔ Change the hover of tasks @done(25-12-15 19:07)
+        ✔ Make the task your hovering "pop" a bit. Add shadow, make the task slightly larger with a small delay/animation @done(25-12-15 19:07)
+      ✔ Add a shadow that drops over the sidebar to the left @done(25-12-15 19:07)
       ☐ Style the new task input to not be retarded looking
-      Checkbox: 
-        ☐ Change into a white circle
-          ☐ Make a small gap between the edge of the task and the cirlce
-          ☐ When it is clicked, it fill in green and turns the background of the task into washed-out green
-          ☐ It also reduce contrast significantly on the task text, rather than doing the cross out
-        ☐ Add space between the checkbox and task title
+      ☐ Style the placeholder to be more like the actual tasks
+
 
 Controller:
 
