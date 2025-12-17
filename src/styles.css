@@ -63,11 +63,44 @@ Sidebar
 }
 
 .profile-section {
-    padding: var(--side-bar-section-margin);
+    padding: 1rem 1rem;
 }
 
-.projects-section {
-    padding: var(--side-bar-section-margin);
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile img{
+    width: 3.25em;
+    height: 3.25em;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0.200rem green;
+}
+
+.profile h1 {
+    font-family: var(--CG-medium), 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.profile-icons {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+.profile svg {
+    width: 1.75em;
+    height: 1.75em;
+}
+
+.project-section {
+    padding: 1rem 1rem;
+}
+
+.project-section-header {
+    border-bottom: 1px solid black;
+    margin-bottom: 1.5rem;
 }
 
 .project-card {
@@ -78,7 +111,6 @@ Sidebar
     font-weight: bold;
     font-family: var(--AM-bold), 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 1.25rem;
-    padding-left: var(--side-bar-project-heading-margin);
     border-radius: 6px;
 }
 
@@ -114,8 +146,7 @@ Sidebar
 .site-main {
     grid-column: 2/3;
     
-    padding: 4rem 4rem 4rem 2rem;
-    padding-top: 2rem;
+    padding: 1rem 2rem 4rem 2rem;
 
     z-index: 1;
 
@@ -124,19 +155,30 @@ Sidebar
     box-shadow:
     -1px 0px 2px var(--shadow-color),
     -2px 0px 4px var(--shadow-color),
+ 
     -4px 0px 8px var(--shadow-color);
 }
 
-.site-main__header {
-    padding: 0 0 1.5rem 0;
-    margin-bottom: 1rem;
+.site-main-header {
+    display: flex;
+}
+
+.site-main-header svg {
+    margin-top: 0.25rem;
+    margin-left: auto;
+    flex: 0 0 auto;
+}
+
+.site-main-heading {
+    flex-grow: 1;
+
+    padding: 0 0 1rem 0;
     font-family: var(--AM-semiBold), 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 2.5rem; 
 
     color: var(--text-color-lighter);
     
     border-bottom: 4px solid transparent;
-    padding: 10px;
 
     background:
         /* Inner background (element's fill) */
@@ -145,15 +187,16 @@ Sidebar
         linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, var(--primary-color) 15%, var(--primary-color) 85%, rgba(255, 255, 255, 1) 100%);
 }
 
+.site-main svg {
+    width: 2rem;
+    height: 2rem;
+}
+
 .task-sections-wrapper {
     width: 90%;
     padding: .75rem;
     margin-bottom: 1rem;
 }
-
-/* .task-sections-wrapper >.task-list > .task + .task {
-    margin-top: 0.125rem;
-} */
 
 .task-list {
     list-style: none;

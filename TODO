@@ -5,7 +5,6 @@ MVP Features:
 
 
 Next Up:
-☐ Make the drag handles only appear when hovering over the task
   ☐ Move tasks up and down with keyboard controls
       That is, using ctrl+arrow keys
   ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
@@ -14,8 +13,8 @@ Next Up:
   On double-click, you can pull up a dialog to edit the title and description
 
   ☐ Make the ESC key get you out of the input box and focus the previous task
+    ☐ Make the same thing happen when the arrow keys are pressed
   ☐ CTRL+Enter makes a sub-task of the current task
-  ☐ Make the same thing happen when the arrow keys are pressed
   ☐ Double click should allow editing of task title
     ☐ I think we can accomplish this by replacing the task-text with an input box
       ☐ Write the view function replaceTaskTextWithInput
@@ -39,13 +38,18 @@ Model:
 View:
 
   Design and Style:
-    ☐ Make hover background brighter, not darker
-    ☐ Try changing the background of tasks to white, but adding a dark blue left border
+    ✔ Make hover background brighter, not darker @done(25-12-17 08:59)
+    ✔ Try changing the background of tasks to white, but adding a dark blue left border @done(25-12-17 08:59)
     
     Profile Header:
-    ☐ Add in a profile picture circle thing
+    ✔ Add in a profile picture circle thing @done(25-12-17 09:35)
     ☐ Add fake notification icon
-      ☐ Make sure that it has hover changes on cursor and icon
+    ☐ Add fake profile settings icon
+    ☐ Add fake hamburger settings icon
+    ☐ Add hover effects for all icons
+      ☐ For siderbar, make it the same dark color as behind the profile border
+      ☐ For the hamburger, make it a cirlce that is just greyish/greenish
+
 
     Delete Button:
       ☐ Make the delete button a large trash can icon
