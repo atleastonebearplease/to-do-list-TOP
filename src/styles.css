@@ -187,15 +187,36 @@ Sidebar
     height: 1.25rem;
 }
 
+.task-border-div {
+    border: 1px solid red;
+}
+
 .task-content { 
     position: relative;
     display: flex;
     align-items: center;
-    background-color: rgba(225, 245, 240, 0.445);
-    border-radius: 1.5rem;
-    padding: 0.125rem 0;
-
+    padding: 0 0 0.125rem 0;
+    border-radius: 0.75rem;
+    
+    /* background-color: rgba(225, 245, 240, 0.445);
     border: 1px solid #efefeb;
+    box-shadow:
+    1px 2px 2px hsla(212, 92%, 60%, 0.1),
+    2px 4px 4px hsla(212, 92%, 60%, 0.1); */
+
+/*     border-left-color: var(--primary-color);
+    border-left-width: 5px;
+    border-left-style: solid; */
+
+/*     background: linear-gradient(white, white) padding-box,
+                linear-gradient(to right, darkblue, darkorchid) border-box;
+
+    background-clip: padding-box, border-box;
+    background-origin: border-box;
+    border-bottom-left-radius: 1rem; 
+    border-bottom-right-radius: 1rem;
+    border-bottom: 2px solid transparent;  */
+
 
     transition: height 0.05s ease-out;
     transition: transform 0.05s ease;
@@ -204,9 +225,17 @@ Sidebar
 
     z-index: 2;
 
-    box-shadow:
-    1px 2px 2px hsla(212, 92%, 60%, 0.1),
-    2px 4px 4px hsla(212, 92%, 60%, 0.1);
+    overflow: hidden;
+}
+
+.task-content::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+background: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, rgba(235, 235, 235, 1) 15%, rgba(235, 235, 235, 1) 85%, rgba(255, 255, 255, 1) 100%);
 }
 
 .task-complete { 
@@ -229,7 +258,9 @@ Sidebar
 }
 
 .task-content:hover {
-    background-color: hsl(226, 100%, 97%);
+    /* background-color: hsl(226, 100%, 97%); */
+
+
     z-index: 9998;
     transform: translateY(-2px);
 

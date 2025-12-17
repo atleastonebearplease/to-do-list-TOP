@@ -278,27 +278,6 @@ export class View {
         } else {
             this.#focusTaskContent(lastTask);
         }
-        
-        /* The overall psuedocode for previous task
-        If I have a previous sibling
-            If the previous sibling does not have children
-                Focus it
-            If the previous sibling does have children
-
-                Go to the last child
-                If last child does not have children
-                    Focus it
-                If last child does have children
-                    Go to last child of last child
-                        //We are recursing fam
-        If I do not have a prevoius sibling
-            Go to my parent
-            If my parent is a task
-                Focus it
-            If my parent is not a task
-                Do nothing because we are at the root
-                
-        */
     }
 
     focusNextTask() { 
