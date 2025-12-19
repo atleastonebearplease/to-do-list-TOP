@@ -11,7 +11,12 @@
     --text-color-lighter: #4d504b;
     --text-color-regular: #000000;
 
-    --dark-color-hover: rgb(233, 245, 231);
+    --delete-button-hover: rgba(175, 0, 0, 0.089);
+    --delete-button-hover-fill: darkred;
+
+    --text-color-lighter_sidebar: #2a3825;
+
+    --dark-color-hover: rgb(235, 243, 245);
 
     /* OG --primary-color: #bed496; */
 
@@ -63,6 +68,8 @@ Sidebar
 
     position: sticky;
     top: 0;
+
+    color: var(--text-color-lighter_sidebar);
 }
 
 .profile-section {
@@ -88,11 +95,10 @@ Sidebar
 
 .profile-icons {
     display: flex;
-    gap: 0.5rem;
     margin-left: auto;
 }
 
-.profile-icons svg {
+svg {
     box-sizing: content-box;
     border-radius: 50%;
     width: 1.75rem;
@@ -102,6 +108,7 @@ Sidebar
 
 .profile-icons svg:hover {
     background-color: var(--primary-color_darker);
+    cursor: pointer;
 }
 
 .project-section {
@@ -110,7 +117,7 @@ Sidebar
 
 .project-section-header {
     border-bottom: 1px solid black;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     font-size: 1.75rem;
 }
 
@@ -123,10 +130,12 @@ Sidebar
     font-family: var(--AM-bold), 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 1.25rem;
     border-radius: 6px;
+    padding-left: 0.5rem;
 }
 
 .project-card__header:hover{
-    background-color: #a0d080;
+    background-color: var(--primary-color_darker);
+    cursor: pointer;
 }
 
 .project-card__section {
@@ -140,16 +149,36 @@ Sidebar
     background-color: #a0d080;
 }
 
-.project-card__section::before {
-    content: "+"
-}
-
 .sidebar__title {
     padding: 2rem 0;
     height: fit-content;
     font-size: 4rem;
     margin-top: auto;
     align-self: center;
+}
+
+.help-and-resources {
+    display: flex;
+    color: var(--text-color-lighter_sidebar);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+
+    align-items: flex-end;
+    justify-content: center;
+
+    flex: 1 0 0;
+}
+
+.help-and-resources-wrapper {
+    display: flex;
+    align-items: center;
+    border-radius: 1rem;
+    padding: 0 0.5rem 0 0.25rem;
+}
+
+.help-and-resources-wrapper:hover {
+    background-color: var(--primary-color_darker);
+    cursor: pointer;
 }
 
 /* Task Section */
@@ -186,6 +215,7 @@ Sidebar
 
 .site-main-header svg:hover {
     background-color: var(--dark-color-hover);
+    cursor: pointer;
 }
 
 .site-main-heading {
@@ -204,11 +234,6 @@ Sidebar
         linear-gradient(white, white) padding-box,
         /* Outer background (the gradient border) clipped to the border-box */
         linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, var(--primary-color) 15%, var(--primary-color) 85%, rgba(255, 255, 255, 1) 100%);
-}
-
-.site-main svg {
-    width: 2rem;
-    height: 2rem;
 }
 
 .task-sections-wrapper {
@@ -348,6 +373,16 @@ background: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, rgba(235, 235, 235,
     visibility: hidden;
     margin-left: auto;
     margin-right: 1rem;
+    cursor: pointer;
+    width: 1.75rem;
+    height: 1.75rem;
+    color: black;
+    box-sizing: content-box;
+}
+
+.delete-task-button:hover {
+    background-color: var(--delete-button-hover);
+    color: var(--delete-button-hover-fill);
 }
 
 .task-content:hover .delete-task-button {

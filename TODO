@@ -43,18 +43,19 @@ View:
 
     Sidebar:
       ☐ Add a help and resources section to bottom of sidebar - use ? icon and copy from ToDoist
-      ☐ Make the sidebar text less contrasted - should be further in background
+        ☐ Make it further into the background - less contrast
+      ✔ Make the sidebar text less contrasted - should be further in background @done(25-12-19 11:59)
       ☐ Create hider button for sidebar?
         ☐ If you do, keep the tasks centered/in the same place
     
     Profile Header:
     ✔ Add in a profile picture circle thing @done(25-12-17 09:35)
-    ☐ Add fake notification icon
-    ☐ Add fake profile settings icon
-    ☐ Add fake hamburger settings icon
-    ☐ Add hover effects for all icons
-      ☐ For siderbar, make it the same dark color as behind the profile border
-      ☐ For the hamburger, make it a cirlce that is just greyish/greenish
+    ✔ Add fake notification icon @done(25-12-19 11:39)
+    ✔ Add fake profile settings icon @done(25-12-19 11:39)
+    ✔ Add fake hamburger settings icon @done(25-12-19 11:39)
+    ✔ Add hover effects for all icons @done(25-12-19 11:54)
+      ✔ For siderbar, make it the same dark color as behind the profile border @done(25-12-19 11:54)
+      ✔ For the hamburger, make it a cirlce that is just greyish/greenish @done(25-12-19 11:54)
 
     Delete Button:
       ☐ Make the delete button a large trash can icon
