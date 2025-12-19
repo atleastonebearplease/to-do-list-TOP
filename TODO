@@ -40,6 +40,12 @@ View:
   Design and Style:
     ✔ Make hover background brighter, not darker @done(25-12-17 08:59)
     ✔ Try changing the background of tasks to white, but adding a dark blue left border @done(25-12-17 08:59)
+
+    Sidebar:
+      ☐ Add a help and resources section to bottom of sidebar - use ? icon and copy from ToDoist
+      ☐ Make the sidebar text less contrasted - should be further in background
+      ☐ Create hider button for sidebar?
+        ☐ If you do, keep the tasks centered/in the same place
     
     Profile Header:
     ✔ Add in a profile picture circle thing @done(25-12-17 09:35)
@@ -49,7 +55,6 @@ View:
     ☐ Add hover effects for all icons
       ☐ For siderbar, make it the same dark color as behind the profile border
       ☐ For the hamburger, make it a cirlce that is just greyish/greenish
-
 
     Delete Button:
       ☐ Make the delete button a large trash can icon
