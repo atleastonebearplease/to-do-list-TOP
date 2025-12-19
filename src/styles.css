@@ -322,7 +322,7 @@ svg {
     left: 0;
     right: 0;
     height: 1px;
-background: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, rgba(235, 235, 235, 1) 15%, rgba(235, 235, 235, 1) 85%, rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, rgba(235, 235, 235, 1) 15%, rgba(235, 235, 235, 1) 85%, rgba(255, 255, 255, 1) 100%);
 }
 
 .task-complete { 
@@ -438,6 +438,26 @@ background: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, rgba(235, 235, 235,
 
 .placeholder {
     outline: 2px solid #ccc;
+}
+
+.new-task-input {
+    border-style: none;
+    outline-style: none;
+    height: 2.5rem;
+    width: 100%;
+    font-size: 1.125rem;
+
+    background-color: var(--dark-color-hover);
+
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.75rem;
+    margin-top: 0.5rem;
+
+    cursor: pointer;
+
+    box-shadow:
+    1px 2px 2px hsla(0, 5%, 76%, 0.4),
+    2px 4px 4px hsla(0, 5%, 76%, 0.4);
 }
 
 /* Utilities */
