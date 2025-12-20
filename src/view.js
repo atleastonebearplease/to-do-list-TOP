@@ -336,15 +336,19 @@ export class View {
 
 
     checkOffTask(taskElement) {
-        let taskText = taskElement.querySelector(".task-text");
+        let taskContent = taskElement.querySelector(".task-content");
+        taskContent.classList.add("task-complete");
 
-        taskText.classList.add("task-complete");
+        let checkbox = taskElement.querySelector(".task-checkbox");
+        checkbox.classList.add("task-checkbox_complete");
     }
 
     uncheckTask(taskElement) {
-        let taskText = taskElement.querySelector(".task-text");
+        let taskContent = taskElement.querySelector(".task-content");
+        taskContent.classList.remove("task-complete");
 
-        taskText.classList.remove("task-complete");
+        let checkbox = taskElement.querySelector(".task-checkbox");
+        checkbox.classList.remove("task-checkbox_complete");
     }
 
     insertBlankInputAtEnd(inputHandler) {

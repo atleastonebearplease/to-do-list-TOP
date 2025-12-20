@@ -17,15 +17,9 @@ export class DOM {
         dragHandle.draggable = true;
         taskContent.appendChild(dragHandle);
 
-        let checkBox = document.createElement("input");
-        checkBox.type = "checkbox";
+        let checkBox = document.createElement("div");
         checkBox.classList.add("task-checkbox");
         taskContent.appendChild(checkBox);
-
-        if(task.isComplete() ) {
-            taskContent.classList.add("task-complete");
-            checkBox.checked = true;
-        }
         
         let taskTitleSpan = document.createElement("span");
         taskTitleSpan.classList.add("task-text");
@@ -33,6 +27,13 @@ export class DOM {
         taskContent.appendChild(taskTitleSpan);
 
         taskContent.appendChild(this.makeNewTaskDeleteButton());
+
+        if(task.isComplete() ) {
+            taskContent.classList.add("task-complete");
+            checkBox.classList.add("task-checkbox_complete");
+            checkBox.dataset.checked = true;
+            //TODO: This is where we'll have to change to represent visually
+        }
 
         newTaskElement.appendChild(taskContent);
 

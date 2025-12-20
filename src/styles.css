@@ -5,6 +5,14 @@
 :root {
     --primary-color: #61a8389c;
     --primary-color_darker: #61a8385b;
+    --primary-color_lighter: #abe799;
+
+    --task-complete-text: #74a158;
+    --task-complete-background: #def5d1;
+    
+    --task-complete-checkbox:  hsl(115, 56%, 65%);
+
+
     --accent-color: #0019fa;
     --accent-color-button-press: #15218a;
 
@@ -226,7 +234,7 @@ svg {
     font-size: 2.5rem; 
 
     color: var(--text-color-lighter);
-    
+
     border-bottom: 4px solid transparent;
 
     background:
@@ -260,6 +268,8 @@ svg {
     position: relative;
     z-index: 1;
     transition: z-index 0s 0.15s;
+
+    transition: all 1s ease;
 }
 
 .task:hover,
@@ -270,70 +280,79 @@ svg {
 
 .task-checkbox {
     margin: 0.5rem;
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    outline: 1px solid black;
+
+    transition: all 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-checkbox:hover {
+    background: var(--primary-color_lighter);
+}
+
+.task-checkbox_complete {
+    background: var(--task-complete-checkbox);
+}
+
+.task-checkbox_complete:hover {
+    background: var(--task-complete-checkbox);
 }
 
 .task-border-div {
     border: 1px solid red;
 }
 
+/* .task-checkbox svg {
+    color: white;
+    box-sizing: content-box;
+    overflow: visible;
+    width: 1.25rem;
+    height: 1.25rem;
+} */
+
 .task-content { 
+    transition: all 0.5s ease;
+
     position: relative;
     display: flex;
     align-items: center;
     padding: 0 0 0.125rem 0;
     border-radius: 0.75rem;
-    
-    /* background-color: rgba(225, 245, 240, 0.445);
-    border: 1px solid #efefeb;
-    box-shadow:
-    1px 2px 2px hsla(212, 92%, 60%, 0.1),
-    2px 4px 4px hsla(212, 92%, 60%, 0.1); */
 
-/*     border-left-color: var(--primary-color);
-    border-left-width: 5px;
-    border-left-style: solid; */
+    background-image: linear-gradient(to right, var(--task-complete-background) 50%, white 50%); /* Blue to white gradient */
+    background-size: 200% 100%; /* Make the background twice as wide as the element */
+    background-position: 100% 0;
 
-/*     background: linear-gradient(white, white) padding-box,
-                linear-gradient(to right, darkblue, darkorchid) border-box;
-
-    background-clip: padding-box, border-box;
-    background-origin: border-box;
-    border-bottom-left-radius: 1rem; 
-    border-bottom-right-radius: 1rem;
-    border-bottom: 2px solid transparent;  */
-
-
+    transition: all 0.5s ease-in-out;
     transition: height 0.05s ease-out;
     transition: transform 0.05s ease;
+    transition: background-position 0.5s ease-in-out;
 
     height: auto;
 
     z-index: 2;
-
-    overflow: hidden;
 }
 
 .task-content::after {
     content: "";
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
+    bottom: -5px;
+    left: 0px;
+    right: 0px;
+    height: 2px;
     background: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, rgba(235, 235, 235, 1) 15%, rgba(235, 235, 235, 1) 85%, rgba(255, 255, 255, 1) 100%);
-}
-
-.task-complete { 
-    text-decoration: line-through;
 }
 
 .task-content:focus,
 .task-content:focus-visible,
 .task-content :focus-visible
 {
-    outline: 2px solid rgba(0, 47, 255, 0.205);
+    outline: 2px solid hsla(229, 100%, 50%, 0.205);
     box-shadow:
     1px 2px 2px hsla(212, 92%, 60%, 0.2),
     2px 4px 4px hsla(212, 92%, 60%, 0.2),
@@ -346,8 +365,6 @@ svg {
 
 .task-content:hover {
     /* background-color: hsl(226, 100%, 97%); */
-
-
     z-index: 9998;
     transform: translateY(-2px);
 
@@ -357,14 +374,44 @@ svg {
     4px 8px 8px hsla(212, 92%, 60%, 0.1);
 }
 
+.task-complete { 
+    color: var(--task-complete-text);
+    
+    background-position: 0 0;
+}
+
+.task-complete:focus,
+.task-complete:focus-visible,
+.task-complete :focus-visible
+{
+    outline: 2px solid hsl(98, 46%, 73%);
+    box-shadow:
+    1px 2px 2px hsla(98, 92%, 60%, 0.2),
+    2px 4px 4px hsla(98, 92%, 60%, 0.2),
+    4px 8px 8px hsla(98, 92%, 60%, 0.2);
+
+    transform: translateY(-2px);
+
+    z-index: 9999;
+}
+
+.task-complete:hover {
+    /* background-color: hsl(226, 100%, 97%); */
+    z-index: 9998;
+    transform: translateY(-2px);
+
+    box-shadow:
+    1px 2px 2px hsla(98, 92%, 60%, 0.1),
+    2px 4px 4px hsla(98, 92%, 60%, 0.1),
+    4px 8px 8px hsla(98, 92%, 60%, 0.1);
+}
+
 .task-text {
     font-family: var(--CG-regular), 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 1.125rem;
-    color: rgb(32, 32, 32);
 }
 
 .task-sections-wrapper > .task-list > .task > .task-content > .task-text {
-    color: black;
     font-size: 1.25rem;
 }
 
@@ -417,6 +464,7 @@ svg {
     font-weight: bold;
 
     padding: .5rem 2.5rem;
+    margin-top: 2rem;
 
     box-shadow:
     1px 2px 2px hsla(0, 5%, 76%, 0.4),
@@ -459,6 +507,8 @@ svg {
     1px 2px 2px hsla(0, 5%, 76%, 0.4),
     2px 4px 4px hsla(0, 5%, 76%, 0.4);
 }
+
+
 
 /* Utilities */
 
