@@ -5,7 +5,7 @@ MVP Features:
 
 
 Next Up:
-☐ Make the drag handles only appear when hovering over the task
+  ☐ Style the placeholder to look less retarded
   ☐ Move tasks up and down with keyboard controls
       That is, using ctrl+arrow keys
   ☐ Add a confirmation if the task to be deleted contains subtasks (so that the user doesn't accidentally delete a shitload)
@@ -13,20 +13,17 @@ Next Up:
   NOTES
   On double-click, you can pull up a dialog to edit the title and description
 
+  ☐ Space bar with focused task should complete it
   ☐ Make the ESC key get you out of the input box and focus the previous task
+    ☐ Make the same thing happen when the arrow keys are pressed
   ☐ CTRL+Enter makes a sub-task of the current task
-  ☐ Make the same thing happen when the arrow keys are pressed
   ☐ Double click should allow editing of task title
     ☐ I think we can accomplish this by replacing the task-text with an input box
       ☐ Write the view function replaceTaskTextWithInput
       ☐ Write a new handler handleEditToDoInput
       ☐ Write a new task command editTask(taskID, title, description, ...);
   ☐ Implement project sidebar with live projects - NEW BRANCH
-  ☐ Fix drag handles bug
-  ☐ Make tab only bring a task down one level
-    Right now it takes a task and all-sub tasks and moves them down a level. This should only happen with drag-and-drop/Move, not sub-tasking
-    You would use some of the logic you've already used with moving the focus around; that is, with parents and such. This type of move would
-    be much easier within task commands though. Doing it in the HTML would be pointless since the underlying tasks would change. 
+  ☐ Fix drop bug where drop placeholder still exists, but drop still fails
 
 ACTIONS THIS COMMIT
 
@@ -43,45 +40,87 @@ Model:
 View:
 
   Design and Style:
-    ☐ Fix the CSS to have background expand with the page - Grid or Flex?
-      I think it would be best to have a simple underline and blend the rest with the background, but play with it
-    ☐ Brighten up the backgrond of the page slightly
-    ☐ Push the Add Task button into the background slightly
-      ☐ Remove it's background
-      ☐ Make the font thicker, but less contrast
+    ☐ Make the tasks section have a maxium width
+      ☐ At max, make it left aligned
+    ☐ Style the placeholder to be more like the actual tasks
+    ✔ Make hover background brighter, not darker @done(25-12-17 08:59)
+    ✔ Try changing the background of tasks to white, but adding a dark blue left border @done(25-12-17 08:59)
 
     Sidebar:
-      ☐ Project section on sidebar should stay in place
-        It should be fixed, and the rest of the page should scroll
-      ☐ Reduce the width of the sidebar
-      ☐ Reduce the sidebar font size on all aspects
-      ☐ Push the project section items into the background visually
-        Reduce contrast, decrease font-size, etc.
-      ☐ Add some padding around the side bar to show the website background and round the top-left and bottom-left corners
-        This is to give a sense that the sidebar is merely a widget sitting in the primary focus of the app, the task section
-      ☐ Remove the Fortira logo
-      Profile Header:
-        ☐ Add in a profile picture circle thing
-        ☐ Add fake notification icon
-          ☐ Make sure that it has hover changes on cursor and icon
+      ✔ Add a help and resources section to bottom of sidebar - use ? icon and copy from ToDoist @done(25-12-19 12:19)
+        ✔ Make it further into the background - less contrast @done(25-12-19 12:19)
+      ✔ Make the sidebar text less contrasted - should be further in background @done(25-12-19 11:59)
+      ✘ Create hider button for sidebar? @cancelled(25-12-19 12:19)
+        ✘ If you do, keep the tasks centered/in the same place @cancelled(25-12-19 12:19)
+    
+    Profile Header:
+    ✔ Add in a profile picture circle thing @done(25-12-17 09:35)
+    ✔ Add fake notification icon @done(25-12-19 11:39)
+    ✔ Add fake profile settings icon @done(25-12-19 11:39)
+    ✔ Add fake hamburger settings icon @done(25-12-19 11:39)
+    ✔ Add hover effects for all icons @done(25-12-19 11:54)
+      ✔ For siderbar, make it the same dark color as behind the profile border @done(25-12-19 11:54)
+      ✔ For the hamburger, make it a cirlce that is just greyish/greenish @done(25-12-19 11:54)
 
     Delete Button:
-      ☐ Make the delete button a large trash can icon
-      ☐ Make it at the end of the task (on the right side)
-      ☐ Create a warning dialog if the task has sub-sub tasks
+      ✔ Make the delete button a large trash can icon @done(25-12-19 13:18)
+      ✔ Make it at the end of the task (on the right side) @done(25-12-19 13:18)
+      ✘ Create a warning dialog if the task has sub-sub tasks @cancelled(25-12-19 13:18)
+
+    Checkbox: 
+    ✔ Change into a white circle @done(25-12-20 14:01)
+      ✔ Make a small gap between the edge of the task and the cirlce @done(25-12-20 14:01)
+      ✔ When it is clicked, it fill in green and turns the background of the task into washed-out green @done(25-12-20 14:01)
+      ✔ It also reduce contrast significantly on the task text, rather than doing the cross out @done(25-12-20 14:01)
+    ✔ Add space between the checkbox and task title @done(25-12-20 14:01)
+
+    ✔ Choose a primary color, and accent (call to action) color, and then a site color @done(25-12-15 19:02)
+    ✔ FIND A BETTER FONT====================== @done(25-12-12 11:25)
+    ✔ Fix the CSS to have background expand with the page - Grid or Flex? @done(25-12-15 19:02)
+      I think it would be best to have a simple underline and blend the rest with the background, but play with it
+    ✔ Brighten up the backgrond of the page slightly @done(25-12-11 17:26)
+    ✔ Consider making the sidebar very sublte green and making the text black still, but with green highlights (like todoist with red) @done(25-12-15 19:02)
+    Add Task Button:
+      ✘ Push the Add Task button into the background slightly @cancelled(25-12-15 19:05)
+        ✘ Remove it's background @cancelled(25-12-15 19:05)
+        ✘ Make the font thicker, but less contrast @cancelled(25-12-15 19:05)
+      ☐ Push the button further down the page
+
+    Sidebar:
+      ✔ Make the sidebar a very desatuarted green color @done(25-12-15 19:02)
+      ✔ Project section on sidebar should stay in place @done(25-12-14 14:21)
+        It should be fixed, and the rest of the page should scroll
+      ✔ Reduce the width of the sidebar @done(25-12-15 19:02)
+      ✔ Reduce the sidebar font size on all aspects @done(25-12-15 19:02)
+        Reduce contrast, decrease font-size, etc.
+      ✔ Add some padding around the side bar to show the website background and round the top-left and bottom-left corners @done(25-12-15 19:04)
+        This is to give a sense that the sidebar is merely a widget sitting in the primary focus of the app, the task section
+      ✔ Remove the Fortira logo @done(25-12-15 19:05)
+      ☐ Change the highlight of the "Projects"
+
 
     Tasks:
-      ☐ Remove drag handles
-      ☐ Make the tasks section a fixed width in the page
-      ☐ Bring tasks into the foreground more
-        ☐ This can either be a line, or just a background and spacing between tasks
-          Visually bring tasks into the foreground and add separation
-      ☐ Change the hover of tasks
-        ☐ 
-      ☐ Change what the task focus looks like
+      ✔ Add a horizontal line between Title and tasks on page @done(25-12-20 14:02)
+      ✔ Try adding a subtle horizontal blue line between tasks and removing the task backgrounds @done(25-12-20 14:02)
+        ✔ Make the lines fade out on either end @done(25-12-20 14:02)
+        ✘ When a task is selected, you an make the background blue and fade the ends @cancelled(25-12-20 14:02)
+      ✔ Add some icons to the top right of the page so it doesn't look so naked @done(25-12-20 14:02)
+      ✔ Change what the task focus looks like @done(25-12-12 12:57)
         The original idea was to use a vibrant blue accent. Play with it
-      ☐ Add a shadow that drops over the sidebar to the left
-      ☐ Style the new task input to not be retarded looking
+        ✔ You've got a shadow now, try making it blue @done(25-12-12 12:57)
+        ✔ Add an effect to make the size larger with an animation @done(25-12-12 12:57)
+
+      ✔ Bring tasks into the foreground more @done(25-12-11 17:43)
+        ✔ This can either be a line, or just a background and spacing between tasks @done(25-12-11 17:43)
+          Visually bring tasks into the foreground and add separation
+      ✔ ME NEXT ========More space between project title and tasks @done(25-12-15 15:22)
+      ✔ Remove drag handles @done(25-12-15 19:07)
+      ✔ Change the hover of tasks @done(25-12-15 19:07)
+        ✔ Make the task your hovering "pop" a bit. Add shadow, make the task slightly larger with a small delay/animation @done(25-12-15 19:07)
+      ✔ Add a shadow that drops over the sidebar to the left @done(25-12-15 19:07)
+      ✔ Style the new task input to not be retarded looking @done(25-12-20 14:02)
+
+
 
 Controller:
 
