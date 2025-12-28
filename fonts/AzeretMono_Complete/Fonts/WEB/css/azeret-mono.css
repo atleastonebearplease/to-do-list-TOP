@@ -1,0 +1,50 @@
+/**
+* @license
+*
+* Font Family: Azeret Mono
+* Designed by: Displaay, Martin Vácha, Daniel Quisek
+* URL: https://www.fontshare.com/fonts/azeret-mono
+* © 2025 Indian Type Foundry
+*
+* Azeret Mono Thin 
+* Azeret Mono ThinItalic 
+* Azeret Mono ExtraLight 
+* Azeret Mono ExtraLightItalic 
+* Azeret Mono Light 
+* Azeret Mono LightItalic 
+* Azeret Mono Regular 
+* Azeret Mono Italic 
+* Azeret Mono Medium 
+* Azeret Mono MediumItalic 
+* Azeret Mono SemiBold 
+* Azeret Mono SemiBoldItalic 
+* Azeret Mono Bold 
+* Azeret Mono BoldItalic 
+* Azeret Mono ExtraBold 
+* Azeret Mono ExtraBoldItalic 
+* Azeret Mono Black 
+* Azeret Mono BlackItalic 
+* Azeret Mono Variable (Variable font)
+* Azeret Mono VariableItalic (Variable font)
+
+*
+*/
+@font-face {
+  font-family: 'AzeretMono-Bold';
+  src: url('../fonts/AzeretMono-Bold.woff2') format('woff2'),
+       url('../fonts/AzeretMono-Bold.woff') format('woff'),
+       url('../fonts/AzeretMono-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AzeretMono-SemiBold';
+  src: url('../fonts/AzeretMono-SemiBold.woff2') format('woff2'),
+       url('../fonts/AzeretMono-SemiBold.woff') format('woff'),
+       url('../fonts/AzeretMono-SemiBold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
